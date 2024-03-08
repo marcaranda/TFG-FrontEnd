@@ -19,7 +19,7 @@ function Register() {
           setError(false);
         }, 3000);
       } else {
-        //navigate("/issueList");
+        navigate("/main");
       }
     }
   
