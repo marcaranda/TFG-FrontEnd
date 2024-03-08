@@ -1,0 +1,27 @@
+.body {
+    display: flex;
+    flex-direction: column;
+}
+
+.page {
+    width: 97%;
+    display: flex;
+    flex-direction: row;
+}
+
+.page-title {
+    text-align: Left;
+    font: inherit;
+    color: #008aa8;
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.half-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 94vh;
+    width: 50vw;
+}
