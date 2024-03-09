@@ -14,12 +14,11 @@ function NewFile () {
         fileInputButton.current.click();
     };
 
-    const handleFileChange = (event) => {
+    async function handleFileChange (event) {
         const file = event.target.files[0];
-        const result = fileReader(file, userId);
-        const dataset = result.json();
+        const result = await fileReader(file, userId);
 
-        navigate("/file", {state: {dataset}});
+        navigate("/file", {state: { dataset: result}});
     };
 
     return (

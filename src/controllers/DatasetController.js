@@ -5,9 +5,6 @@ export async function fileReader(file, userId) {
     try {
         const formData = new FormData();
         formData.append('file', file);
-
-        console.log("ok");
-
         let result = await axios.post("http://localhost:8080/file/userId/" + userId, formData, {
             headers: {
                 Authorization: "Bearer " + getToken(),

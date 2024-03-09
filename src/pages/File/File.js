@@ -8,20 +8,35 @@ import 'handsontable/dist/handsontable.full.css';
 function File () {
     const container = useRef(null);
     const location = useLocation();
-    const dataset = location.state?.dataset;
+    const { dataset } = location.state || {};
+    const datasetData = dataset.dataset;
 
-    /*const datasetValues = [
-        ["", "Tesla", "Nissan", "Toyota", "Honda", "Mazda", "Ford"],
-        ["2017", 10, 11, 12, 13, 15, 16],
-        ["2018", 10, 11, 12, 13, 15, 16],
-        ["2019", 10, 11, 12, 13, 15, 16],
-        ["2020", 10, 11, 12, 13, 15, 16],
-    ];*/
+    let datasetValues = [];
+
+    let titles = [];
+    Object.keys(datasetData[1]).forEach(subKey => {
+        if (subKey !== "ID") {
+            titles.push(subKey);
+        }
+    })
+    datasetValues.push(titles);
+
+    Object.keys(datasetData).forEach(key => {
+        if (typeof datasetData[key] === 'object' && datasetData[key] !== null) {
+            let row = [];
+            Object.keys(datasetData[key]).forEach(subKey => {
+                if (subKey !== "ID") {
+                    row.push(datasetData[key][subKey]);
+                }
+            });
+            datasetValues.push(row);
+        }
+    });
 
     useEffect(() => {
         // Inicializar Handsontable al montar el componente
         const hot = new Handsontable(container.current, {
-            data: dataset,
+            data: datasetValues,
             rowHeaders: true,
             colHeaders: true,
             dropdownMenu: true,
