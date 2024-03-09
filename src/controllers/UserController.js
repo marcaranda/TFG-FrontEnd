@@ -1,5 +1,5 @@
 import axios from "axios"
-import {setToken, getToken} from "../data/Constants"
+import { setToken, getToken } from "../data/Constants"
 
 export async function login(email, password) {
     try {
@@ -37,10 +37,10 @@ export async function register(name, email, password, phone) {
 
 export async function getUser(userId) {
     try {
-        let result = await axios.get("http://localhost:8080/user/userId/" + userId, {
+        let result = await axios.get(`http://localhost:8080/user/userId/${userId}`, {
             headers: {
                 Authorization: "Bearer " + getToken(),
-            },
+              },
         });
         return result.data;
     } catch (error) {
@@ -48,15 +48,33 @@ export async function getUser(userId) {
     }
 }
 
-export async function editUser(user) {
+export async function editUser(user){
     try {
-        await axios.put("http://localhost:8080/user", user, {
+        await axios.put("http://localhost:8080/user",user,{
+            headers: {
+                Authorization: "Bearer " + getToken(),
+            },
+        });
+        return true;
+    } catch (error) {
+        console.error(error);
+        return false;
+    }
+}
+
+export async function editPassword(userId, currentPassword, newPassword) {
+    try {
+        await axios.put("http://localhost:8080/user/userId/" + userId + "/changePassword", {
+            currentPassword: currentPassword,
+            newPassword: newPassword,
             headers: {
                 Authorization: "Bearer " + getToken,
             },
         });
+        return true;
     } catch (error) {
         console.error(error);
+        return false;
     }
 }
 

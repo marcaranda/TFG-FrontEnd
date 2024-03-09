@@ -1,0 +1,30 @@
+.profilebar{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 100vh;
+    min-width: 200px;
+    max-width: 200px;
+    background-color: #3b4252;
+    left: 0;
+}
+
+.button{
+    background-color: transparent;
+    width: 200px;
+    padding-left: 20px;
+    text-align: left;
+    top: 0;
+    border:none;
+    color: #fff;
+    height: 40px;
+    margin-top: 10px;
+    font-size: 1.1rem;
+    transition: all .5s ease;
+}
+
+.button:hover {
+    background-color: #2e3440;
+    font-weight: bold;
+    cursor: pointer;
+}

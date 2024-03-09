@@ -33,3 +33,9 @@
     margin-top: 0%;
     margin-left: 10px;
 }
+
+.button:hover {
+    background-color: #83eede;
+    font-weight: bold;
+    cursor: pointer;
+}

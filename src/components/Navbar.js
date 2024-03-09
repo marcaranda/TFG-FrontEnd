@@ -1,20 +1,28 @@
 import React from "react";
 import styles from './Navbar.module.css';
-//import {useNavigate} from "react-router-dom";
-import {getUserId} from "../data/Constants";
+import {useNavigate} from "react-router-dom";
 
 function Navbar() {
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
 
     function handleProfileButton(){
-        //navigate("/user/userId/" + getUserId());
-        console.log(getUserId());
+        navigate("/user-settings/user-profile");
     }
+
+    function handleMainButton(){
+        navigate("/main");
+    }
+
     return(
         <div className={styles['navbar']}>
-            <h1 className={styles['navbar-title']}>Data Analysis</h1>
             <button 
-                className={styles['navbar-button']} 
+                className={styles['main-button']} 
+                onClick={handleMainButton}
+            >
+                Data Analysis
+            </button>
+            <button 
+                className={styles['profile-button']} 
                 onClick={handleProfileButton}
             >
                 Profile

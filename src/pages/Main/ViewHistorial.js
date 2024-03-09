@@ -1,12 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styles from './ViewHistorial.module.css'
 
 function ViewHistorial () {
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const handleButtonClick = () => {
-        //navigate("/page");
-        console.log("historial");
+        navigate("/user-settings/history");
     };
 
     return (
