@@ -37,6 +37,7 @@
 .dataset-container {
     display: flex;
     flex-direction: row;
+    margin-bottom: 10px;
 }
 
 .dataset-container:hover {
@@ -71,13 +72,12 @@
     width: 30px;
     height: 30px;
     border-radius: 10%;
-    background-color: #f9f9fb;
     cursor: pointer;
     background-color: transparent;
+    margin-top: 0px;
 }
 
 .download-button:hover {
-    size: "2x";
     cursor: pointer;
     color: green;
 }
@@ -91,6 +91,7 @@
     background-color: #f9f9fb;
     cursor: pointer;
     background-color: transparent;
+    margin-top: 0px;
 }
 
 .trash-button:hover {

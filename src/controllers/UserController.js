@@ -37,7 +37,7 @@ export async function register(name, email, password, phone) {
 
 export async function getUser(userId) {
     try {
-        let result = await axios.get(`http://localhost:8080/user/userId/${userId}`, {
+        let result = await axios.get("http://localhost:8080/user/userId/" + userId, {
             headers: {
                 Authorization: "Bearer " + getToken(),
               },
