@@ -1,11 +1,14 @@
 import React, {useRef} from "react";
-//import {useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import styles from './NewFile.module.css'
+import { fileReader } from "../../controllers/DatasetController";
+import { getUserId } from "../../data/Constants";
 
 
 function NewFile () {
     const fileInputButton = useRef(null);
-    //const navigate = useNavigate();
+    const userId = getUserId();
+    const navigate = useNavigate();
 
     const handleButtonClick = () => {
         fileInputButton.current.click();
@@ -13,9 +16,10 @@ function NewFile () {
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
-        //llamar funcion controller
-        console.log(file);
-        //navigate("/page")
+        const result = fileReader(file, userId);
+        const dataset = result.json();
+
+        navigate("/file", {state: {dataset}});
     };
 
     return (

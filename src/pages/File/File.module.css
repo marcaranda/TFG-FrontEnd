@@ -1,0 +1,57 @@
+.body {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    text-align: Left;
+    font: inherit;
+    color: #008aa8;
+    font-size: 2rem;
+    font-weight: 500;
+    align-self: center;
+}
+
+.file-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #eee;
+    border: 2px solid #ccc;
+    border-radius: 15px;
+    width: auto;
+    height: 600px;
+    border-collapse: collapse;
+    overflow-y: auto;
+    overflow-x: auto;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.row-container {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.value-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #ccc;
+    border-radius: 15px;
+    width: 100px;
+    height: 75px;
+    border-collapse: collapse;
+    overflow-x: auto;
+}
+
+.table {
+    border-collapse: collapse;
+    width: auto;
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 8px;
+    background-color: black;
+    cursor: pointer;
+}
