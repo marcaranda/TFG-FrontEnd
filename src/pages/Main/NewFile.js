@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React, { useRef } from "react";
 import {useNavigate} from "react-router-dom";
 import styles from './NewFile.module.css'
 import { fileReader } from "../../controllers/DatasetController";

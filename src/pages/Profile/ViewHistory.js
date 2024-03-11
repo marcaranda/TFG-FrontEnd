@@ -5,7 +5,7 @@ import Navbar from "../../components/Navbar";
 import Profilebar from "../../components/Profilebar";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { deleteDataset, downloadDataset, showHistorial } from "../../controllers/DatasetController";
+import { deleteDataset, downloadDataset, showHistorial, getDataset } from "../../controllers/DatasetController";
 import { getUserId } from "../../data/Constants";
 
 function ViewHistory () {
@@ -32,8 +32,10 @@ function ViewHistory () {
     }
 
     async function handleDatasetButton(dataset) {
-        //const { datasetName, version } = await getNameVersion(dataset);
-        console.log("dataset");
+        const { datasetName, version } = await getNameVersion(dataset);
+        const result = await getDataset(userId, datasetName, version);
+        console.log(result);
+        navigate("/file", {state: { dataset: result}});
     }
 
     async function getNameVersion(dataset) {

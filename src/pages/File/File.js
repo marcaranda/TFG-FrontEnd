@@ -10,14 +10,15 @@ function File () {
     const location = useLocation();
     const { dataset } = location.state || {};
     const datasetData = dataset.dataset;
+    console.log(datasetData);
 
     let datasetValues = [];
 
     let titles = [];
-    Object.keys(datasetData[1]).forEach(subKey => {
-        if (subKey !== "ID") {
-            titles.push(subKey);
-        }
+    Object.keys(datasetData[1]).forEach(key => {
+        Object.keys(datasetData["1"][key]).forEach(title => {
+            titles.push(title);
+        });
     })
     datasetValues.push(titles);
 
@@ -25,9 +26,9 @@ function File () {
         if (typeof datasetData[key] === 'object' && datasetData[key] !== null) {
             let row = [];
             Object.keys(datasetData[key]).forEach(subKey => {
-                if (subKey !== "ID") {
-                    row.push(datasetData[key][subKey]);
-                }
+                Object.keys(datasetData[key][subKey]).forEach(valueKey => {
+                    row.push(datasetData[key][subKey][valueKey]);
+                });
             });
             datasetValues.push(row);
         }

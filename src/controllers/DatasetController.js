@@ -30,6 +30,19 @@ export async function showHistorial(userId) {
     }
 }
 
+export async function getDataset(userId, datasetName, version) {
+    try {
+        let result = await axios.get("http://localhost:8080/file/userId/" + userId + "/datasetName/" + datasetName + "/version/" + version, {
+            headers: {
+                Authorization: "Bearer " + getToken(),
+            },
+        });
+        return result.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 export async function downloadDataset(datasetName, version) {
     try {
         let response = await axios.get("http://localhost:8080/file/download/datasetName/" + datasetName + "/version/" + version, {
