@@ -47,7 +47,7 @@ function ViewHistory () {
                             {datasets &&
                                 datasets.map((dataset) => (
                                 <tr key={dataset} className={styles["dataset-container"]}>
-                                    <td>
+                                    <td className={styles["dataset-name-button-td"]}>
                                         <button
                                             className={styles["dataset-name-button"]}
                                             onClick={() => handleDatasetButton(dataset)}
@@ -55,21 +55,28 @@ function ViewHistory () {
                                             {dataset.version === 0 ? dataset.datasetName : `${dataset.datasetName}_${dataset.version}`}
                                         </button>
                                     </td>
-                                    <td>
-                                        <button 
-                                            className={styles["download-button"]}
-                                            onClick={() => handleDownloadButton(dataset)}
-                                        >
-                                            <FontAwesomeIcon icon={faDownload} size="1x" />
-                                        </button>
+                                    <td className={styles["entropy-td"]}>
+                                        <p className={styles["entropy"]}>Eigen Entropy: {dataset.eigenEntropy}</p>
                                     </td>
-                                    <td>
-                                        <button 
-                                            className={styles["trash-button"]}
-                                            onClick={() => handleDeleteButton(dataset)}
-                                        >
-                                            <FontAwesomeIcon icon={faTrash} size="1x" />
-                                        </button>
+                                    <td className={styles["buttons-container-td"]}>
+                                        <div className={styles["buttons-container"]}>
+                                            <td>
+                                                <button 
+                                                    className={styles["download-button"]}
+                                                    onClick={() => handleDownloadButton(dataset)}
+                                                >
+                                                    <FontAwesomeIcon icon={faDownload} size="1x" />
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <button 
+                                                    className={styles["trash-button"]}
+                                                    onClick={() => handleDeleteButton(dataset)}
+                                                >
+                                                    <FontAwesomeIcon icon={faTrash} size="1x" />
+                                                </button>
+                                            </td>
+                                        </div>
                                     </td>
                                 </tr>
                             ))}

@@ -38,11 +38,16 @@
 .dataset-container {
     display: flex;
     flex-direction: row;
+    align-items: center;
     margin-bottom: 10px;
 }
 
 .dataset-container:hover {
     background-color: #eee;
+}
+
+.dataset-name-button-td {
+    width: 100%;
 }
 
 .dataset-name-button {
@@ -51,20 +56,45 @@
     color: black;
     background-color: transparent;
     font: inherit;
-    font-size: 1.1;
+    font-size: 1rem;
     border: none;
     transition: all 0.5s ease;
     margin-left: 50px;
+    vertical-align: middle;
     -webkit-user-select: none; /* Safari */
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+/Edge */
     user-select: none; /* Standard syntax */
 }
 
+.entropy-td {
+    width: 100%;
+}
+
+.entropy {
+    text-align: center;
+    color: black;
+    background-color: transparent;
+    font: inherit;
+    font-size: 1rem;
+    border: none;
+    transition: all 0.5s ease;
+    margin-right: 5px;
+}
+
 .dataset-name-button:hover {
     text-decoration: underline;
     cursor: pointer;
     color: rgb(10, 99, 216);
+}
+
+.buttons-container-td {
+    width: 100%;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .download-button{
@@ -93,6 +123,7 @@
     cursor: pointer;
     background-color: transparent;
     margin-top: 0px;
+    margin-right: 70px;
 }
 
 .trash-button:hover {
