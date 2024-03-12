@@ -5,7 +5,7 @@
     min-height: 100vh;
     min-width: 200px;
     max-width: 200px;
-    background-color: #3b4252;
+    background-color: #535864;
     left: 0;
 }
 
@@ -20,6 +20,7 @@
     height: 40px;
     margin-top: 10px;
     font-size: 1.1rem;
+    font-weight: bold;
     transition: all .5s ease;
 }
 

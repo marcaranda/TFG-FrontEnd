@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {useNavigate} from "react-router-dom";
 import styles from "./LoginRegister.module.css";
 import {login} from "../../controllers/UserController";
-//import {setToken} from '../../data/Constants';
+import logo from "../../assets/pictures/logoTFG.png"
 
 function Login() {
     const [error, setError] = useState(false);
@@ -59,6 +59,7 @@ function Login() {
 
     return (
       <div className={styles["body"]}>
+        <img src={ logo } alt="LogoIni" className={styles["logo"]}/>
         <div className={styles["container"]}>
           <button className={styles["close-button"]} onClick={handleBackButton}>
             Back
@@ -90,6 +91,7 @@ function Login() {
             </button>
           </div>
         </div>
+        <img src={ logo } alt="LogoIni" className={styles["logo"]}/>
       </div>
     );
   }

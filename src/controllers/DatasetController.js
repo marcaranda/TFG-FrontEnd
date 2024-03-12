@@ -17,9 +17,9 @@ export async function fileReader(file, userId) {
     }
 }
 
-export async function applyFilter(userId, datasetName, titlesFilter) {
+export async function applyFilter(userId, datasetName, version, titlesFilter) {
     try {
-        let result = await axios.post("http://localhost:8080/file/filter/userId/" + userId + "/datasetName/" + datasetName, titlesFilter, {
+        let result = await axios.post("http://localhost:8080/file/filter/userId/" + userId + "/datasetName/" + datasetName + "/version/" + version, titlesFilter, {
             headers: {
                 Authorization: "Bearer " + getToken(),
             },
@@ -56,9 +56,9 @@ export async function getDataset(userId, datasetName, version) {
     }
 }
 
-export async function downloadDataset(datasetName, version) {
+export async function downloadDataset(userId, datasetName, version) {
     try {
-        let response = await axios.get("http://localhost:8080/file/download/datasetName/" + datasetName + "/version/" + version, {
+        let response = await axios.get("http://localhost:8080/file/download/userId/" + userId + "/datasetName/" + datasetName + "/version/" + version, {
             responseType: 'blob',
             headers: {
                 Authorization: "Bearer " + getToken(),
@@ -70,7 +70,13 @@ export async function downloadDataset(datasetName, version) {
         const link = document.createElement('a');
         link.href = url;
 
-        link.setAttribute('download', `${datasetName}_${version}.csv`);
+        if (version === 0){
+            link.setAttribute('download', `${datasetName}.csv`);
+        }
+        else {
+            link.setAttribute('download', `${datasetName}_${version}.csv`);
+        }
+    
 
         document.body.appendChild(link);
         link.click();

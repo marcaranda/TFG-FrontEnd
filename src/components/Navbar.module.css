@@ -9,34 +9,28 @@
 }
 
 .main-button{
-    background-color: #222;
+    background-color: transparent;
     margin: 0;
-    padding-left: 20px;
-    padding-right: 20px;
-    height: 55px;
-    width: 150px;
-    display: flex;
-    font-weight: bold;
-    font-family: Ubuntu-Medium,Arial,Helvetica,sans-serif;
-    text-decoration: none;
-    color: #83eede;
-    align-items: center;
-    text-align: center;
-    font-size: 1rem;
+    width: 65px;
+    height: 65px;
+    border: none;
     transition: all .5s ease;
+    margin-left: 20px;
+}
+
+.logo {
+    max-width: 100%;
 }
 
 .profile-button{
     position: absolute;
-    right: 0%;
+    right: 20px;
     background-color: transparent;
-    width: 200px;
-    padding-left: 20px;
     text-align: center;
     border:none;
     color: #fff;
     height: 40px;
-    width: 100px;
+    width: auto;
     margin-top: 10px;
     font-size: 1.1rem;
     transition: all .5s ease;

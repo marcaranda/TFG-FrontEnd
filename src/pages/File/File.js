@@ -109,7 +109,7 @@ function File () {
             }
         }
 
-        const result = await applyFilter(userId, dataset.datasetName, filterTitles);
+        const result = await applyFilter(userId, dataset.datasetName, dataset.version, filterTitles);
         setFilterEntropy(result);
         setFilter(true);
     };
