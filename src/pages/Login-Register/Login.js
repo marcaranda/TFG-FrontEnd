@@ -32,7 +32,7 @@ function Login() {
 
     const handleBackButton = () => {
         navigate("/");
-      };
+    };
   
     const handleLoginButton = () => {
       loginAttempt(email, password);

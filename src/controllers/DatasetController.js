@@ -17,6 +17,19 @@ export async function fileReader(file, userId) {
     }
 }
 
+export async function applyFilter(userId, datasetName, titlesFilter) {
+    try {
+        let result = await axios.post("http://localhost:8080/file/filter/userId/" + userId + "/datasetName/" + datasetName, titlesFilter, {
+            headers: {
+                Authorization: "Bearer " + getToken(),
+            },
+        });
+        return result.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 export async function showHistorial(userId) {
     try {
         let result = await axios.get("http://localhost:8080/file/historial/userId/" + userId, {

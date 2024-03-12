@@ -8,7 +8,6 @@ export async function login(email, password) {
             password : password,
         });
 
-        console.log(result.data);
         setToken(result.data);
         return true;
     } catch (error) {

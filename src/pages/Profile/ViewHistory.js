@@ -18,7 +18,7 @@ function ViewHistory () {
             setDatasets(await showHistorial(userId));
         }
         fetchData();
-    }, [userId]);
+    }, [userId, datasets]);
 
     async function handleDownloadButton(dataset) {
         const { datasetName, version } = await getNameVersion(dataset);
@@ -34,7 +34,6 @@ function ViewHistory () {
     async function handleDatasetButton(dataset) {
         const { datasetName, version } = await getNameVersion(dataset);
         const result = await getDataset(userId, datasetName, version);
-        console.log(result);
         navigate("/file", {state: { dataset: result}});
     }
 
