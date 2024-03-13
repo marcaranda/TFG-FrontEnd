@@ -27,12 +27,34 @@
     margin-right: 20px;
 }
 
-.button-container {
+.buttons-header-container {
     display: flex;
-    justify-content: flex-end;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 10px;
 }
 
-.button {
+.left-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: left;
+}
+
+.center-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.right-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: right;
+}
+
+.filter-button {
     display: flex;
     background-color: #83eede;
     color: #2e3440;
@@ -43,34 +65,83 @@
     border-radius: 5px;
     padding: 0.45rem 1rem;
     transition: all 0.5s ease;
-    margin-bottom: 10px;
+    right: 0;
     margin-right: 20px;
 }
 
-.button:hover {
+.history-button {
+    display: flex;
+    background-color: #83eede;
+    color: #2e3440;
+    text-transform: uppercase;
+    font: inherit;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+    padding: 0.45rem 1rem;
+    transition: all 0.5s ease;
+    margin-left: 20px;
+}
+
+.download-button{
+    border-width: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 10%;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.trash-button{
+    border-width: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 10%;
+    cursor: pointer;
+    background-color: transparent;
+    margin-right: 30px;
+}
+
+.filter-button:hover {
     background-color: #83eede;
     font-weight: bold;
     cursor: pointer;
 }
 
+.history-button:hover {
+    background-color: #83eede;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.download-button:hover {
+    cursor: pointer;
+    color: green;
+}
+
+.trash-button:hover {
+    size: "2x";
+    cursor: pointer;
+    color: red;
+}
+
 .entropys-container {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
     margin-top: 10px;
-    width: auto;
-    margin-right: 20px;
 }
 
 .entropy-container {
     display: flex;
     flex-direction: row;
-    margin-top: 10px;
 }
 
 .filter-entropy-container {
     display: flex;
     flex-direction: row;
-    margin-top: 10px;
     margin-left: 200px;
 }
 
@@ -79,7 +150,6 @@
     color: #008aa8;
     font-size: 1.5rem;
     font-weight: 500;
-    align-self: center;
     margin-left: 20px;
 }
 
@@ -88,6 +158,5 @@
     color: #008aa8;
     font-size: 1.5rem;
     font-weight: 500;
-    align-self: center;
     margin-left: 5px;
 }

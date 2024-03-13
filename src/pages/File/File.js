@@ -1,13 +1,17 @@
 import React, { useRef, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import styles from './File.module.css'
 import Navbar from "../../components/Navbar";
 import Handsontable from "handsontable";
 import 'handsontable/dist/handsontable.full.css';
-import { applyFilter } from "../../controllers/DatasetController";
+import { applyFilter, downloadDataset, deleteDataset } from "../../controllers/DatasetController";
 import { getUserId } from "../../data/Constants";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDownload, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 function File () {
+    const navigate = useNavigate();
     const container = useRef(null);
     const hotInstance = useRef(null);
     const location = useLocation();
@@ -114,30 +118,68 @@ function File () {
         setFilter(true);
     };
 
+    async function handleDownloadButton(dataset) {
+        await downloadDataset(userId, dataset.datasetName, dataset.version);
+    }
+
+    async function handleDeleteButton(dataset) {
+        await deleteDataset(userId, dataset.datasetName, dataset.version);
+        navigate("/user-settings/history")
+    }
+
+    function handleHistorialButton() {
+        navigate("/user-settings/history");
+    }
+
     return (
         <div className={styles["body"]}>
             <Navbar />
             <h1 className={styles["title"]}>Data Analysis</h1>
-            <div className={styles["button-container"]}>
-                <button 
-                    className={styles["button"]}
-                    onClick={handleFilterButton}
-                >
-                    Apply Filter
-                </button>
+            <div className={styles["buttons-header-container"]}>
+                <div className={styles["left-container"]}>
+                    <button 
+                        className={styles["history-button"]}
+                        onClick={handleHistorialButton}
+                    >
+                        View History
+                    </button>
+                </div>
+                <div className={styles["center-container"]}>
+                    <button 
+                        className={styles["filter-button"]}
+                        onClick={handleFilterButton}
+                    >
+                        Apply Filter
+                    </button>
+                </div>
+                <div className={styles["right-container"]}>
+                    <button 
+                        className={styles["download-button"]}
+                        onClick={() => handleDownloadButton(dataset)}
+                    >
+                        <FontAwesomeIcon icon={faDownload} size="1x" />
+                    </button>
+                    <button 
+                        className={styles["trash-button"]}
+                        onClick={() => handleDeleteButton(dataset)}
+                    >
+                        <FontAwesomeIcon icon={faTrash} size="1x" />
+                    </button>
+                </div>
             </div>
             <div ref={container} className={styles["file-container"]}></div>
             <div className={styles["entropys-container"]}>
-                <div className={styles["entropy-container"]}>
+                <div className={styles["left-container"]}>
                     <p className={styles["entropy-title"]}>Eigen entropy:</p>
                     <p className={styles["entropy"]}>{ dataset.eigenEntropy }</p>
                 </div>
                 {filter && (
-                    <div className={styles["filter-entropy-container"]}>
+                    <div className={styles["center-container"]}>
                         <p className={styles["entropy-title"]}>Filtered Eigen entropy:</p>
                         <p className={styles["entropy"]}>{ filterEntropy }</p>
                     </div>
                 )}
+                <div></div>
             </div>
         </div>
     );
