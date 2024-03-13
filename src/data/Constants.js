@@ -14,6 +14,11 @@ export function getToken() {
     return token;
 }
 
+export function deleteToken() {
+    token = null;
+    localStorage.setItem("token", null);
+}
+
 export function setUserId(newUserId) {
     userId = newUserId;
     localStorage.setItem("userId", newUserId);

@@ -1,6 +1,7 @@
 import React from "react";
 import styles from './Profilebar.module.css'
 import { useNavigate } from "react-router-dom";
+import { deleteToken } from "../data/Constants";
 
 function Profilebar() {
     const navigate = useNavigate();
@@ -16,6 +17,11 @@ function Profilebar() {
     function handleHistorialButton() {
         navigate("/user-settings/history");
     }
+
+    const handleBackButton = () => {
+        deleteToken();
+        navigate("/");
+    };
 
     return (
         <div className={styles["profilebar"]}>
@@ -36,6 +42,12 @@ function Profilebar() {
                 onClick={handleHistorialButton}
             >
                 View History
+            </button>
+            <button
+                className={styles["logout-button"]}
+                onClick={handleBackButton}
+            >
+                Log Out
             </button>
         </div>
     );

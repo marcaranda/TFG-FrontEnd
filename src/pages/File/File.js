@@ -25,10 +25,8 @@ function File () {
 
     let titles = [];
     Object.keys(datasetData[1]).forEach(key => {
-        Object.keys(datasetData["1"][key]).forEach(title => {
-            titles.push(title);
-        });
-    })
+        titles.push(datasetData[1][key].column)
+    });
     datasetValues.push(titles);
     
     useEffect(() => {
@@ -47,9 +45,7 @@ function File () {
         if (typeof datasetData[key] === 'object' && datasetData[key] !== null) {
             let row = [];
             Object.keys(datasetData[key]).forEach(subKey => {
-                Object.keys(datasetData[key][subKey]).forEach(valueKey => {
-                    row.push(datasetData[key][subKey][valueKey]);
-                });
+                row.push(datasetData[key][subKey].value);
             });
             datasetValues.push(row);
         }
@@ -179,7 +175,6 @@ function File () {
                         <p className={styles["entropy"]}>{ filterEntropy }</p>
                     </div>
                 )}
-                <div></div>
             </div>
         </div>
     );

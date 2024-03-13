@@ -1,6 +1,5 @@
-.profilebar{
+.profilebar {
     display: flex;
-    flex: 1;
     flex-direction: column;
     min-height: 100vh;
     min-width: 200px;
@@ -9,7 +8,7 @@
     left: 0;
 }
 
-.button{
+.button {
     background-color: transparent;
     width: 200px;
     padding-left: 20px;
@@ -24,7 +23,30 @@
     transition: all .5s ease;
 }
 
+.logout-button {
+    background-color: transparent;
+    width: 200px;
+    padding-left: 20px;
+    text-align: left;
+    top: 0;
+    border:none;
+    color: #fff;
+    height: 40px;
+    margin-top: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: all .5s ease;
+    margin-top: auto;
+    margin-bottom: 80px;
+}
+
 .button:hover {
+    background-color: #2e3440;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.logout-button:hover {
     background-color: #2e3440;
     font-weight: bold;
     cursor: pointer;

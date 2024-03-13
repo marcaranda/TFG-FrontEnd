@@ -2,8 +2,9 @@
     display: flex;
     flex: 1;
     flex-direction: row;
-    height: 6%;
-    width: 100%;
+    min-height: 6%;
+    max-height: 6%;
+    min-width: 100vh;
     background-color: #3b4252;
     left: 0;
 }

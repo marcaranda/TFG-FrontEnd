@@ -46,7 +46,7 @@ function ViewHistory () {
                             <tr></tr>
                             {datasets &&
                                 datasets.map((dataset) => (
-                                <tr key={dataset} className={styles["dataset-container"]}>
+                                <tr key={`${dataset.datasetName}_${dataset.version}`} className={styles["dataset-container"]}>
                                     <td className={styles["dataset-name-button-td"]}>
                                         <button
                                             className={styles["dataset-name-button"]}
