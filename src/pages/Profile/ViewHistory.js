@@ -7,26 +7,32 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { deleteDataset, downloadDataset, showHistorial } from "../../controllers/DatasetController";
 import { getUserId } from "../../data/Constants";
+import Loader from "../../components/Loader"
 
 function ViewHistory () {
     const [datasets, setDatasets] = useState(null);
     const userId = getUserId();
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         async function fetchData() {
-            setDatasets(await showHistorial(userId));
-
+            setLoading(true);
+            const data = await showHistorial(userId);
+            setDatasets(data);
+            setLoading(false);
         }
         fetchData();
-    }, [userId, datasets]);
+    }, [userId]);
 
     async function handleDownloadButton(dataset) {
         await downloadDataset(dataset.userId, dataset.datasetName, dataset.version);
     }
 
     async function handleDeleteButton(dataset) {
+        setLoading(true);
         await deleteDataset(dataset.userId, dataset.datasetName, dataset.version);
+        setLoading(false);
         navigate("/user-settings/history")
     }
 
@@ -36,6 +42,7 @@ function ViewHistory () {
 
     return (
         <div className={styles["body"]}>
+            {loading && <Loader />}
             <Navbar />
             <div className={styles["page"]}>
                 <Profilebar />
@@ -60,22 +67,18 @@ function ViewHistory () {
                                     </td>
                                     <td className={styles["buttons-container-td"]}>
                                         <div className={styles["buttons-container"]}>
-                                            <td>
-                                                <button 
-                                                    className={styles["download-button"]}
-                                                    onClick={() => handleDownloadButton(dataset)}
-                                                >
-                                                    <FontAwesomeIcon icon={faDownload} size="1x" />
-                                                </button>
-                                            </td>
-                                            <td>
-                                                <button 
-                                                    className={styles["trash-button"]}
-                                                    onClick={() => handleDeleteButton(dataset)}
-                                                >
-                                                    <FontAwesomeIcon icon={faTrash} size="1x" />
-                                                </button>
-                                            </td>
+                                            <button 
+                                                className={styles["download-button"]}
+                                                onClick={() => handleDownloadButton(dataset)}
+                                            >
+                                                <FontAwesomeIcon icon={faDownload} size="1x" />
+                                            </button>
+                                            <button 
+                                                className={styles["trash-button"]}
+                                                onClick={() => handleDeleteButton(dataset)}
+                                            >
+                                                <FontAwesomeIcon icon={faTrash} size="1x" />
+                                            </button>
                                         </div>
                                     </td>
                                 </tr>

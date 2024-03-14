@@ -8,7 +8,8 @@ import 'handsontable/dist/handsontable.full.css';
 import { applyFilter, downloadDataset, deleteDataset } from "../../controllers/DatasetController";
 import { getUserId } from "../../data/Constants";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDownload, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faDownload, faTrash, faInfo } from "@fortawesome/free-solid-svg-icons";
+import Info from "./Info"
 
 function File () {
     const navigate = useNavigate();
@@ -21,6 +22,7 @@ function File () {
     const [columnStates, setColumnStates] = useState({});
     const [filterEntropy, setFilterEntropy] = useState(null);
     const [filter, setFilter] = useState(false);
+    const [info, setInfo] = useState(false);
     let datasetValues = [];
 
     let titles = [];
@@ -127,12 +129,26 @@ function File () {
         navigate("/user-settings/history");
     }
 
+    function handleInfoButton() {
+        setInfo(true);
+    }
+
+    function handleInfoClose() {
+        setInfo(false);
+    }
+
     return (
         <div className={styles["body"]}>
             <Navbar />
             <h1 className={styles["title"]}>Data Analysis</h1>
             <div className={styles["buttons-header-container"]}>
                 <div className={styles["left-container"]}>
+                    <button 
+                        className={styles["info-button"]}
+                        onClick={handleInfoButton}
+                    >
+                        <FontAwesomeIcon icon={faInfo} size="1x" />
+                    </button>
                     <button 
                         className={styles["history-button"]}
                         onClick={handleHistorialButton}
@@ -176,6 +192,7 @@ function File () {
                     </div>
                 )}
             </div>
+            {info && <Info onClose={handleInfoClose}/>}
         </div>
     );
 }

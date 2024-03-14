@@ -4,7 +4,6 @@
 }
 
 .title {
-    text-align: Left;
     font: inherit;
     color: #008aa8;
     font-size: 2rem;
@@ -36,20 +35,22 @@
     margin-bottom: 10px;
 }
 
+
+
 .left-container {
-    flex-grow: 1;
+    flex: 1;
     display: flex;
     justify-content: left;
 }
 
 .center-container {
-    flex-grow: 1;
+    flex: 1;
     display: flex;
     justify-content: center;
 }
 
 .right-container {
-    flex-grow: 1;
+    flex: 1;
     display: flex;
     justify-content: right;
 }
@@ -65,7 +66,6 @@
     border-radius: 5px;
     padding: 0.45rem 1rem;
     transition: all 0.5s ease;
-    right: 0;
     margin-right: 20px;
 }
 
@@ -92,6 +92,16 @@
     background-color: transparent;
 }
 
+.info-button{
+    border-width: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 10%;
+    cursor: pointer;
+    background-color: transparent;
+    margin-left: 20px;
+}
+
 .trash-button{
     border-width: 0;
     width: 30px;
@@ -115,6 +125,11 @@
 }
 
 .download-button:hover {
+    cursor: pointer;
+    color: green;
+}
+
+.info-button:hover {
     cursor: pointer;
     color: green;
 }
