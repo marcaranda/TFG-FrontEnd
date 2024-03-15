@@ -21,10 +21,10 @@ function File () {
     const { dataset } = location.state || {};
     const datasetData = dataset.dataset;
     const [columnStates, setColumnStates] = useState({});
-    const [filterEntropy, setFilterEntropy] = useState(null);
     const [filter, setFilter] = useState(false);
     const [info, setInfo] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [filteredDataset, setFilteredDataset] = useState(null);
     let datasetValues = [];
 
     let titles = [];
@@ -40,10 +40,9 @@ function File () {
             initialColumnStates[i] = true;
         }
         setColumnStates(initialColumnStates)
-        setFilterEntropy(null);
         setFilter(false);
         // eslint-disable-next-line
-    }, []);
+    }, [dataset]);
 
     Object.keys(datasetData).forEach(key => {
         if (typeof datasetData[key] === 'object' && datasetData[key] !== null) {
@@ -116,7 +115,7 @@ function File () {
         setLoading(true);
         const result = await applyFilter(userId, dataset.datasetName, dataset.version, filterTitles);
         setLoading(false);
-        setFilterEntropy(result);
+        setFilteredDataset(result);
         setFilter(true);
     };
 
@@ -139,6 +138,10 @@ function File () {
 
     function handleInfoClose() {
         setInfo(false);
+    }
+
+    function handleOpenFilterFileButton() {
+        navigate("/file", {state: { dataset: filteredDataset}});
     }
 
     return (
@@ -187,13 +190,23 @@ function File () {
             <div className={styles["entropys-container"]}>
                 <div className={styles["left-container"]}>
                     <p className={styles["entropy-title"]}>Eigen entropy:</p>
-                    <p className={styles["entropy"]}>{ dataset.eigenEntropy }</p>
+                    <p className={styles["entropy"]}>{parseFloat(dataset.eigenEntropy.toFixed(3))}</p>
                 </div>
                 {filter && (
-                    <div className={styles["center-container"]}>
-                        <p className={styles["entropy-title"]}>Filtered Eigen entropy:</p>
-                        <p className={styles["entropy"]}>{ filterEntropy }</p>
-                    </div>
+                    <>
+                        <div className={styles["center-container"]}>
+                            <p className={styles["entropy-title"]}>Filtered Eigen entropy:</p>
+                            <p className={styles["entropy"]}>{parseFloat(filteredDataset.eigenEntropy.toFixed(3))}</p>
+                        </div>
+                        <div className={styles["right-container"]}>
+                            <button 
+                            className={styles["filter-button"]}
+                            onClick={handleOpenFilterFileButton}
+                        >
+                            Open Filter File
+                        </button>
+                        </div>
+                    </>
                 )}
             </div>
             {info && <Info onClose={handleInfoClose}/>}

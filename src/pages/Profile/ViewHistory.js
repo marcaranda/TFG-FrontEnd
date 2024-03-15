@@ -63,7 +63,7 @@ function ViewHistory () {
                                         </button>
                                     </td>
                                     <td className={styles["entropy-td"]}>
-                                        <p className={styles["entropy"]}>Eigen Entropy: {dataset.eigenEntropy}</p>
+                                        <p className={styles["entropy"]}>Eigen Entropy: {parseFloat(dataset.eigenEntropy.toFixed(3))}</p>
                                     </td>
                                     <td className={styles["buttons-container-td"]}>
                                         <div className={styles["buttons-container"]}>
