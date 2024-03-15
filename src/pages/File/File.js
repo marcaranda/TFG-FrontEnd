@@ -10,6 +10,7 @@ import { getUserId } from "../../data/Constants";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faTrash, faInfo } from "@fortawesome/free-solid-svg-icons";
 import Info from "./Info"
+import Loader from "../../components/Loader"
 
 function File () {
     const navigate = useNavigate();
@@ -23,6 +24,7 @@ function File () {
     const [filterEntropy, setFilterEntropy] = useState(null);
     const [filter, setFilter] = useState(false);
     const [info, setInfo] = useState(false);
+    const [loading, setLoading] = useState(false);
     let datasetValues = [];
 
     let titles = [];
@@ -111,7 +113,9 @@ function File () {
             }
         }
 
+        setLoading(true);
         const result = await applyFilter(userId, dataset.datasetName, dataset.version, filterTitles);
+        setLoading(false);
         setFilterEntropy(result);
         setFilter(true);
     };
@@ -193,6 +197,7 @@ function File () {
                 )}
             </div>
             {info && <Info onClose={handleInfoClose}/>}
+            {loading && <Loader />}
         </div>
     );
 }
