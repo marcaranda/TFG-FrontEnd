@@ -120,11 +120,15 @@ function File () {
     };
 
     async function handleDownloadButton(dataset) {
+        setLoading(true);
         await downloadDataset(userId, dataset.datasetName, dataset.version);
+        setLoading(false);
     }
 
     async function handleDeleteButton(dataset) {
+        setLoading(true);
         await deleteDataset(userId, dataset.datasetName, dataset.version);
+        setLoading(false);
         navigate("/user-settings/history")
     }
 
