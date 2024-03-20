@@ -8,6 +8,7 @@ import 'handsontable/dist/handsontable.full.css';
 import ButtonsHeader from "./ButtonsHeader";
 import Info from "./Info";
 import Filter from "./Filter";
+import Loader from "../../components/Loader"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfo } from "@fortawesome/free-solid-svg-icons";
 
@@ -23,6 +24,7 @@ function File () {
     const [filteredDataset, setFilteredDataset] = useState(null);
     const [info, setInfo] = useState(false);
     const [showFilter, setShowFilter] = useState(false);
+    const [loading, setLoading] = useState(false);
     let datasetValues = [];
 
     let titles = [];
@@ -138,9 +140,16 @@ function File () {
                 setFilter={setFilter}
                 setFilteredDataset={setFilteredDataset}
                 setShowFilter={setShowFilter}
+                setLoading={setLoading}
             />
             <div className={styles["container"]}>
-                {showFilter && <Filter />}
+                {showFilter && <Filter 
+                   datasetName={dataset.datasetName}
+                   datasetVersion={dataset.version} 
+                   setFilter={setFilter}
+                   setFilteredDataset={setFilteredDataset}
+                   setLoading={setLoading}
+                />}
                 <div ref={container} className={styles["file-container"]}></div>
             </div>
             <div className={styles["entropys-container"]}>
@@ -166,6 +175,7 @@ function File () {
                 )}
             </div>
             {info && <Info onClose={handleInfoClose}/>}
+            {loading && <Loader />}
         </div>
     );
 }

@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import styles from './Filter.module.css'
+import { getUserId } from "../../data/Constants";
+import { applySampleFilter } from "../../controllers/DatasetController";
 
-function Filter() {
+function Filter({ datasetName, datasetVersion, setFilter, setFilteredDataset, setLoading }) {
+    const userId = getUserId();
     const [selectedImprove, setSelectedImprove] = useState("homo");
     const [selectedType, setSelectedType] = useState("Reduce");
     
@@ -14,7 +17,11 @@ function Filter() {
     }
 
     async function handleFilterButton() {
-        console.log("ok");
+        setLoading(true);
+        const result = await applySampleFilter(userId, datasetName, datasetVersion, selectedImprove, selectedType);
+        setLoading(false);
+        setFilteredDataset(result);
+        setFilter(true);
     }
 
     return(
@@ -23,29 +30,29 @@ function Filter() {
             <div className={styles["row-container"]}>
             <input
                 type="radio"
-                id="homo"
+                id="homogeneity"
                 name="filterImprove"
-                value="homo"
-                checked={selectedImprove === 'homo'}
+                value="homogeneity"
+                checked={selectedImprove === 'homogeneity'}
                 onChange={handleImproveButton}
                 className={styles["radio-input"]}
             />
-            <label htmlFor="homo" className={styles["radio-button"]}>
-                Homo
+            <label htmlFor="homogeneity" className={styles["radio-button"]}>
+                Homogeneity
             </label>
             </div>
             <div className={styles["row-container"]}>
             <input
                 type="radio"
-                id="hete"
+                id="Heterogeneity"
                 name="filterImprove"
-                value="hete"
-                checked={selectedImprove === 'hete'}
+                value="Heterogeneity"
+                checked={selectedImprove === 'Heterogeneity'}
                 onChange={handleImproveButton}
                 className={styles["radio-input"]}
             />
-            <label htmlFor="hete" className={styles["radio-button"]}>
-                Hete
+            <label htmlFor="Heterogeneity" className={styles["radio-button"]}>
+                Heterogeneity
             </label>
             </div>
             <div className={styles["space"]}></div>

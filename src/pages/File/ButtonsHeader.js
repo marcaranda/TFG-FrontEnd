@@ -1,23 +1,18 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from './ButtonsHeader.module.css';
-import Loader from "../../components/Loader"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { getUserId } from "../../data/Constants";
 import { applyFilter, downloadDataset, deleteDataset } from "../../controllers/DatasetController";
 
-function ButtonsHeader({ datasetName, datasetVersion, titles, columnStates, setFilter, setFilteredDataset, setShowFilter }) {
+function ButtonsHeader({ datasetName, datasetVersion, titles, columnStates, setFilter, setFilteredDataset, setShowFilter, setLoading }) {
     const navigate = useNavigate();
     const userId = getUserId();
-    const [loading, setLoading] = useState(false);
     const [showFilterHeader, setShowFilterHeader] = useState(false);
 
     async function handleFilterButton() {
         let filterTitles = [];
-
-        console.log(columnStates);
-        console.log(titles);
         
         for (let i = 0; i < titles.length; ++i) {
             if (columnStates[i]) {
@@ -94,7 +89,6 @@ function ButtonsHeader({ datasetName, datasetVersion, titles, columnStates, setF
                     </button>
                 </div>
             </div>
-            {loading && <Loader />}
         </div>
     )
 }
