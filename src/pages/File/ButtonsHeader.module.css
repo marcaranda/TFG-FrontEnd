@@ -1,0 +1,115 @@
+.body {
+    display: flex;
+    flex-direction: column;
+}
+
+.buttons-header-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.left-container {
+    flex: 1;
+    display: flex;
+    justify-content: left;
+}
+
+.center-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.right-container {
+    flex: 1;
+    display: flex;
+    justify-content: right;
+}
+
+.filter-button {
+    display: flex;
+    background-color: #83eede;
+    color: #2e3440;
+    text-transform: uppercase;
+    font: inherit;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+    padding: 0.45rem 1rem;
+    transition: all 0.5s ease;
+}
+
+.left-button {
+    display: flex;
+    background-color: #83eede;
+    color: #2e3440;
+    text-transform: uppercase;
+    font: inherit;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+    padding: 0.45rem 1rem;
+    transition: all 0.5s ease;
+    margin-left: 20px;
+}
+
+.download-button{
+    border-width: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 10%;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.info-button{
+    border-width: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 10%;
+    cursor: pointer;
+    background-color: transparent;
+    margin-left: 20px;
+}
+
+.trash-button{
+    border-width: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 10%;
+    cursor: pointer;
+    background-color: transparent;
+    margin-right: 30px;
+}
+
+.filter-button:hover {
+    background-color: #83eede;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.left-button:hover {
+    background-color: #83eede;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.download-button:hover {
+    cursor: pointer;
+    color: green;
+}
+
+.info-button:hover {
+    cursor: pointer;
+    color: green;
+}
+
+.trash-button:hover {
+    size: "2x";
+    cursor: pointer;
+    color: red;
+}

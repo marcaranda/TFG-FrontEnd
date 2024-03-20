@@ -1,0 +1,62 @@
+.filter-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #eee;
+    border: 2px solid #ccc;
+    border-radius: 15px;
+    width: 225px;
+    height: 100%;
+    margin-left: 20px;
+}
+
+.text {
+    color: black;
+    font: inherit;
+    font-size: 1rem;
+    margin-top: 15px;
+    margin-left: 15px;
+    font-weight: bold;
+}
+
+.row-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.radio-button {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 2px;
+    cursor: pointer;
+    text-align: center;
+}
+
+input[type="radio"]:checked + label {
+    border: 2px solid #83eede;
+    border-radius: 5px;
+}
+
+.space {
+    height: 20px;
+}
+
+.button {
+    display: flex;
+    background-color: #83eede;
+    color: #2e3440;
+    text-transform: uppercase;
+    font: inherit;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+    padding: 0.45rem 1rem;
+    transition: all 0.5s ease;
+    margin-left: 15px;
+    width: auto;
+}
+
+.button:hover {
+    background-color: #83eede;
+    font-weight: bold;
+    cursor: pointer;
+}

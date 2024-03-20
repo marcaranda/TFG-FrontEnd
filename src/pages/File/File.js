@@ -5,26 +5,24 @@ import styles from './File.module.css'
 import Navbar from "../../components/Navbar";
 import Handsontable from "handsontable";
 import 'handsontable/dist/handsontable.full.css';
-import { applyFilter, downloadDataset, deleteDataset } from "../../controllers/DatasetController";
-import { getUserId } from "../../data/Constants";
+import ButtonsHeader from "./ButtonsHeader";
+import Info from "./Info";
+import Filter from "./Filter";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDownload, faTrash, faInfo } from "@fortawesome/free-solid-svg-icons";
-import Info from "./Info"
-import Loader from "../../components/Loader"
+import { faInfo } from "@fortawesome/free-solid-svg-icons";
 
 function File () {
     const navigate = useNavigate();
     const container = useRef(null);
     const hotInstance = useRef(null);
     const location = useLocation();
-    const userId = getUserId();
     const { dataset } = location.state || {};
     const datasetData = dataset.dataset;
     const [columnStates, setColumnStates] = useState({});
     const [filter, setFilter] = useState(false);
-    const [info, setInfo] = useState(false);
-    const [loading, setLoading] = useState(false);
     const [filteredDataset, setFilteredDataset] = useState(null);
+    const [info, setInfo] = useState(false);
+    const [showFilter, setShowFilter] = useState(false);
     let datasetValues = [];
 
     let titles = [];
@@ -103,37 +101,8 @@ function File () {
         };
     }, );
 
-    async function handleFilterButton() {
-        let filterTitles = [];
-        
-        for (let i = 0; i < titles.length; ++i) {
-            if (columnStates[i]) {
-                filterTitles.push(hotInstance.current.getDataAtCell(0, i));
-            }
-        }
-
-        setLoading(true);
-        const result = await applyFilter(userId, dataset.datasetName, dataset.version, filterTitles);
-        setLoading(false);
-        setFilteredDataset(result);
-        setFilter(true);
-    };
-
-    async function handleDownloadButton(dataset) {
-        setLoading(true);
-        await downloadDataset(userId, dataset.datasetName, dataset.version);
-        setLoading(false);
-    }
-
-    async function handleDeleteButton(dataset) {
-        setLoading(true);
-        await deleteDataset(userId, dataset.datasetName, dataset.version);
-        setLoading(false);
-        navigate("/user-settings/history")
-    }
-
-    function handleHistorialButton() {
-        navigate("/user-settings/history");
+    function handleOpenFilterFileButton() {
+        navigate("/file", {state: { dataset: filteredDataset}});
     }
 
     function handleInfoButton() {
@@ -144,15 +113,10 @@ function File () {
         setInfo(false);
     }
 
-    function handleOpenFilterFileButton() {
-        navigate("/file", {state: { dataset: filteredDataset}});
-    }
-
     return (
         <div className={styles["body"]}>
             <Navbar />
-            <h1 className={styles["title"]}>Data Analysis</h1>
-            <div className={styles["buttons-header-container"]}>
+            <div className={styles["header-container"]}>
                 <div className={styles["left-container"]}>
                     <button 
                         className={styles["info-button"]}
@@ -160,37 +124,25 @@ function File () {
                     >
                         <FontAwesomeIcon icon={faInfo} size="1x" />
                     </button>
-                    <button 
-                        className={styles["history-button"]}
-                        onClick={handleHistorialButton}
-                    >
-                        View History
-                    </button>
                 </div>
                 <div className={styles["center-container"]}>
-                    <button 
-                        className={styles["filter-button"]}
-                        onClick={handleFilterButton}
-                    >
-                        Apply Filter
-                    </button>
+                    <h1 className={styles["title"]}>Data Analysis</h1>
                 </div>
-                <div className={styles["right-container"]}>
-                    <button 
-                        className={styles["download-button"]}
-                        onClick={() => handleDownloadButton(dataset)}
-                    >
-                        <FontAwesomeIcon icon={faDownload} size="1x" />
-                    </button>
-                    <button 
-                        className={styles["trash-button"]}
-                        onClick={() => handleDeleteButton(dataset)}
-                    >
-                        <FontAwesomeIcon icon={faTrash} size="1x" />
-                    </button>
-                </div>
+                <div className={styles["right-container"]}></div>
             </div>
-            <div ref={container} className={styles["file-container"]}></div>
+            <ButtonsHeader
+                datasetName={dataset.datasetName}
+                datasetVersion={dataset.version}
+                titles={titles}
+                columnStates={columnStates}
+                setFilter={setFilter}
+                setFilteredDataset={setFilteredDataset}
+                setShowFilter={setShowFilter}
+            />
+            <div className={styles["container"]}>
+                {showFilter && <Filter />}
+                <div ref={container} className={styles["file-container"]}></div>
+            </div>
             <div className={styles["entropys-container"]}>
                 <div className={styles["left-container"]}>
                     <p className={styles["entropy-title"]}>Eigen entropy:</p>
@@ -214,7 +166,6 @@ function File () {
                 )}
             </div>
             {info && <Info onClose={handleInfoClose}/>}
-            {loading && <Loader />}
         </div>
     );
 }
