@@ -133,6 +133,7 @@ function File () {
                 <div className={styles["right-container"]}></div>
             </div>
             <ButtonsHeader
+                datasetId={dataset.datasetId}
                 datasetName={dataset.datasetName}
                 datasetVersion={dataset.version}
                 titles={titles}
@@ -144,8 +145,7 @@ function File () {
             />
             <div className={styles["container"]}>
                 {showFilter && <Filter 
-                   datasetName={dataset.datasetName}
-                   datasetVersion={dataset.version} 
+                   datasetId={dataset.datasetId}
                    setFilter={setFilter}
                    setFilteredDataset={setFilteredDataset}
                    setLoading={setLoading}

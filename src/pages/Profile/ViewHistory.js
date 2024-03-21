@@ -26,19 +26,21 @@ function ViewHistory () {
     }, [userId]);
 
     async function handleDownloadButton(dataset) {
-        await downloadDataset(dataset.userId, dataset.datasetName, dataset.version);
+        setLoading(true);
+        await downloadDataset(dataset.datasetId, dataset.datasetName, dataset.version);
+        setLoading(false);
     }
 
     async function handleDeleteButton(dataset) {
         setLoading(true);
-        await deleteDataset(dataset.userId, dataset.datasetName, dataset.version);
+        await deleteDataset(dataset.datasetId);
         setLoading(false);
         navigate("/user-settings/history");
     }
 
     async function handleDatasetButton(dataset) {
         setLoading(true);
-        let result = await getDataset(dataset.userId, dataset.datasetName, dataset.version);
+        let result = await getDataset(dataset.datasetId);
         setLoading(false);
         navigate("/file", {state: { dataset: result}});
     }
@@ -67,6 +69,8 @@ function ViewHistory () {
                                     </td>
                                     <td className={styles["entropy-td"]}>
                                         <p className={styles["entropy"]}>Eigen Entropy: {parseFloat(dataset.eigenEntropy.toFixed(3))}</p>
+                                        <p className={styles["entropy"]}>Rows: {dataset.rows}</p>
+                                        <p className={styles["entropy"]}>Columns: {dataset.columns}</p>
                                     </td>
                                     <td className={styles["buttons-container-td"]}>
                                         <div className={styles["buttons-container"]}>

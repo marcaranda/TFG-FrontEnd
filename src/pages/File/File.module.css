@@ -109,3 +109,23 @@
     font-weight: 500;
     margin-left: 5px;
 }
+
+.filter-button {
+    display: flex;
+    background-color: #83eede;
+    color: #2e3440;
+    text-transform: uppercase;
+    font: inherit;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+    padding: 0.45rem 1rem;
+    transition: all 0.5s ease;
+    margin-right: 20px;
+}
+
+.filter-button:hover {
+    background-color: #83eede;
+    font-weight: bold;
+    cursor: pointer;
+}

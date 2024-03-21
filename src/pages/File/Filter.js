@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import styles from './Filter.module.css'
-import { getUserId } from "../../data/Constants";
 import { applySampleFilter } from "../../controllers/DatasetController";
 
-function Filter({ datasetName, datasetVersion, setFilter, setFilteredDataset, setLoading }) {
-    const userId = getUserId();
+function Filter({ datasetId, setFilter, setFilteredDataset, setLoading }) {
     const [selectedImprove, setSelectedImprove] = useState("homo");
     const [selectedType, setSelectedType] = useState("Reduce");
     
@@ -18,7 +16,7 @@ function Filter({ datasetName, datasetVersion, setFilter, setFilteredDataset, se
 
     async function handleFilterButton() {
         setLoading(true);
-        const result = await applySampleFilter(userId, datasetName, datasetVersion, selectedImprove, selectedType);
+        const result = await applySampleFilter(datasetId, selectedImprove, selectedType);
         setLoading(false);
         setFilteredDataset(result);
         setFilter(true);

@@ -3,12 +3,10 @@ import { useNavigate } from "react-router-dom";
 import styles from './ButtonsHeader.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { getUserId } from "../../data/Constants";
 import { applyFilter, downloadDataset, deleteDataset } from "../../controllers/DatasetController";
 
-function ButtonsHeader({ datasetName, datasetVersion, titles, columnStates, setFilter, setFilteredDataset, setShowFilter, setLoading }) {
+function ButtonsHeader({ datasetId, datasetName, datasetVersion, titles, columnStates, setFilter, setFilteredDataset, setShowFilter, setLoading }) {
     const navigate = useNavigate();
-    const userId = getUserId();
     const [showFilterHeader, setShowFilterHeader] = useState(false);
 
     async function handleFilterButton() {
@@ -21,7 +19,7 @@ function ButtonsHeader({ datasetName, datasetVersion, titles, columnStates, setF
         }
 
         setLoading(true);
-        const result = await applyFilter(userId, datasetName, datasetVersion, filterTitles);
+        const result = await applyFilter(datasetId, filterTitles);
         setLoading(false);
         setFilteredDataset(result);
         setFilter(true);
@@ -34,13 +32,13 @@ function ButtonsHeader({ datasetName, datasetVersion, titles, columnStates, setF
 
     async function handleDownloadButton() {
         setLoading(true);
-        await downloadDataset(userId, datasetName, datasetVersion);
+        await downloadDataset(datasetId, datasetName, datasetVersion);
         setLoading(false);
     }
 
     async function handleDeleteButton() {
         setLoading(true);
-        await deleteDataset(userId, datasetName, datasetVersion);
+        await deleteDataset(datasetId);
         setLoading(false);
         navigate("/user-settings/history")
     }
