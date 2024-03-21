@@ -30,9 +30,9 @@ export async function applyFilter(datasetId, titlesFilter) {
     }
 }
 
-export async function applySampleFilter(datasetId, improve, type) {
+export async function applySampleFilter(datasetId, improve, type, numRows) {
     try {
-        let result = await axios.get("http://localhost:8080/file/filter/datasetId/" + datasetId + "/improve/" + improve + "/type/" + type, {
+        let result = await axios.get("http://localhost:8080/file/filter/datasetId/" + datasetId + "/improve/" + improve + "/type/" + type + "/numRows/" + numRows, {
             headers: {
                 Authorization: "Bearer " + getToken(),
             },

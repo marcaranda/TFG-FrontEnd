@@ -36,6 +36,15 @@
     font-size: 1rem;
 }
 
+.text-1 {
+    margin-top: 0%;
+    color: black;
+    font: inherit;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-left: 15px;
+}
+
 .close-button {
     position: absolute;
     top: 0;
@@ -53,4 +62,8 @@
     size: "2x";
     cursor: pointer;
     color: red;
+}
+
+.space {
+    height: 20px;
 }

@@ -3,8 +3,10 @@ import styles from './Filter.module.css'
 import { applySampleFilter } from "../../controllers/DatasetController";
 
 function Filter({ datasetId, setFilter, setFilteredDataset, setLoading }) {
-    const [selectedImprove, setSelectedImprove] = useState("homo");
+    const [selectedImprove, setSelectedImprove] = useState("Homogeneity");
     const [selectedType, setSelectedType] = useState("Reduce");
+    const [numRows, setNumRows] = useState(1);
+    const [error, setError] = useState(false);
     
     const handleImproveButton = (event) => {
         setSelectedImprove(event.target.value);
@@ -14,28 +16,47 @@ function Filter({ datasetId, setFilter, setFilteredDataset, setLoading }) {
         setSelectedType(event.target.value);
     }
 
+    const handleInputChange = (event) => {
+        let num = event.target.value;
+        if (num === '') num = 1;
+        setNumRows(num);
+    };
+
     async function handleFilterButton() {
         setLoading(true);
-        const result = await applySampleFilter(datasetId, selectedImprove, selectedType);
+        let result;
+
+        console.log(numRows)
+
+        if (numRows !== null || numRows > 0) {
+            result = await applySampleFilter(datasetId, selectedImprove, selectedType, numRows);
+            setFilteredDataset(result);
+            setFilter(true);
+        }
+        else {
+            setError(true);
+            setTimeout(()=>{
+                setError(false);
+            }, 3000);
+        }
+        
         setLoading(false);
-        setFilteredDataset(result);
-        setFilter(true);
     }
 
     return(
         <div className={styles['filter-container']}>
-            <p className={styles["text"]}>To improve:</p>
+            <p className={styles["text"]}>To Improve:</p>
             <div className={styles["row-container"]}>
             <input
                 type="radio"
-                id="homogeneity"
+                id="Homogeneity"
                 name="filterImprove"
-                value="homogeneity"
-                checked={selectedImprove === 'homogeneity'}
+                value="Homogeneity"
+                checked={selectedImprove === 'Homogeneity'}
                 onChange={handleImproveButton}
                 className={styles["radio-input"]}
             />
-            <label htmlFor="homogeneity" className={styles["radio-button"]}>
+            <label htmlFor="Homogeneity" className={styles["radio-button"]}>
                 Homogeneity
             </label>
             </div>
@@ -83,6 +104,15 @@ function Filter({ datasetId, setFilter, setFilteredDataset, setLoading }) {
                 Increase
             </label>
             </div>
+            <div className={styles["space"]}></div>
+            <p className={styles["text"]}>{selectedType === "Reduce" ? "Number of Rows to Reduce:" : "Number of New Rows:"}</p>
+            <input
+                className={styles["input"]}
+                type="number"
+                placeholder="1"
+                onChange={(event) => handleInputChange(event)}
+            ></input>
+            {error && <p className={styles["error"]}>Incorrect Number of Rows</p>}
             <div className={styles["space"]}></div>
             <div className={styles["row-container"]}>
                 <button 

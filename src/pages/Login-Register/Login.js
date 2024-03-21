@@ -43,19 +43,19 @@ function Login() {
     };
 
     const handleInputChange = (event, inputNumber) => {
-        const inputValue = event.target.value;
-    
-        switch (inputNumber) {
-          case 1:
-            setEmail(inputValue);
-            break;
-          case 2:
-            setPassword(inputValue);
-            break;
-          default:
-            break;
-        }
-      };
+      const inputValue = event.target.value;
+  
+      switch (inputNumber) {
+        case 1:
+          setEmail(inputValue);
+          break;
+        case 2:
+          setPassword(inputValue);
+          break;
+        default:
+          break;
+      }
+    };
 
     return (
       <div className={styles["body"]}>
