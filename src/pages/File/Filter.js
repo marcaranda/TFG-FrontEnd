@@ -5,7 +5,8 @@ import { applySampleFilter } from "../../controllers/DatasetController";
 function Filter({ datasetId, setFilter, setFilteredDataset, setLoading }) {
     const [selectedImprove, setSelectedImprove] = useState("Homogeneity");
     const [selectedType, setSelectedType] = useState("Reduce");
-    const [numRows, setNumRows] = useState(1);
+    const [numInitialRows, setNumInitialRows] = useState('');
+    const [numWantedRows, setNumWantedRows] = useState(1);
     const [error, setError] = useState(false);
     
     const handleImproveButton = (event) => {
@@ -16,22 +17,41 @@ function Filter({ datasetId, setFilter, setFilteredDataset, setLoading }) {
         setSelectedType(event.target.value);
     }
 
-    const handleInputChange = (event) => {
+    const handleInputInitialRowsChange = (event) => {
+        let num = event.target.value;
+        setNumInitialRows(num);
+      };
+
+    const handleInputWantedRowsChange = (event) => {
         let num = event.target.value;
         if (num === '') num = 1;
-        setNumRows(num);
-    };
+        setNumWantedRows(num);
+      };
 
     async function handleFilterButton() {
-        setLoading(true);
-        let result;
-
-        console.log(numRows)
-
-        if (numRows !== null || numRows > 0) {
-            result = await applySampleFilter(datasetId, selectedImprove, selectedType, numRows);
-            setFilteredDataset(result);
-            setFilter(true);
+        if (numWantedRows !== null && numWantedRows > 0 && numInitialRows !== null && numInitialRows > 0) {
+            setLoading(true);
+            let result;
+            if (selectedType === "Reduce") {
+                if (numInitialRows < numWantedRows || numInitialRows === '') {
+                    result = await applySampleFilter(datasetId, selectedImprove, selectedType, numInitialRows, numWantedRows);
+                    setFilteredDataset(result);
+                    setFilter(true);
+                }
+                else {
+                    setLoading(false);
+                    setError(true);
+                    setTimeout(()=>{
+                        setError(false);
+                    }, 3000);
+                }
+            }
+            else { 
+                result = await applySampleFilter(datasetId, selectedImprove, selectedType, null, numWantedRows);
+                setFilteredDataset(result);
+                setFilter(true);
+            }
+            setLoading(false);
         }
         else {
             setError(true);
@@ -39,8 +59,6 @@ function Filter({ datasetId, setFilter, setFilteredDataset, setLoading }) {
                 setError(false);
             }, 3000);
         }
-        
-        setLoading(false);
     }
 
     return(
@@ -104,13 +122,25 @@ function Filter({ datasetId, setFilter, setFilteredDataset, setLoading }) {
                 Increase
             </label>
             </div>
+            {selectedType === "Reduce" && (
+                <>
+                    <div className={styles["space"]}></div>
+                    <p className={styles["text"]}>Initial Number of Rows for the Filter</p>
+                    <input
+                        className={styles["input"]}
+                        type="number"
+                        placeholder="1"
+                        onChange={(event) => handleInputInitialRowsChange(event)}
+                    ></input>
+                </>
+            )}
             <div className={styles["space"]}></div>
             <p className={styles["text"]}>{selectedType === "Reduce" ? "Number of Rows to Reduce:" : "Number of New Rows:"}</p>
             <input
                 className={styles["input"]}
                 type="number"
                 placeholder="1"
-                onChange={(event) => handleInputChange(event)}
+                onChange={(event) => handleInputWantedRowsChange(event)}
             ></input>
             {error && <p className={styles["error"]}>Incorrect Number of Rows</p>}
             <div className={styles["space"]}></div>

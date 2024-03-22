@@ -30,12 +30,20 @@ export async function applyFilter(datasetId, titlesFilter) {
     }
 }
 
-export async function applySampleFilter(datasetId, improve, type, numRows) {
+export async function applySampleFilter(datasetId, improve, type, numInitialRows, numWantedRows) {
     try {
-        let result = await axios.get("http://localhost:8080/file/filter/datasetId/" + datasetId + "/improve/" + improve + "/type/" + type + "/numRows/" + numRows, {
+        const params = {
+            numWantedRows: numWantedRows
+        };
+        if (numInitialRows !== null) {
+            params.numInitialRows = numInitialRows;
+        }
+        
+        let result = await axios.get("http://localhost:8080/file/filter/datasetId/" + datasetId + "/improve/" + improve + "/type/" + type, {
             headers: {
                 Authorization: "Bearer " + getToken(),
             },
+            params: params
         });
         return result.data;
     } catch (error) {
