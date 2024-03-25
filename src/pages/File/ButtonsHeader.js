@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { applyFilter, downloadDataset, deleteDataset } from "../../controllers/DatasetController";
 
-function ButtonsHeader({ datasetId, datasetName, datasetVersion, titles, columnStates, setFilter, setFilteredDataset, setShowFilter, setLoading }) {
+function ButtonsHeader({ datasetId, datasetName, datasetVersion, titles, columnStates, rowStates, setFilter, setFilteredDataset, setShowFilter, setLoading }) {
     const navigate = useNavigate();
     const [showFilterHeader, setShowFilterHeader] = useState(false);
 
@@ -19,7 +19,7 @@ function ButtonsHeader({ datasetId, datasetName, datasetVersion, titles, columnS
         }
 
         setLoading(true);
-        const result = await applyFilter(datasetId, filterTitles);
+        const result = await applyFilter(datasetId, filterTitles, rowStates);
         setLoading(false);
         setFilteredDataset(result);
         setFilter(true);

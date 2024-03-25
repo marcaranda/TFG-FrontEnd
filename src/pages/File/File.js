@@ -19,7 +19,8 @@ function File () {
     const location = useLocation();
     const { dataset } = location.state || {};
     const datasetData = dataset.dataset;
-    const [columnStates, setColumnStates] = useState({});
+    const [columnStates, setColumnStates] = useState(() => Array(Object.keys(datasetData[1]).length).fill(true));
+    const [rowStates, setRowStates] = useState(() => Array(Object.keys(datasetData).length).fill(true));
     const [filter, setFilter] = useState(false);
     const [filteredDataset, setFilteredDataset] = useState(null);
     const [info, setInfo] = useState(false);
@@ -31,18 +32,6 @@ function File () {
     Object.keys(datasetData[1]).forEach(key => {
         titles.push(datasetData[1][key].column)
     });
-    datasetValues.push(titles);
-    
-    useEffect(() => {
-        let numColumns = titles.length;
-        let initialColumnStates = {};
-        for (let i = 0; i < numColumns; ++i) {
-            initialColumnStates[i] = true;
-        }
-        setColumnStates(initialColumnStates)
-        setFilter(false);
-        // eslint-disable-next-line
-    }, [dataset]);
 
     Object.keys(datasetData).forEach(key => {
         if (typeof datasetData[key] === 'object' && datasetData[key] !== null) {
@@ -59,10 +48,19 @@ function File () {
             // Inicializar Handsontable al montar el componente
             hotInstance.current = new Handsontable(container.current, {
                 data: datasetValues,
-                rowHeaders: true,
                 colHeaders: function(col) {
-                    const headerValue = Handsontable.helper.spreadsheetColumnLabel(col);
-                    const buttonStyle = columnStates[col] ? '' : 'background-color: #e6adad;';
+                    if (col === 0) {
+                        return titles[col];
+                    }
+                    else {
+                        const headerValue = titles[col];
+                        const buttonStyle = columnStates[col] ? '' : 'background-color: #e6adad;';
+                        return `<button style="${buttonStyle}">${headerValue}</button>`;
+                    }
+                },
+                rowHeaders: function(row) {
+                    const headerValue = row + 1;
+                    const buttonStyle = rowStates[row] ? '' : 'background-color: #e6adad;';
                     return `<button style="${buttonStyle}">${headerValue}</button>`;
                 },
                 afterOnCellMouseDown: function(event, coords) {
@@ -72,10 +70,16 @@ function File () {
                         setColumnStates(newColumnStates);
                         hotInstance.current.render();
                     }
+                    else if (coords.col === -1) {
+                        let newRowStates = {...rowStates};
+                        newRowStates[coords.row] = !newRowStates[coords.row];
+                        setRowStates(newRowStates);
+                        hotInstance.current.render();
+                    }
                 },
                 cells: function(row, col, prop) {
                     const cellProperties = {};
-                    if (!columnStates[col]) {
+                    if (!columnStates[col] || !rowStates[row]) {
                         cellProperties.renderer = function(instance, td, row, col, prop, value, cellProperties) {
                             Handsontable.renderers.TextRenderer.apply(this, arguments);
                             td.style.backgroundColor = '#e6adad';
@@ -138,6 +142,7 @@ function File () {
                 datasetVersion={dataset.version}
                 titles={titles}
                 columnStates={columnStates}
+                rowStates={rowStates}
                 setFilter={setFilter}
                 setFilteredDataset={setFilteredDataset}
                 setShowFilter={setShowFilter}

@@ -17,9 +17,11 @@ export async function fileReader(file, userId) {
     }
 }
 
-export async function applyFilter(datasetId, titlesFilter) {
+export async function applyFilter(datasetId, titlesFilter, rowStates) {
+    const rowsWanted = Object.values(rowStates);    
+
     try {
-        let result = await axios.post("http://localhost:8080/file/filter/datasetId/" + datasetId, titlesFilter, {
+        let result = await axios.post("http://localhost:8080/file/filter/datasetId/" + datasetId, {titlesFilter, rowsWanted}, {
             headers: {
                 Authorization: "Bearer " + getToken(),
             },
