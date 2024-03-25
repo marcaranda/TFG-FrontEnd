@@ -53,9 +53,9 @@ export async function applySampleFilter(datasetId, improve, type, numInitialRows
     }
 }
 
-export async function showHistorial(userId) {
+export async function showHistorial(userId, order) {
     try {
-        let result = await axios.get("http://localhost:8080/file/historial/userId/" + userId, {
+        let result = await axios.get("http://localhost:8080/file/historial/userId/" + userId + "?orderBy=" + order, {
             headers: {
                 Authorization: "Bearer " + getToken(),
             },

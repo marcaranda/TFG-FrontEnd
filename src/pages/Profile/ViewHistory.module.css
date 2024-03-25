@@ -35,19 +35,44 @@
     overflow-y: auto;
 }
 
+.th {
+    text-align: left;
+    padding-left: 60px;
+}
+
+.th1 {
+    text-align: left;
+}
+
 .dataset-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 .dataset-container:hover {
     background-color: #eee;
 }
 
-.dataset-name-button-td {
-    width: 100%;
+.header-button {
+    padding: 10px 0px;
+    text-align: left;
+    color: black;
+    background-color: transparent;
+    text-transform: uppercase;
+    font: inherit;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    transition: all 0.5s ease;
+    vertical-align: middle;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard syntax */
+}
+
+.header-button:hover {
+    cursor: pointer;
+    color: rgb(10, 99, 216);
 }
 
 .dataset-name-button {
@@ -67,32 +92,10 @@
     user-select: none; /* Standard syntax */
 }
 
-.entropy-td {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    align-items: center;
-}
-
-.entropy {
-    text-align: center;
-    background-color: transparent;
-    font: inherit;
-    font-size: 1rem;
-    border: none;
-    transition: all 0.5s ease;
-    margin-right: 5px;
-}
-
 .dataset-name-button:hover {
     text-decoration: underline;
     cursor: pointer;
     color: rgb(10, 99, 216);
-}
-
-.buttons-container-td {
-    width: 100%;
 }
 
 .buttons-container {

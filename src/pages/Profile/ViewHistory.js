@@ -4,7 +4,7 @@ import styles from './ViewHistory.module.css'
 import Navbar from "../../components/Navbar";
 import Profilebar from "../../components/Profilebar";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDownload, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faDownload, faTrash, faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { deleteDataset, downloadDataset, showHistorial, getDataset } from "../../controllers/DatasetController";
 import { getUserId } from "../../data/Constants";
 import Loader from "../../components/Loader"
@@ -14,11 +14,12 @@ function ViewHistory () {
     const userId = getUserId();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
+    const [order, setOrder] = useState({key: null, direction: ''});
 
     useEffect(() => {
         async function fetchData() {
             setLoading(true);
-            const data = await showHistorial(userId);
+            const data = await showHistorial(userId, "name");
             setDatasets(data);
             setLoading(false);
         }
@@ -45,6 +46,18 @@ function ViewHistory () {
         navigate("/file", {state: { dataset: result}});
     }
 
+    async function handleOrderButton(key) {
+        setLoading(true);
+        let direction = '';
+        if (order.key === key && order.direction === '') {
+            direction = '-';
+        }
+        setOrder({ key, direction });
+        const data = await showHistorial(userId, direction + key);
+        setDatasets(data);
+        setLoading(false);
+    }
+
     return (
         <div className={styles["body"]}>
             {loading && <Loader />}
@@ -54,12 +67,56 @@ function ViewHistory () {
                 <div className={styles["container"]}>
                     <p className={styles["title"]}>History</p>
                     <table className={styles["dataset-list"]}>
+                        <thead>
+                            <tr>
+                                <th className={styles["th"]}>
+                                    <button 
+                                        className={styles["header-button"]}
+                                        onClick={() => handleOrderButton("name")}
+                                    >
+                                        Name {order.key === "name" && (order.direction === '' ? 
+                                            <FontAwesomeIcon icon={faArrowUp} size="1x" /> :
+                                            <FontAwesomeIcon icon={faArrowDown} size="1x" />)}
+                                    </button>
+                                </th>
+                                <th className={styles["th1"]}>
+                                    <button 
+                                        className={styles["header-button"]}
+                                        onClick={() => handleOrderButton("entropy")}
+                                    >
+                                        Entropy {order.key === "entropy" && (order.direction === '' ? 
+                                            <FontAwesomeIcon icon={faArrowUp} size="1x" /> :
+                                            <FontAwesomeIcon icon={faArrowDown} size="1x" />)}
+                                    </button>
+                                </th>
+                                <th className={styles["th1"]}>
+                                    <button 
+                                        className={styles["header-button"]}
+                                        onClick={() => handleOrderButton("row")}
+                                    >
+                                        Rows {order.key === "row" && (order.direction === '' ? 
+                                            <FontAwesomeIcon icon={faArrowUp} size="1x" /> :
+                                            <FontAwesomeIcon icon={faArrowDown} size="1x" />)}
+                                    </button>
+                                </th>
+                                <th className={styles["th1"]}>
+                                    <button 
+                                        className={styles["header-button"]}
+                                        onClick={() => handleOrderButton("column")}
+                                    >
+                                        Columns {order.key === "column" && (order.direction === '' ? 
+                                            <FontAwesomeIcon icon={faArrowUp} size="1x" /> :
+                                            <FontAwesomeIcon icon={faArrowDown} size="1x" />)}
+                                    </button>
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
                         <tbody>
-                            <tr></tr>
                             {datasets &&
                                 datasets.map((dataset) => (
                                 <tr key={`${dataset.datasetName}_${dataset.version}`} className={styles["dataset-container"]}>
-                                    <td className={styles["dataset-name-button-td"]}>
+                                    <td>
                                         <button
                                             className={styles["dataset-name-button"]}
                                             onClick={() => handleDatasetButton(dataset)}
@@ -67,12 +124,16 @@ function ViewHistory () {
                                             {dataset.version === 0 ? dataset.datasetName : `${dataset.datasetName}_${dataset.version}`}
                                         </button>
                                     </td>
-                                    <td className={styles["entropy-td"]}>
-                                        <p className={styles["entropy"]}>Eigen Entropy: {parseFloat(dataset.eigenEntropy.toFixed(3))}</p>
-                                        <p className={styles["entropy"]}>Rows: {dataset.rows}</p>
-                                        <p className={styles["entropy"]}>Columns: {dataset.columns}</p>
+                                    <td>
+                                        {parseFloat(dataset.eigenEntropy.toFixed(3))}
                                     </td>
-                                    <td className={styles["buttons-container-td"]}>
+                                    <td>
+                                        {dataset.rows}
+                                    </td>
+                                    <td>
+                                        {dataset.columns}
+                                    </td>
+                                    <td>
                                         <div className={styles["buttons-container"]}>
                                             <button 
                                                 className={styles["download-button"]}
