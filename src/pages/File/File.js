@@ -20,7 +20,7 @@ function File () {
     const { dataset } = location.state || {};
     const datasetData = dataset.dataset;
     const [columnStates, setColumnStates] = useState(() => Array(Object.keys(datasetData[1]).length).fill(true));
-    const [rowStates, setRowStates] = useState(() => Array(Object.keys(datasetData).length).fill(true));
+    const [rowStates, setRowStates] = useState(() => Array(Object.keys(datasetData).length).fill(false));
     const [filter, setFilter] = useState(false);
     const [filteredDataset, setFilteredDataset] = useState(null);
     const [info, setInfo] = useState(false);
@@ -49,28 +49,27 @@ function File () {
             hotInstance.current = new Handsontable(container.current, {
                 data: datasetValues,
                 colHeaders: function(col) {
-                    if (col === 0) {
-                        return titles[col];
-                    }
-                    else {
-                        const headerValue = titles[col];
-                        const buttonStyle = columnStates[col] ? '' : 'background-color: #e6adad;';
-                        return `<button style="${buttonStyle}">${headerValue}</button>`;
-                    }
-                },
-                rowHeaders: function(row) {
-                    const headerValue = row + 1;
-                    const buttonStyle = rowStates[row] ? '' : 'background-color: #e6adad;';
+                    const headerValue = titles[col];
+                    const buttonStyle = columnStates[col] ? '' : 'background-color: #e6adad;';
                     return `<button style="${buttonStyle}">${headerValue}</button>`;
                 },
+                columnHeaderHeight: 30,
+                rowHeaders: function(row) {
+                    const headerValue = row + 1;
+                    const buttonStyle = rowStates[row] ? 'background-color: #a1d690;' : '';
+                    return `<button style="${buttonStyle}">${headerValue}</button>`;
+                },
+                rowHeaderWidth: 75,
                 afterOnCellMouseDown: function(event, coords) {
-                    if (coords.row === -1) {
+                    if (coords.row === -1 && coords.col === -1) {
+                        setColumnStates(Array(Object.keys(datasetData[1]).length).fill(true));
+                        setRowStates(Array(Object.keys(datasetData).length).fill(false));
+                    }else if (coords.row === -1) {
                         let newColumnStates = {...columnStates};
                         newColumnStates[coords.col] = !newColumnStates[coords.col];
                         setColumnStates(newColumnStates);
                         hotInstance.current.render();
-                    }
-                    else if (coords.col === -1) {
+                    } else if (coords.col === -1) {
                         let newRowStates = {...rowStates};
                         newRowStates[coords.row] = !newRowStates[coords.row];
                         setRowStates(newRowStates);
@@ -79,10 +78,15 @@ function File () {
                 },
                 cells: function(row, col, prop) {
                     const cellProperties = {};
-                    if (!columnStates[col] || !rowStates[row]) {
+                    if (!columnStates[col]) {
                         cellProperties.renderer = function(instance, td, row, col, prop, value, cellProperties) {
                             Handsontable.renderers.TextRenderer.apply(this, arguments);
                             td.style.backgroundColor = '#e6adad';
+                        };
+                    } else if (rowStates[row]) {
+                        cellProperties.renderer = function(instance, td, row, col, prop, value, cellProperties) {
+                            Handsontable.renderers.TextRenderer.apply(this, arguments);
+                            td.style.backgroundColor = '#a1d690';
                         };
                     } else {
                         cellProperties.renderer = function(instance, td, row, col, prop, value, cellProperties) {
@@ -92,6 +96,16 @@ function File () {
                     }
                     return cellProperties;
                 },
+                afterRender: function(isForced) {
+                    // Selecciona el TH de la esquina si aún no tiene el botón
+                    var cornerHeader = document.querySelector('.ht_clone_top_left_corner .htCore > thead > tr > th');
+                    if (cornerHeader && !cornerHeader.querySelector('.corner-header-button')) {
+                      cornerHeader.innerHTML = '';
+                      var button = document.createElement('button');
+                      button.textContent = 'CLEAR';
+                      cornerHeader.appendChild(button);
+                    }
+                  },
                 licenseKey: 'non-commercial-and-evaluation',
                 type: 'numeric'
                 // Otras opciones de configuración...
@@ -108,6 +122,7 @@ function File () {
     }, );
 
     function handleOpenFilterFileButton() {
+        setFilter(false);
         navigate("/file", {state: { dataset: filteredDataset}});
     }
 
@@ -151,6 +166,7 @@ function File () {
             <div className={styles["container"]}>
                 {showFilter && <Filter 
                    datasetId={dataset.datasetId}
+                   rowStates={rowStates}
                    setFilter={setFilter}
                    setFilteredDataset={setFilteredDataset}
                    setLoading={setLoading}

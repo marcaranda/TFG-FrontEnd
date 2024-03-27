@@ -35,8 +35,8 @@ function ViewHistory () {
     async function handleDeleteButton(dataset) {
         setLoading(true);
         await deleteDataset(dataset.datasetId);
+        setDatasets(datasets.filter(d => d.datasetId !== dataset.datasetId));
         setLoading(false);
-        navigate("/user-settings/history");
     }
 
     async function handleDatasetButton(dataset) {

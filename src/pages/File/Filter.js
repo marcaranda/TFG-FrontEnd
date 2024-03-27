@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import styles from './Filter.module.css'
 import { applySampleFilter } from "../../controllers/DatasetController";
 
-function Filter({ datasetId, setFilter, setFilteredDataset, setLoading }) {
+function Filter({ datasetId, rowStates, setFilter, setFilteredDataset, setLoading }) {
     const [selectedImprove, setSelectedImprove] = useState("Homogeneity");
-    const [selectedType, setSelectedType] = useState("Reduce");
-    const [numInitialRows, setNumInitialRows] = useState('');
+    const [selectedType, setSelectedType] = useState("Incremental Sampling");
+    const [numInitialRows, setNumInitialRows] = useState(1);
     const [numWantedRows, setNumWantedRows] = useState(1);
     const [error, setError] = useState(false);
     
@@ -19,6 +19,7 @@ function Filter({ datasetId, setFilter, setFilteredDataset, setLoading }) {
 
     const handleInputInitialRowsChange = (event) => {
         let num = event.target.value;
+        if (num === '') num = 1;
         setNumInitialRows(num);
       };
 
@@ -32,9 +33,9 @@ function Filter({ datasetId, setFilter, setFilteredDataset, setLoading }) {
         if (numWantedRows !== null && numWantedRows > 0 && numInitialRows !== null && numInitialRows > 0) {
             setLoading(true);
             let result;
-            if (selectedType === "Reduce") {
-                if (numInitialRows < numWantedRows || numInitialRows === '') {
-                    result = await applySampleFilter(datasetId, selectedImprove, selectedType, numInitialRows, numWantedRows);
+            if (selectedType === "Incremental Sampling") {
+                if (numWantedRows - numInitialRows > 0) {
+                    result = await applySampleFilter(datasetId, selectedImprove, selectedType, numInitialRows, numWantedRows, rowStates);
                     setFilteredDataset(result);
                     setFilter(true);
                 }
@@ -47,7 +48,7 @@ function Filter({ datasetId, setFilter, setFilteredDataset, setLoading }) {
                 }
             }
             else { 
-                result = await applySampleFilter(datasetId, selectedImprove, selectedType, null, numWantedRows);
+                result = await applySampleFilter(datasetId, selectedImprove, selectedType, numInitialRows, numWantedRows, rowStates);
                 setFilteredDataset(result);
                 setFilter(true);
             }
@@ -97,32 +98,32 @@ function Filter({ datasetId, setFilter, setFilteredDataset, setLoading }) {
             <div className={styles["row-container"]}>
             <input
                 type="radio"
-                id="Reduce"
+                id="Incremental Sampling"
                 name="filterType"
-                value="Reduce"
-                checked={selectedType === 'Reduce'}
+                value="Incremental Sampling"
+                checked={selectedType === 'Incremental Sampling'}
                 onChange={handleTypeButton}
                 className={styles["radio-input"]}
             />
-            <label htmlFor="Reduce" className={styles["radio-button"]}>
-                Reduce
+            <label htmlFor="Incremental Sampling" className={styles["radio-button"]}>
+                Incremental Sampling
             </label>
             </div>
             <div className={styles["row-container"]}>
             <input
                 type="radio"
-                id="Increase"
+                id="Elimination Sampling"
                 name="filterType"
-                value="Increase"
-                checked={selectedType === 'Increase'}
+                value="Elimination Sampling"
+                checked={selectedType === 'Elimination Sampling'}
                 onChange={handleTypeButton}
                 className={styles["radio-input"]}
             />
-            <label htmlFor="Increase" className={styles["radio-button"]}>
-                Increase
+            <label htmlFor="Elimination Sampling" className={styles["radio-button"]}>
+                Elimination Sampling
             </label>
             </div>
-            {selectedType === "Reduce" && (
+            {selectedType === "Incremental Sampling" && (
                 <>
                     <div className={styles["space"]}></div>
                     <p className={styles["text"]}>Initial Number of Rows for the Filter</p>
@@ -135,7 +136,7 @@ function Filter({ datasetId, setFilter, setFilteredDataset, setLoading }) {
                 </>
             )}
             <div className={styles["space"]}></div>
-            <p className={styles["text"]}>{selectedType === "Reduce" ? "Number of Rows to Reduce:" : "Number of New Rows:"}</p>
+            <p className={styles["text"]}>{selectedType === "Incremental Sampling" ? "Number of Rows to Incremental Sampling:" : "Number of New Rows:"}</p>
             <input
                 className={styles["input"]}
                 type="number"
