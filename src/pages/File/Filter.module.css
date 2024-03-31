@@ -42,8 +42,8 @@ input[type="radio"]:checked + label {
 
 .button {
     display: flex;
-    background-color: #83eede;
-    color: #2e3440;
+    background-color: #239ccccb;
+    color: #fff;
     text-transform: uppercase;
     font: inherit;
     font-size: 1.1rem;

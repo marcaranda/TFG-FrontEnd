@@ -1,6 +1,7 @@
 .body {
     display: flex;
     flex-direction: column;
+    background: linear-gradient(to top, #444e63, #3563c0b2);
 }
 
 .page {
@@ -12,7 +13,7 @@
 .page-title {
     text-align: Left;
     font: inherit;
-    color: #008aa8;
+    color: #fff;
     font-size: 2rem;
     font-weight: 500;
 }

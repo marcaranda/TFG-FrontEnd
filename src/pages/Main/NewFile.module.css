@@ -3,8 +3,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: #fff;
-    border: 2px solid #ccc;
+    background: linear-gradient(to top, #178fbe, #011f2b);
     border-radius: 15px;
     width: 400px;
     height: 150px;
@@ -13,7 +12,7 @@
 
 .title {
     margin-top: 0%;
-    color: #008aa8;
+    color: #fff;
     font: inherit;
     font-weight: bold;
     font-size: 2rem;
@@ -21,8 +20,8 @@
 
 .button {
     display: flex;
-    background-color: #83eede;
-    color: #2e3440;
+    background-color: #239ccccb;
+    color: #fff;
     text-transform: uppercase;
     font: inherit;
     font-size: 1.1rem;
@@ -35,7 +34,7 @@
 }
 
 .button:hover {
-    background-color: #83eede;
+    background-color: #239ccccb;
     font-weight: bold;
     cursor: pointer;
 }

@@ -1,11 +1,12 @@
 .body {
     display: flex;
     flex-direction: column;
+    background: linear-gradient(to top, #444e63, #3563c0b2);
 }
 
 .title {
     font: inherit;
-    color: #008aa8;
+    color: #fff;
     font-size: 2rem;
     font-weight: 500;
     align-self: center;
@@ -24,7 +25,7 @@
     border: 2px solid #ccc;
     border-radius: 15px;
     width: auto;
-    height: 600px;
+    height: 648px;
     border-collapse: collapse;
     overflow-y: auto;
     overflow-x: auto;
@@ -97,7 +98,7 @@
 
 .entropy-title {
     font: inherit;
-    color: #008aa8;
+    color: #fff;
     font-size: 1.5rem;
     font-weight: 500;
     margin-left: 20px;
@@ -105,7 +106,7 @@
 
 .entropy {
     font: inherit;
-    color: #008aa8;
+    color: #fff;
     font-size: 1.5rem;
     font-weight: 500;
     margin-left: 5px;
@@ -113,8 +114,8 @@
 
 .filter-button {
     display: flex;
-    background-color: #83eede;
-    color: #2e3440;
+    background-color: #239ccccb;
+    color: #fff;
     text-transform: uppercase;
     font: inherit;
     font-size: 1.1rem;
@@ -126,7 +127,7 @@
 }
 
 .filter-button:hover {
-    background-color: #83eede;
+    background-color: #239ccccb;
     font-weight: bold;
     cursor: pointer;
 }

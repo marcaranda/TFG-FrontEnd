@@ -32,8 +32,8 @@
 
 .filter-button {
     display: flex;
-    background-color: #83eede;
-    color: #2e3440;
+    background-color: #239ccccb;
+    color: #fff;
     text-transform: uppercase;
     font: inherit;
     font-size: 1.1rem;
@@ -45,8 +45,8 @@
 
 .left-button {
     display: flex;
-    background-color: #83eede;
-    color: #2e3440;
+    background-color: #239ccccb;
+    color: #fff;
     text-transform: uppercase;
     font: inherit;
     font-size: 1.1rem;
@@ -64,16 +64,7 @@
     border-radius: 10%;
     cursor: pointer;
     background-color: transparent;
-}
-
-.info-button{
-    border-width: 0;
-    width: 30px;
-    height: 30px;
-    border-radius: 10%;
-    cursor: pointer;
-    background-color: transparent;
-    margin-left: 20px;
+    color: #fff;
 }
 
 .trash-button{
@@ -84,26 +75,22 @@
     cursor: pointer;
     background-color: transparent;
     margin-right: 30px;
+    color: #fff;
 }
 
 .filter-button:hover {
-    background-color: #83eede;
+    background-color: #239ccccb;
     font-weight: bold;
     cursor: pointer;
 }
 
 .left-button:hover {
-    background-color: #83eede;
+    background-color: #239ccccb;
     font-weight: bold;
     cursor: pointer;
 }
 
 .download-button:hover {
-    cursor: pointer;
-    color: green;
-}
-
-.info-button:hover {
     cursor: pointer;
     color: green;
 }
