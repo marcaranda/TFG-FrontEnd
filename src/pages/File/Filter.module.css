@@ -13,7 +13,7 @@
     color: black;
     font: inherit;
     font-size: 1rem;
-    margin-top: 15px;
+    margin-top: 10px;
     margin-left: 15px;
     font-weight: bold;
 }
@@ -37,7 +37,7 @@ input[type="radio"]:checked + label {
 }
 
 .space {
-    height: 20px;
+    height: 15px;
 }
 
 .button {
@@ -53,6 +53,7 @@ input[type="radio"]:checked + label {
     transition: all 0.5s ease;
     margin-left: 15px;
     margin-bottom: 15px;
+    margin-top: 10px;
 }
 
 .button:hover {
@@ -70,6 +71,30 @@ input[type="radio"]:checked + label {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1rem;
     margin-left: 15px;
+}
+
+.slider {
+    margin-top: -13px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.number-input {
+    margin-left: 15px;
+    height: 10px;
+    width: 68%;
+}
+
+.number {
+    font: inherit;
+    color: black;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-left: auto;
+    margin-right: 15px;
 }
 
 .error {

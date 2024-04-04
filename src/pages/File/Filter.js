@@ -7,6 +7,7 @@ function Filter({ datasetId, rowStates, setFilter, setFilteredDataset, setLoadin
     const [selectedType, setSelectedType] = useState("Incremental Sampling");
     const [numInitialRows, setNumInitialRows] = useState(1);
     const [numWantedRows, setNumWantedRows] = useState(1);
+    const [sliderValue, setSliderValue] = useState(0.5);
     const [error, setError] = useState(false);
     
     const handleImproveButton = (event) => {
@@ -28,6 +29,10 @@ function Filter({ datasetId, rowStates, setFilter, setFilteredDataset, setLoadin
         if (num === '') num = 1;
         setNumWantedRows(num);
       };
+
+    const handleSliderChange = (event) => {
+        setSliderValue(event.target.valueAsNumber);
+    }
 
     async function handleFilterButton() {
         if (numWantedRows !== null && numWantedRows > 0 && numInitialRows !== null && numInitialRows > 0) {
@@ -133,10 +138,24 @@ function Filter({ datasetId, rowStates, setFilter, setFilteredDataset, setLoadin
                         placeholder="1"
                         onChange={(event) => handleInputInitialRowsChange(event)}
                     ></input>
+                    <div className={styles["space"]}></div>
+                    <p className={styles["text"]}>Eigen Entropy change rate</p>
+                    <div className={styles["slider"]}>
+                        <input
+                            className={styles["number-input"]}
+                            type="range"
+                            min={0}
+                            max={1}
+                            step={0.01}
+                            value={sliderValue}
+                            onChange={handleSliderChange}
+                        ></input>
+                        <p className={styles["number"]}>{sliderValue}</p>
+                    </div>
                 </>
             )}
             <div className={styles["space"]}></div>
-            <p className={styles["text"]}>{selectedType === "Incremental Sampling" ? "Number of Rows to Incremental Sampling:" : "Number of New Rows:"}</p>
+            <p className={styles["text"]}>{selectedType === "Incremental Sampling" ? "Number of Rows to Incremental Sampling:" : "Number of Row to Eliminate:"}</p>
             <input
                 className={styles["input"]}
                 type="number"
