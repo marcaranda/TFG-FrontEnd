@@ -32,10 +32,10 @@ export async function applyFilter(datasetId, titlesFilter, rowStates) {
     }
 }
 
-export async function applySampleFilter(datasetId, improve, type, numInitialRows, numWantedRows, rowStates) {
+export async function applySampleFilter(datasetId, improve, type, numInitialRows, numWantedRows, rowStates, sliderValue) {
     try {
         let initialRows = Array.from(rowStates);
-        let result = await axios.put("http://localhost:8080/file/filter/datasetId/" + datasetId + "/improve/" + improve + "/type/" + type + "?numInitialRows=" + numInitialRows + "&numWantedRows=" + numWantedRows, initialRows, {
+        let result = await axios.put("http://localhost:8080/file/filter/datasetId/" + datasetId + "/improve/" + improve + "/type/" + type + "?numInitialRows=" + numInitialRows + "&numWantedRows=" + numWantedRows + "&sliderValue=" + sliderValue, initialRows, {
             headers: {
                 Authorization: "Bearer " + getToken(),
             },

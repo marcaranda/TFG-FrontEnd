@@ -7,7 +7,7 @@ function Filter({ datasetId, rowStates, setFilter, setFilteredDataset, setLoadin
     const [selectedType, setSelectedType] = useState("Incremental Sampling");
     const [numInitialRows, setNumInitialRows] = useState(1);
     const [numWantedRows, setNumWantedRows] = useState(1);
-    const [sliderValue, setSliderValue] = useState(0.5);
+    const [sliderValue, setSliderValue] = useState(50);
     const [error, setError] = useState(false);
     
     const handleImproveButton = (event) => {
@@ -36,27 +36,19 @@ function Filter({ datasetId, rowStates, setFilter, setFilteredDataset, setLoadin
 
     async function handleFilterButton() {
         if (numWantedRows !== null && numWantedRows > 0 && numInitialRows !== null && numInitialRows > 0) {
+            if (selectedType === "Incremental Sampling" && numWantedRows - numInitialRows <= 0) {
+                setLoading(false);
+                setError(true);
+                setTimeout(()=>{
+                    setError(false);
+                }, 3000);
+                return;
+            }
+            
             setLoading(true);
-            let result;
-            if (selectedType === "Incremental Sampling") {
-                if (numWantedRows - numInitialRows > 0) {
-                    result = await applySampleFilter(datasetId, selectedImprove, selectedType, numInitialRows, numWantedRows, rowStates);
-                    setFilteredDataset(result);
-                    setFilter(true);
-                }
-                else {
-                    setLoading(false);
-                    setError(true);
-                    setTimeout(()=>{
-                        setError(false);
-                    }, 3000);
-                }
-            }
-            else { 
-                result = await applySampleFilter(datasetId, selectedImprove, selectedType, numInitialRows, numWantedRows, rowStates);
-                setFilteredDataset(result);
-                setFilter(true);
-            }
+            let result = await applySampleFilter(datasetId, selectedImprove, selectedType, numInitialRows, numWantedRows, rowStates, sliderValue);
+            setFilteredDataset(result);
+            setFilter(true);
             setLoading(false);
         }
         else {
@@ -145,12 +137,12 @@ function Filter({ datasetId, rowStates, setFilter, setFilteredDataset, setLoadin
                             className={styles["number-input"]}
                             type="range"
                             min={0}
-                            max={1}
-                            step={0.01}
+                            max={100}
+                            step={1}
                             value={sliderValue}
                             onChange={handleSliderChange}
                         ></input>
-                        <p className={styles["number"]}>{sliderValue}</p>
+                        <p className={styles["number"]}>{sliderValue}%</p>
                     </div>
                 </>
             )}
