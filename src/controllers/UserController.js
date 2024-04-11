@@ -2,7 +2,6 @@ import axios from "axios"
 import { setToken, getToken } from "../data/Constants"
 
 export async function login(email, password) {
-    console.log(email);
     try {
         let result = await axios.post("http://localhost:8080/user/login", {
             email : email,

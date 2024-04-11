@@ -18,7 +18,7 @@ function File () {
     const hotInstance = useRef(null);
     const location = useLocation();
     const { dataset } = location.state || {};
-    const datasetData = dataset.dataset;
+    const datasetData = dataset.dataset.matrix['2DData'];
     const [columnStates, setColumnStates] = useState(() => Array(Object.keys(datasetData[1]).length).fill(true));
     const [rowStates, setRowStates] = useState(() => Array(Object.keys(datasetData).length).fill(false));
     const [filter, setFilter] = useState(false);
@@ -28,20 +28,22 @@ function File () {
     const [loading, setLoading] = useState(false);
     let datasetValues = [];
 
-    let titles = [];
-    Object.keys(datasetData[1]).forEach(key => {
-        titles.push(datasetData[1][key].column)
-    });
 
-    Object.keys(datasetData).forEach(key => {
-        if (typeof datasetData[key] === 'object' && datasetData[key] !== null) {
-            let row = [];
-            Object.keys(datasetData[key]).forEach(subKey => {
-                row.push(datasetData[key][subKey].value);
-            });
-            datasetValues.push(row);
+    let titles = dataset.headers;
+    let ids = dataset.ids;
+
+    for (let i = 0; i < datasetData.length; i++) {
+        let irow = datasetData[i];
+        let row = [];
+        for (let j = 0; j < datasetData[1].length; j++) {
+            if (j === 0) {
+                row.push(ids[i]);
+            } else {
+            row.push(irow[j]);
+            }
         }
-    });
+        datasetValues.push(row);
+    }
 
     useEffect(() => {
         if (!hotInstance.current) {
