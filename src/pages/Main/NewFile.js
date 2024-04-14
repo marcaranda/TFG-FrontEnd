@@ -18,11 +18,9 @@ function NewFile () {
 
     async function handleFileChange (event) {
         setLoading(true);
-        console.time("fileReader");
         const file = event.target.files[0];
         const result = await fileReader(file, userId);
         setLoading(false);
-        console.timeEnd("fileReader");
         navigate("/file", {state: { dataset: result}});
     };
 
