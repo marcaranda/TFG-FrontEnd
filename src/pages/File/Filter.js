@@ -46,9 +46,12 @@ function Filter({ datasetId, rowStates, setFilter, setFilteredDataset, setLoadin
             }
             
             setLoading(true);
+            console.log("Filtering...");
+            console.time("Filter");
             let result = await applySampleFilter(datasetId, selectedImprove, selectedType, numInitialRows, numWantedRows, rowStates, sliderValue);
             setFilteredDataset(result);
             setFilter(true);
+            console.timeEnd("Filter");
             setLoading(false);
         }
         else {
@@ -147,7 +150,7 @@ function Filter({ datasetId, rowStates, setFilter, setFilteredDataset, setLoadin
                 </>
             )}
             <div className={styles["space"]}></div>
-            <p className={styles["text"]}>{selectedType === "Incremental Sampling" ? "Number of Rows to Incremental Sampling:" : "Number of Row to Eliminate:"}</p>
+            <p className={styles["text"]}>{selectedType === "Incremental Sampling" ? "Number of Rows to Incremental Sampling:" : "Number of Row after Elimination Sampling:"}</p>
             <input
                 className={styles["input"]}
                 type="number"

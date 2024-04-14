@@ -13,8 +13,10 @@ function Initial() {
     const [passwordRegister, setPasswordRegister] = useState("");
     const [phoneRegister, setPhoneRegister] = useState("");
     const [visibleRegister, setVisibleRegister] = useState(true);
-    const [emailLogIn, setEmailLogIn] = useState("");
-    const [passwordLogIn, setPasswordLogIn] = useState("");
+    //const [emailLogIn, setEmailLogIn] = useState("");
+    //const [passwordLogIn, setPasswordLogIn] = useState("");
+    const [emailLogIn, setEmailLogIn] = useState("m@gmail.com");
+    const [passwordLogIn, setPasswordLogIn] = useState("asdf");
     const [visibleLogIn, setVisibleLogIn] = useState(false);
     const [isActive, setIsActive] = useState(false);
     const navigate = useNavigate();

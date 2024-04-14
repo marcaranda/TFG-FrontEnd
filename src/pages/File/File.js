@@ -147,7 +147,7 @@ function File () {
                     </button>
                 </div>
                 <div className={styles["center-container"]}>
-                    <h1 className={styles["title"]}>Data Analysis</h1>
+                    <h1 className={styles["title"]}>{dataset.datasetName}  -  {dataset.version}</h1>
                 </div>
                 <div className={styles["right-container"]}></div>
             </div>
