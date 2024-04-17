@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { applyFilter, downloadDataset, deleteDataset } from "../../controllers/DatasetController";
 
-function ButtonsHeader({ datasetId, datasetName, datasetVersion, titles, columnStates, rowStates, setFilter, setFilteredDataset, setShowFilter, setLoading }) {
+function ButtonsHeader({ datasetId, datasetName, datasetVersion, titles, columnStates, rowStates, setColumnStates, setRowStates, setFilter, setFilteredDataset, setShowFilter, setLoading }) {
     const navigate = useNavigate();
     const [showFilterHeader, setShowFilterHeader] = useState(false);
 
@@ -47,6 +47,24 @@ function ButtonsHeader({ datasetId, datasetName, datasetVersion, titles, columnS
         navigate("/user-settings/history");
     }
 
+    function handleChangeColumnStatesButton() {
+        const invertedColumnStates = Object.keys(columnStates).reduce((acc, key) => {
+            acc[key] = !columnStates[key];
+            return acc;
+        }, {});
+    
+        setColumnStates(invertedColumnStates);
+    }
+
+    function handleChangeRowStatesButton() {
+        const invertedRowStates = Object.keys(rowStates).reduce((acc, key) => {
+            acc[key] = !rowStates[key];
+            return acc;
+        }, {});
+    
+        setRowStates(invertedRowStates);
+    }
+
     return(
         <div className={styles["body"]}>
             <div className={styles["buttons-header-container"]}>
@@ -70,6 +88,18 @@ function ButtonsHeader({ datasetId, datasetName, datasetVersion, titles, columnS
                         onClick={handleFilterButton}
                     >
                         Apply Filter
+                    </button>
+                    <button 
+                        className={styles["states-button"]}
+                        onClick={handleChangeColumnStatesButton}
+                    >
+                        Change Columns States
+                    </button>
+                    <button 
+                        className={styles["states-button"]}
+                        onClick={handleChangeRowStatesButton}
+                    >
+                        Change Rows States
                     </button>
                 </div>
                 <div className={styles["right-container"]}>

@@ -158,6 +158,8 @@ function File () {
                 titles={titles}
                 columnStates={columnStates}
                 rowStates={rowStates}
+                setColumnStates={setColumnStates}
+                setRowStates={setRowStates}
                 setFilter={setFilter}
                 setFilteredDataset={setFilteredDataset}
                 setShowFilter={setShowFilter}
