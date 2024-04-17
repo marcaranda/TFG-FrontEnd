@@ -55,7 +55,7 @@ function ButtonsHeader({ datasetId, datasetName, datasetVersion, titles, columnS
                         className={styles["left-button"]}
                         onClick={handleShowFilterButton}
                     >
-                        {showFilterHeader ? "Hide Filters" : "Filters"}
+                        {showFilterHeader ? "Hide Sampling" : "Sampling"}
                     </button>
                     <button 
                         className={styles["left-button"]}

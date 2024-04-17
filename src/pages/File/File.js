@@ -64,17 +64,17 @@ function File () {
                     if (coords.row === -1 && coords.col === -1) {
                         setColumnStates(Array(Object.keys(datasetData[1]).length).fill(true));
                         setRowStates(Array(Object.keys(datasetData).length).fill(false));
-                    }else if (coords.row === -1) {
+                    } else if (coords.row === -1) {
                         let newColumnStates = {...columnStates};
                         newColumnStates[coords.col] = !newColumnStates[coords.col];
                         setColumnStates(newColumnStates);
-                        hotInstance.current.render();
                     } else if (coords.col === -1) {
                         let newRowStates = {...rowStates};
                         newRowStates[coords.row] = !newRowStates[coords.row];
                         setRowStates(newRowStates);
-                        hotInstance.current.render();
                     }
+
+                    hotInstance.current.render();
                 },
                 cells: function(row, col, prop) {
                     const cellProperties = {};
