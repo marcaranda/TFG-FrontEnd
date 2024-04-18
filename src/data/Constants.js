@@ -2,6 +2,7 @@ import {jwtDecode} from 'jwt-decode';
 
 let token = localStorage.getItem("token");
 let userId = localStorage.getItem("userId");
+let language = localStorage.getItem("language");
 
 export function setToken(newToken) {
     token = newToken;
@@ -26,4 +27,12 @@ export function setUserId(newUserId) {
 
 export function getUserId() {
     return userId;
+}
+
+export function setLanguage(newLanguage) {
+    language = newLanguage;
+}
+
+export function getLanguage() {
+    return language;
 }
