@@ -2,7 +2,8 @@ import React, {useState} from "react";
 import styles from './ChangePassword.module.css'
 import Navbar from "../../components/Navbar";
 import Profilebar from "../../components/Profilebar";
-import {editPassword} from "../../controllers/UserController";
+import { editPassword } from "../../controllers/UserController";
+import { getText } from "../../data/Constants";
 
 function ChangePassword () {
     const [error, setError] = useState(false);
@@ -10,6 +11,7 @@ function ChangePassword () {
     const [currentPassword, setCP] = useState("");
     const [newPassword, setNP] = useState("");
     const [reNewPassword, setRNP] = useState("");
+    const text = getText();
 
     async function saveAttempt() {
         if (newPassword === reNewPassword) {
@@ -58,9 +60,9 @@ function ChangePassword () {
             <div className={styles["page"]}>
                 <Profilebar />
                 <div className={styles["container"]}>
-                    <p className={styles["title"]}>Change Password</p>
+                    <p className={styles["title"]}>{text.changePassword.title}</p>
                     <div className={styles["container-title-input"]}>
-                        <p className={styles["input-title"]}>Current Password</p>
+                        <p className={styles["input-title"]}>{text.changePassword.currentPassword}</p>
                         <input
                             className={styles["input"]}
                             placeholder="Current Password"
@@ -68,7 +70,7 @@ function ChangePassword () {
                         ></input>
                     </div>
                     <div className={styles["container-title-input"]}>
-                        <p className={styles["input-title"]}>New Password</p>
+                        <p className={styles["input-title"]}>{text.changePassword.newPassword}</p>
                         <input
                             className={styles["input"]}
                             placeholder="New Password"
@@ -76,7 +78,7 @@ function ChangePassword () {
                         ></input>
                     </div>
                     <div className={styles["container-title-input"]}>
-                        <p className={styles["input-title"]}>Retype New Password</p>
+                        <p className={styles["input-title"]}>{text.changePassword.confirmPassword}</p>
                         <input
                             className={styles["input"]}
                             placeholder="Retype New Password"

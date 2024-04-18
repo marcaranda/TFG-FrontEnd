@@ -3,12 +3,13 @@ import styles from './UserSettings.module.css'
 import Navbar from "../../components/Navbar";
 import Profilebar from "../../components/Profilebar";
 import { editUser, getUser } from "../../controllers/UserController";
-import { getUserId } from "../../data/Constants";
+import { getUserId, getText } from "../../data/Constants";
 import { useNavigate } from "react-router-dom";
 
 function UserSettings () {
     const navigate = useNavigate();
     const userId = getUserId();
+    const text = getText();
     const [error, setError] = useState(false);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -75,9 +76,9 @@ function UserSettings () {
             <div className={styles["page"]}>
                 <Profilebar />
                 <div className={styles["container"]}>
-                    <p className={styles["title"]}>User Settings</p>
+                    <p className={styles["title"]}>{text.UserSettings.title}</p>
                     <div className={styles["container-title-input"]}>
-                        <p className={styles["input-title"]}>Name</p>
+                        <p className={styles["input-title"]}>{text.UserSettings.name}</p>
                         <input
                             className={styles["input"]}
                             value={name}
@@ -85,7 +86,7 @@ function UserSettings () {
                         ></input>
                     </div>
                     <div className={styles["container-title-input"]}>
-                        <p className={styles["input-title"]}>Email</p>
+                        <p className={styles["input-title"]}>{text.UserSettings.email}</p>
                         <input
                             className={styles["input"]}
                             value={email}
@@ -93,7 +94,7 @@ function UserSettings () {
                         ></input>
                     </div>
                     <div className={styles["container-title-input"]}>
-                    <p className={styles["input-title"]}>Phone</p>
+                    <p className={styles["input-title"]}>{text.UserSettings.phone}</p>
                         <input
                             className={styles["input"]}
                             value={phone}

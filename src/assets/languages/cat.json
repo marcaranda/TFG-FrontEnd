@@ -1,91 +1,95 @@
 {
     "main" : {
-        "title" : "Main Page",
-        "fileBottonTitle" : "File Upload",
-        "fileBotton" : "UPLOAD FILE",
-        "historyBottonTitle" : "See your History",
-        "historyBotton" : "HISTORY"
+        "title" : "Pàgina Principal",
+        "fileBottonTitle" : "Carrega de Fitxers",
+        "fileBotton" : "PUJAR FITXER",
+        "historyBottonTitle" : "Veure el teu Historial",
+        "historyBotton" : "VEURE HISTORIAL"
     },
 
     "profileBar" : {
-        "userSettings" : "User Settings",
-        "changePassword" : "Change Password",
-        "viewHistory" : "View History",
-        "logout" : "Log Out"
+        "userSettings" : "Informació de l'Usuari",
+        "changePassword" : "Canviar Contrasenya",
+        "viewHistory" : "Veure Historial",
+        "logout" : "Tancar Sessió"
     },
 
     "userSettings" : {
-        "title" : "User Settings",
-        "name" : "Name",
+        "title" : "Informació de l'Usuari",
+        "name" : "Nom",
         "email" : "Email",
-        "phone" : "Phone"
+        "phone" : "Telèfon"
     },
 
     "changePassword" : {
-        "title" : "Change Password",
-        "currentPassword" : "Current Password",
-        "newPassword" : "New Password",
-        "confirmPassword" : "Confirm New Password"
+        "title" : "Canvi de Contrasenya",
+        "currentPassword" : "Contrasenya Actual",
+        "newPassword" : "Nova Contrasenya",
+        "confirmPassword" : "Confirmar Nova Contrasenya"
     },
 
     "viewHistory" : {
-        "title" : "History",
-        "name" : "Name",
-        "entropy" : "Entropy",
-        "rows" : "Rows",
-        "columns" : "Columns"
+        "title" : "Historial",
+        "name" : "Nom",
+        "entropy" : "Entropia",
+        "rows" : "Files",
+        "columns" : "Columnes"
     },
 
     "file" : {
         "buttonsBar" : {
-            "sampling" : "SAMPLING",
-            "viewHistory" : "VIEW HISTORY",
-            "applyFilter" : "APPLY FILTER",
-            "changeColumnsStates" : "CHANGE COLUMNS STATES",
-            "changeRowStates" : "CHANGE ROW STATES"
+            "sampling" : "SAMPLEIG",
+            "hideSampling" : "AMAGAR SAMPLEIG",
+            "viewHistory" : "VEURE HISTORIAL",
+            "applyFilter" : "APLICAR FILTRE",
+            "changeColumnsStates" : "CANVIAR ESTAT COLUMNES",
+            "changeRowStates" : "CANVIAR ESTAT FILES"
         },
 
         "entropyBar" : {
-            "eigenEntropy" : "Eigen Entropy: ",
-            "filteredEigenEntropy" : "Filtered Eigen Entropy: ",
-            "openFilterFile" : "OPEN FILTER FILE"
+            "eigenEntropy" : "EntropIa de Eigen: ",
+            "filteredEigenEntropy" : "EntropIa de Eigen Filtrada: ",
+            "openFilterFile" : "OBRIR FITXER FILTRAT"
         },
 
         "filter" : {
-            "toImprove" : "To Improve",
-            "homogeneity" : "Homogeneity",
-            "heterogeneity" : "Heterogeneity",
-            "filterType" : "Filter Type",
-            "incrementalSampling" : "Incremental Sampling",
-            "eliminationSampling" : "Elimination Sampling",
-            "initialRowsNumber" : "Initial Rows Number",
-            "EigenEntropyChangeRate" : "Eigen Entropy Change Rate",
-            "finalRowsNumber" : "Final Rows Number",
-            "apply" : "APPLY"
+            "toImprove" : "A millorar",
+            "homogeneity" : "Homogeneïtat",
+            "heterogeneity" : "Heterogeneïtat",
+            "filterType" : "Tipus de Filtre",
+            "incrementalSampling" : "Sampleig Incremental",
+            "eliminationSampling" : "Sampleig d'Eliminación",
+            "initialRowsNumber" : "Número de Files Inicials",
+            "EigenEntropyChangeRate" : "Ràtio de Canvio de la Entropía de Eigen",
+            "finalRowsNumber" : "Número de Files Finals",
+            "apply" : "APLICAR"
         },
 
         "info" : {
-            "title" : "How To Use",
-            "manualFilter" : "Manual Filter",
-            "automaticFilter" : "Automatic Filter",
-            "toConsider" : "To Consider",
+            "title" : "Como Fer Servir",
+            "manualFilter" : "Filtre Manual",
+            "automaticFilter" : "Filtre Automàtic",
+            "toConsider" : "A Tenir en Compte",
             "manualFilterText" : {
-                "1" : "1 Press any row header to mark the row",
-                "2" : "2 Press any column header to unmark the column",
-                "3" : "3 Press the 'APPLY FILTER' button to apply the filter"
+                "1" : "1 Apreta qualsevol capçalera de fila per marcar la fila",
+                "2" : "2 Apreta qualsevol capçalera de columna para desmarcar la columna",
+                "3" : "3 Apreta el botó 'APLICAR FILTRE' per aplicar el filtre"
             },
 
             "automaticFilterText" : {
-                "1" : "1 Press the 'SAMPLING' button to open the filter page",
-                "2" : "2 Select the desired filters",
-                "3" : "3 The final rows number must be greater than 0",
-                "4" : "4 On Incremental Sampling you can choose the initial rows pressing their rows headers"
+                "1" : "1 Apreta el botó 'SAMPLEIG' per obrir el menú de filtres",
+                "2" : "2 Selecciona els filtres desitjats",
+                "3" : "3 Apreta el botó 'APLICAR' per aplicar el filtre",
+                "4" : "4 En el Sampleig incremental, pots marcar les files desitjades com les inicials"
             },
 
             "toConsiderText" : {
-                "1" : "1 Manual Filter without marked rows does not work",
-                "2" : "2 On Incremental Sampling the fewer initial rows,",
-                "3" : "  the more complicated it is to get de desired rows"
+                "1" : "1 En el filtr manual, si no marcas cap fila, no funcionarà",
+                "2" : "2 En el Sampleig Automàtic:",
+                "3" : "2.1 Cuantas menys files inicials, més difícil serà obtenir el número de files finals",
+                "4" : "2.2 El número de files finals ha de ser més gran que 0",
+                "5" : "2.3 En el Sampleig Incremental, el número de files finals ha de ser més gran que el número de files inicials",
+                "6" : "2.4 En el Sampleig de Eliminación, el número de files finals ha de ser més petit que el número de files inicials"
             }
         }
     }

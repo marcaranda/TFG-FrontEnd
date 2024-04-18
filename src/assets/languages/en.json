@@ -39,6 +39,7 @@
     "file" : {
         "buttonsBar" : {
             "sampling" : "SAMPLING",
+            "hideSampling" : "HIDE SAMPLING",
             "viewHistory" : "VIEW HISTORY",
             "applyFilter" : "APPLY FILTER",
             "changeColumnsStates" : "CHANGE COLUMNS STATES",
@@ -78,14 +79,17 @@
             "automaticFilterText" : {
                 "1" : "1 Press the 'SAMPLING' button to open the filter page",
                 "2" : "2 Select the desired filters",
-                "3" : "3 The final rows number must be greater than 0",
+                "3" : "3 Press the 'APPLY' button to apply the filter",
                 "4" : "4 On Incremental Sampling you can choose the initial rows pressing their rows headers"
             },
 
             "toConsiderText" : {
                 "1" : "1 Manual Filter without marked rows does not work",
-                "2" : "2 On Incremental Sampling the fewer initial rows,",
-                "3" : "  the more complicated it is to get de desired rows"
+                "2" : "2 On Automatic Sampling:",
+                "3" : "2.1 the fewer initial rows, the more complicated it is to get de desired rows",
+                "4" : "2.2 The final number of rows must be greater than 0",
+                "5" : "2.3 On Incremental Sampling, the final number of rows must be greater than the initial number of rows",
+                "6" : "2.4 On Elimination Sampling, the final number of rows must be less than the initial number of rows"
             }
         }
     }

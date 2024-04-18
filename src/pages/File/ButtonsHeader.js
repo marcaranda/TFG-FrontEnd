@@ -3,10 +3,12 @@ import { useNavigate } from "react-router-dom";
 import styles from './ButtonsHeader.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { getText } from "../../data/Constants";
 import { applyFilter, downloadDataset, deleteDataset } from "../../controllers/DatasetController";
 
 function ButtonsHeader({ datasetId, datasetName, datasetVersion, titles, columnStates, rowStates, setColumnStates, setRowStates, setFilter, setFilteredDataset, setShowFilter, setLoading }) {
     const navigate = useNavigate();
+    const text = getText();
     const [showFilterHeader, setShowFilterHeader] = useState(false);
 
     async function handleFilterButton() {
@@ -73,13 +75,13 @@ function ButtonsHeader({ datasetId, datasetName, datasetVersion, titles, columnS
                         className={styles["left-button"]}
                         onClick={handleShowFilterButton}
                     >
-                        {showFilterHeader ? "Hide Sampling" : "Sampling"}
+                        {showFilterHeader ? text.file.buttonsBar.hideSampling : text.file.buttonsBar.sampling}
                     </button>
                     <button 
                         className={styles["left-button"]}
                         onClick={handleHistorialButton}
                     >
-                        View History
+                        {text.file.buttonsBar.viewHistory}
                     </button>
                 </div>
                 <div className={styles["center-container"]}>
@@ -87,19 +89,19 @@ function ButtonsHeader({ datasetId, datasetName, datasetVersion, titles, columnS
                         className={styles["filter-button"]}
                         onClick={handleFilterButton}
                     >
-                        Apply Filter
+                        {text.file.buttonsBar.applyFilter}
                     </button>
                     <button 
                         className={styles["states-button"]}
                         onClick={handleChangeColumnStatesButton}
                     >
-                        Change Columns States
+                        {text.file.buttonsBar.changeColumnsStates}
                     </button>
                     <button 
                         className={styles["states-button"]}
                         onClick={handleChangeRowStatesButton}
                     >
-                        Change Rows States
+                        {text.file.buttonsBar.changeRowStates}
                     </button>
                 </div>
                 <div className={styles["right-container"]}>

@@ -3,6 +3,7 @@ import {jwtDecode} from 'jwt-decode';
 let token = localStorage.getItem("token");
 let userId = localStorage.getItem("userId");
 let language = localStorage.getItem("language");
+let text = localStorage.getItem("text");
 
 export function setToken(newToken) {
     token = newToken;
@@ -31,8 +32,25 @@ export function getUserId() {
 
 export function setLanguage(newLanguage) {
     language = newLanguage;
+    localStorage.setItem("language", language);
+    changeLanguaje(newLanguage);
 }
 
 export function getLanguage() {
     return language;
+}
+
+async function changeLanguaje(language) {
+    try {
+        const response = await import(`../assets/languages/${language}.json`);
+        text = response.default;
+        console.log(text);
+        localStorage.setItem("text", text);
+    } catch (error) {
+        console.error("Error al cargar el archivo de idioma", error);
+    }
+}
+
+export function getText() {
+    return text;
 }

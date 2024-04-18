@@ -6,12 +6,13 @@ import Profilebar from "../../components/Profilebar";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faTrash, faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { deleteDataset, downloadDataset, showHistorial, getDataset } from "../../controllers/DatasetController";
-import { getUserId } from "../../data/Constants";
+import { getUserId, getText } from "../../data/Constants";
 import Loader from "../../components/Loader"
 
 function ViewHistory () {
     const [datasets, setDatasets] = useState(null);
     const userId = getUserId();
+    const text = getText();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [order, setOrder] = useState({key: null, direction: ''});
@@ -65,7 +66,7 @@ function ViewHistory () {
             <div className={styles["page"]}>
                 <Profilebar />
                 <div className={styles["container"]}>
-                    <p className={styles["title"]}>History</p>
+                    <p className={styles["title"]}>{text.viewHistory.title}</p>
                     <table className={styles["dataset-list"]}>
                         <thead>
                             <tr>
@@ -74,7 +75,7 @@ function ViewHistory () {
                                         className={styles["header-button"]}
                                         onClick={() => handleOrderButton("name")}
                                     >
-                                        Name {order.key === "name" && (order.direction === '' ? 
+                                        {text.viewHistory.name} {order.key === "name" && (order.direction === '' ? 
                                             <FontAwesomeIcon icon={faArrowUp} size="1x" /> :
                                             <FontAwesomeIcon icon={faArrowDown} size="1x" />)}
                                     </button>
@@ -84,7 +85,7 @@ function ViewHistory () {
                                         className={styles["header-button"]}
                                         onClick={() => handleOrderButton("entropy")}
                                     >
-                                        Entropy {order.key === "entropy" && (order.direction === '' ? 
+                                        {text.viewHistory.entropy} {order.key === "entropy" && (order.direction === '' ? 
                                             <FontAwesomeIcon icon={faArrowUp} size="1x" /> :
                                             <FontAwesomeIcon icon={faArrowDown} size="1x" />)}
                                     </button>
@@ -94,7 +95,7 @@ function ViewHistory () {
                                         className={styles["header-button"]}
                                         onClick={() => handleOrderButton("row")}
                                     >
-                                        Rows {order.key === "row" && (order.direction === '' ? 
+                                        {text.viewHistory.rows} {order.key === "row" && (order.direction === '' ? 
                                             <FontAwesomeIcon icon={faArrowUp} size="1x" /> :
                                             <FontAwesomeIcon icon={faArrowDown} size="1x" />)}
                                     </button>
@@ -104,7 +105,7 @@ function ViewHistory () {
                                         className={styles["header-button"]}
                                         onClick={() => handleOrderButton("column")}
                                     >
-                                        Columns {order.key === "column" && (order.direction === '' ? 
+                                        {text.viewHistory.columns} {order.key === "column" && (order.direction === '' ? 
                                             <FontAwesomeIcon icon={faArrowUp} size="1x" /> :
                                             <FontAwesomeIcon icon={faArrowDown} size="1x" />)}
                                     </button>

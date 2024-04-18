@@ -1,91 +1,95 @@
 {
     "main" : {
-        "title" : "Main Page",
-        "fileBottonTitle" : "File Upload",
-        "fileBotton" : "UPLOAD FILE",
-        "historyBottonTitle" : "See your History",
-        "historyBotton" : "HISTORY"
+        "title" : "Pagina Principal",
+        "fileBottonTitle" : "Subida de Archivos",
+        "fileBotton" : "SUBIR ARCHIVO",
+        "historyBottonTitle" : "Ver tu Historial",
+        "historyBotton" : "VER HISTORIAL"
     },
 
     "profileBar" : {
-        "userSettings" : "User Settings",
-        "changePassword" : "Change Password",
-        "viewHistory" : "View History",
-        "logout" : "Log Out"
+        "userSettings" : "Información del Usuario",
+        "changePassword" : "Cambiar Contraseña",
+        "viewHistory" : "Ver Historial",
+        "logout" : "Cerrar Sesión"
     },
 
     "userSettings" : {
-        "title" : "User Settings",
-        "name" : "Name",
+        "title" : "Información del Usuario",
+        "name" : "Nombre",
         "email" : "Email",
-        "phone" : "Phone"
+        "phone" : "Teléfono"
     },
 
     "changePassword" : {
-        "title" : "Change Password",
-        "currentPassword" : "Current Password",
-        "newPassword" : "New Password",
-        "confirmPassword" : "Confirm New Password"
+        "title" : "Cambio de Contraseña",
+        "currentPassword" : "Contraseña Actual",
+        "newPassword" : "Nueva Contraseña",
+        "confirmPassword" : "Confirmar Nueva Contraseña"
     },
 
     "viewHistory" : {
-        "title" : "History",
-        "name" : "Name",
-        "entropy" : "Entropy",
-        "rows" : "Rows",
-        "columns" : "Columns"
+        "title" : "Historial",
+        "name" : "Nombre",
+        "entropy" : "Entropía",
+        "rows" : "Filas",
+        "columns" : "Columnas"
     },
 
     "file" : {
         "buttonsBar" : {
-            "sampling" : "SAMPLING",
-            "viewHistory" : "VIEW HISTORY",
-            "applyFilter" : "APPLY FILTER",
-            "changeColumnsStates" : "CHANGE COLUMNS STATES",
-            "changeRowStates" : "CHANGE ROW STATES"
+            "sampling" : "SAMPLEO",
+            "hideSampling" : "ESCONDER SAMPLEO",
+            "viewHistory" : "VER HISTORIAL",
+            "applyFilter" : "APLICAR FILTRO",
+            "changeColumnsStates" : "CAMBIAR ESTADO COLUMNAS",
+            "changeRowStates" : "CAMBIAR ESTADO FILAS"
         },
 
         "entropyBar" : {
-            "eigenEntropy" : "Eigen Entropy: ",
-            "filteredEigenEntropy" : "Filtered Eigen Entropy: ",
-            "openFilterFile" : "OPEN FILTER FILE"
+            "eigenEntropy" : "Entropía de Eigen: ",
+            "filteredEigenEntropy" : "Entropía de Eigen Filtrada: ",
+            "openFilterFile" : "ABRIR ARCHIVO FILTRADO"
         },
 
         "filter" : {
-            "toImprove" : "To Improve",
-            "homogeneity" : "Homogeneity",
-            "heterogeneity" : "Heterogeneity",
-            "filterType" : "Filter Type",
-            "incrementalSampling" : "Incremental Sampling",
-            "eliminationSampling" : "Elimination Sampling",
-            "initialRowsNumber" : "Initial Rows Number",
-            "EigenEntropyChangeRate" : "Eigen Entropy Change Rate",
-            "finalRowsNumber" : "Final Rows Number",
-            "apply" : "APPLY"
+            "toImprove" : "A mejorar",
+            "homogeneity" : "Homogeneidad",
+            "heterogeneity" : "Heterogeneidad",
+            "filterType" : "Tipo de Filtro",
+            "incrementalSampling" : "Sampleo Incremental",
+            "eliminationSampling" : "Sampleo de Eliminación",
+            "initialRowsNumber" : "Número de Filas Iniciales",
+            "EigenEntropyChangeRate" : "Ratio de Cambio de la Entropía de Eigen",
+            "finalRowsNumber" : "Número de Filas Finales",
+            "apply" : "APLICAR"
         },
 
         "info" : {
-            "title" : "How To Use",
-            "manualFilter" : "Manual Filter",
-            "automaticFilter" : "Automatic Filter",
-            "toConsider" : "To Consider",
+            "title" : "Como Usar",
+            "manualFilter" : "Filtro Manual",
+            "automaticFilter" : "Filtro Automático",
+            "toConsider" : "A Tener en Cuenta",
             "manualFilterText" : {
-                "1" : "1 Press any row header to mark the row",
-                "2" : "2 Press any column header to unmark the column",
-                "3" : "3 Press the 'APPLY FILTER' button to apply the filter"
+                "1" : "1 Aprieta cualquier cabecera de fila para marcar la fila",
+                "2" : "2 Aprieta cualquier cabecera de columna para desmarcar la columna",
+                "3" : "3 Aprieta el botón 'APLICAR FILTRO' para aplicar el filtro"
             },
 
             "automaticFilterText" : {
-                "1" : "1 Press the 'SAMPLING' button to open the filter page",
-                "2" : "2 Select the desired filters",
-                "3" : "3 The final rows number must be greater than 0",
-                "4" : "4 On Incremental Sampling you can choose the initial rows pressing their rows headers"
+                "1" : "1 Aprieta el botón 'SAMPLEO' para abrir el menú de filtros",
+                "2" : "2 Selecciona los filtros deseados",
+                "3" : "3 Aprieta el botón 'APLICAR' para aplicar el filtro",
+                "4" : "4 En el Sampleo incremental, puedes marcar las filas deseadas como las iniciales"
             },
 
             "toConsiderText" : {
-                "1" : "1 Manual Filter without marked rows does not work",
-                "2" : "2 On Incremental Sampling the fewer initial rows,",
-                "3" : "  the more complicated it is to get de desired rows"
+                "1" : "1 En el filtro manual, si no marcas ninguna fila, no funcionará",
+                "2" : "2 En el Sampleo Automático:",
+                "3" : "2.1 Cuantas menos filas iniciales, más difícil será obtener el número de filas finales",
+                "4" : "2.2 El número de filas finales debe ser mayor que 0",
+                "5" : "2.3 En el Sampleo Incremental, el número de filas finales debe ser mayor que el número de filas iniciales",
+                "6" : "2.4 En el Sampleo de Eliminación, el número de filas finales debe ser menor que el número de filas iniciales"
             }
         }
     }

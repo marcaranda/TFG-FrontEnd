@@ -11,6 +11,7 @@ import Filter from "./Filter";
 import Loader from "../../components/Loader"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfo } from "@fortawesome/free-solid-svg-icons";
+import { getText } from "../../data/Constants";
 
 function File () {
     const navigate = useNavigate();
@@ -26,6 +27,7 @@ function File () {
     const [info, setInfo] = useState(false);
     const [showFilter, setShowFilter] = useState(false);
     const [loading, setLoading] = useState(false);
+    const text = getText();
     let datasetValues = [];
 
     let titles = [];
@@ -177,13 +179,13 @@ function File () {
             </div>
             <div className={styles["entropys-container"]}>
                 <div className={styles["left-container"]}>
-                    <p className={styles["entropy-title"]}>Eigen entropy:</p>
+                    <p className={styles["entropy-title"]}>{text.file.entropyBar.eigenEntropy}</p>
                     <p className={styles["entropy"]}>{parseFloat(dataset.eigenEntropy.toFixed(3))}</p>
                 </div>
                 {filter && (
                     <>
                         <div className={styles["center-container"]}>
-                            <p className={styles["entropy-title"]}>Filtered Eigen entropy:</p>
+                            <p className={styles["entropy-title"]}>{text.file.entropyBar.filteredEigenEntropy}</p>
                             <p className={styles["entropy"]}>{parseFloat(filteredDataset.eigenEntropy.toFixed(3))}</p>
                         </div>
                         <div className={styles["right-container"]}>
@@ -191,7 +193,7 @@ function File () {
                             className={styles["filter-button"]}
                             onClick={handleOpenFilterFileButton}
                         >
-                            Open Filter File
+                            {text.file.entropyBar.openFilterFile}
                         </button>
                         </div>
                     </>

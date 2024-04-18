@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Initial.module.css";
+import { setLanguage } from "../../data/Constants";
 import { login, register } from "../../controllers/UserController";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
@@ -20,6 +21,10 @@ function Initial() {
     const [visibleLogIn, setVisibleLogIn] = useState(false);
     const [isActive, setIsActive] = useState(false);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        setLanguage("en");
+    }, []);
 
     async function handleRegisterButton(event) {
         event.preventDefault();

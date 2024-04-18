@@ -1,10 +1,11 @@
 import React from "react";
 import styles from './Profilebar.module.css'
 import { useNavigate } from "react-router-dom";
-import { deleteToken } from "../data/Constants";
+import { deleteToken, getText } from "../data/Constants";
 
 function Profilebar() {
     const navigate = useNavigate();
+    const text = getText();
 
     function handleSettingsButton() {
         navigate("/user-settings/user-profile");
@@ -29,25 +30,25 @@ function Profilebar() {
                 className={styles["button"]}
                 onClick={handleSettingsButton}
             >
-                User Settings
+                {text.profileBar.userSettings}
             </button>
             <button
                 className={styles["button"]}
                 onClick={handlePasswordButton}
             >
-                Change Password
+                {text.profileBar.changePassword}
             </button>
             <button
                 className={styles["button"]}
                 onClick={handleHistorialButton}
             >
-                View History
+                {text.profileBar.viewHistory}
             </button>
             <button
                 className={styles["logout-button"]}
                 onClick={handleBackButton}
             >
-                Log Out
+                {text.profileBar.logout}
             </button>
         </div>
     );
