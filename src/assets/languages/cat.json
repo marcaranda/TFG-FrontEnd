@@ -57,16 +57,17 @@
         },
 
         "filter" : {
-            "toImprove" : "A millorar",
+            "toImprove" : "A millorar:",
             "homogeneity" : "Homogeneïtat",
             "heterogeneity" : "Heterogeneïtat",
-            "filterType" : "Tipus de Filtre",
+            "filterType" : "Tipus de Filtre:",
             "incrementalSampling" : "Sampleig Incremental",
             "eliminationSampling" : "Sampleig d'Eliminación",
             "initialRowsNumber" : "Número de Files Inicials",
-            "EigenEntropyChangeRate" : "Ràtio de Canvio de la Entropía de Eigen",
+            "eigenEntropyChangeRate" : "Ràtio de Canvio de la Entropía de Eigen",
             "finalRowsNumber" : "Número de Files Finals",
-            "apply" : "APLICAR"
+            "apply" : "APLICAR",
+            "errorNumberRows" : "Número de Files Incorrecte"
         },
 
         "info" : {
@@ -75,25 +76,25 @@
             "automaticFilter" : "Filtre Automàtic",
             "toConsider" : "A Tenir en Compte",
             "manualFilterText" : {
-                "1" : "1 Apreta qualsevol capçalera de fila per marcar la fila",
-                "2" : "2 Apreta qualsevol capçalera de columna para desmarcar la columna",
-                "3" : "3 Apreta el botó 'APLICAR FILTRE' per aplicar el filtre"
+                "one" : "1 Apreta qualsevol capçalera de fila per marcar la fila",
+                "two" : "2 Apreta qualsevol capçalera de columna para desmarcar la columna",
+                "three" : "3 Apreta el botó 'APLICAR FILTRE' per aplicar el filtre"
             },
 
             "automaticFilterText" : {
-                "1" : "1 Apreta el botó 'SAMPLEIG' per obrir el menú de filtres",
-                "2" : "2 Selecciona els filtres desitjats",
-                "3" : "3 Apreta el botó 'APLICAR' per aplicar el filtre",
-                "4" : "4 En el Sampleig incremental, pots marcar les files desitjades com les inicials"
+                "one" : "1 Apreta el botó 'SAMPLEIG' per obrir el menú de filtres",
+                "two" : "2 Selecciona els filtres desitjats",
+                "three" : "3 Apreta el botó 'APLICAR' per aplicar el filtre",
+                "four" : "4 En el Sampleig incremental, pots marcar les files desitjades com les inicials"
             },
 
             "toConsiderText" : {
-                "1" : "1 En el filtr manual, si no marcas cap fila, no funcionarà",
-                "2" : "2 En el Sampleig Automàtic:",
-                "3" : "2.1 Cuantas menys files inicials, més difícil serà obtenir el número de files finals",
-                "4" : "2.2 El número de files finals ha de ser més gran que 0",
-                "5" : "2.3 En el Sampleig Incremental, el número de files finals ha de ser més gran que el número de files inicials",
-                "6" : "2.4 En el Sampleig de Eliminación, el número de files finals ha de ser més petit que el número de files inicials"
+                "one" : "1 En el filtr manual, si no marcas cap fila, no funcionarà",
+                "two" : "2 En el Sampleig Automàtic:",
+                "three" : "2.1 Cuantas menys files inicials, més difícil serà obtenir el número de files finals",
+                "four" : "2.2 El número de files finals ha de ser més gran que 0",
+                "five" : "2.3 En el Sampleig Incremental, el número de files finals ha de ser més gran que el número de files inicials",
+                "six" : "2.4 En el Sampleig de Eliminación, el número de files finals ha de ser més petit que el número de files inicials"
             }
         }
     }

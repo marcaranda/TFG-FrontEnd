@@ -57,16 +57,17 @@
         },
 
         "filter" : {
-            "toImprove" : "A mejorar",
+            "toImprove" : "A mejorar:",
             "homogeneity" : "Homogeneidad",
             "heterogeneity" : "Heterogeneidad",
-            "filterType" : "Tipo de Filtro",
+            "filterType" : "Tipo de Filtro:",
             "incrementalSampling" : "Sampleo Incremental",
             "eliminationSampling" : "Sampleo de Eliminación",
             "initialRowsNumber" : "Número de Filas Iniciales",
-            "EigenEntropyChangeRate" : "Ratio de Cambio de la Entropía de Eigen",
+            "eigenEntropyChangeRate" : "Ratio de Cambio de la Entropía de Eigen",
             "finalRowsNumber" : "Número de Filas Finales",
-            "apply" : "APLICAR"
+            "apply" : "APLICAR",
+            "errorNumberRows" : "Número de Filas Incorrecto"
         },
 
         "info" : {
@@ -75,25 +76,25 @@
             "automaticFilter" : "Filtro Automático",
             "toConsider" : "A Tener en Cuenta",
             "manualFilterText" : {
-                "1" : "1 Aprieta cualquier cabecera de fila para marcar la fila",
-                "2" : "2 Aprieta cualquier cabecera de columna para desmarcar la columna",
-                "3" : "3 Aprieta el botón 'APLICAR FILTRO' para aplicar el filtro"
+                "one" : "1 Aprieta cualquier cabecera de fila para marcar la fila",
+                "two" : "2 Aprieta cualquier cabecera de columna para desmarcar la columna",
+                "three" : "3 Aprieta el botón 'APLICAR FILTRO' para aplicar el filtro"
             },
 
             "automaticFilterText" : {
-                "1" : "1 Aprieta el botón 'SAMPLEO' para abrir el menú de filtros",
-                "2" : "2 Selecciona los filtros deseados",
-                "3" : "3 Aprieta el botón 'APLICAR' para aplicar el filtro",
-                "4" : "4 En el Sampleo incremental, puedes marcar las filas deseadas como las iniciales"
+                "one" : "1 Aprieta el botón 'SAMPLEO' para abrir el menú de filtros",
+                "two" : "2 Selecciona los filtros deseados",
+                "three" : "3 Aprieta el botón 'APLICAR' para aplicar el filtro",
+                "four" : "4 En el Sampleo incremental, puedes marcar las filas deseadas como las iniciales"
             },
 
             "toConsiderText" : {
-                "1" : "1 En el filtro manual, si no marcas ninguna fila, no funcionará",
-                "2" : "2 En el Sampleo Automático:",
-                "3" : "2.1 Cuantas menos filas iniciales, más difícil será obtener el número de filas finales",
-                "4" : "2.2 El número de filas finales debe ser mayor que 0",
-                "5" : "2.3 En el Sampleo Incremental, el número de filas finales debe ser mayor que el número de filas iniciales",
-                "6" : "2.4 En el Sampleo de Eliminación, el número de filas finales debe ser menor que el número de filas iniciales"
+                "one" : "1 En el filtro manual, si no marcas ninguna fila, no funcionará",
+                "two" : "2 En el Sampleo Automático:",
+                "three" : "2.1 Cuantas menos filas iniciales, más difícil será obtener el número de filas finales",
+                "four" : "2.2 El número de filas finales debe ser mayor que 0",
+                "five" : "2.3 En el Sampleo Incremental, el número de filas finales debe ser mayor que el número de filas iniciales",
+                "six" : "2.4 En el Sampleo de Eliminación, el número de filas finales debe ser menor que el número de filas iniciales"
             }
         }
     }

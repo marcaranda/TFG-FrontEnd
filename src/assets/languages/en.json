@@ -57,16 +57,17 @@
         },
 
         "filter" : {
-            "toImprove" : "To Improve",
+            "toImprove" : "To Improve:",
             "homogeneity" : "Homogeneity",
             "heterogeneity" : "Heterogeneity",
-            "filterType" : "Filter Type",
+            "filterType" : "Filter Type:",
             "incrementalSampling" : "Incremental Sampling",
             "eliminationSampling" : "Elimination Sampling",
             "initialRowsNumber" : "Initial Rows Number",
-            "EigenEntropyChangeRate" : "Eigen Entropy Change Rate",
+            "eigenEntropyChangeRate" : "Eigen Entropy Change Rate",
             "finalRowsNumber" : "Final Rows Number",
-            "apply" : "APPLY"
+            "apply" : "APPLY",
+            "errorNumberRows" : "Incorrect Number of Rows"
         },
 
         "info" : {
@@ -75,25 +76,25 @@
             "automaticFilter" : "Automatic Filter",
             "toConsider" : "To Consider",
             "manualFilterText" : {
-                "1" : "1 Press any row header to mark the row",
-                "2" : "2 Press any column header to unmark the column",
-                "3" : "3 Press the 'APPLY FILTER' button to apply the filter"
+                "one" : "1 Press any row header to mark the row",
+                "two" : "2 Press any column header to unmark the column",
+                "three" : "3 Press the 'APPLY FILTER' button to apply the filter"
             },
 
             "automaticFilterText" : {
-                "1" : "1 Press the 'SAMPLING' button to open the filter page",
-                "2" : "2 Select the desired filters",
-                "3" : "3 Press the 'APPLY' button to apply the filter",
-                "4" : "4 On Incremental Sampling you can choose the initial rows pressing their rows headers"
+                "one" : "1 Press the 'SAMPLING' button to open the filter page",
+                "two" : "2 Select the desired filters",
+                "three" : "3 Press the 'APPLY' button to apply the filter",
+                "four" : "4 On Incremental Sampling you can choose the initial rows pressing their rows headers"
             },
 
             "toConsiderText" : {
-                "1" : "1 Manual Filter without marked rows does not work",
-                "2" : "2 On Automatic Sampling:",
-                "3" : "2.1 the fewer initial rows, the more complicated it is to get de desired rows",
-                "4" : "2.2 The final number of rows must be greater than 0",
-                "5" : "2.3 On Incremental Sampling, the final number of rows must be greater than the initial number of rows",
-                "6" : "2.4 On Elimination Sampling, the final number of rows must be less than the initial number of rows"
+                "one" : "1 Manual Filter without marked rows does not work",
+                "two" : "2 On Automatic Sampling:",
+                "three" : "2.1 the fewer initial rows, the more complicated it is to get de desired rows",
+                "four" : "2.2 The final number of rows must be greater than 0",
+                "five" : "2.3 On Incremental Sampling, the final number of rows must be greater than the initial number of rows",
+                "six" : "2.4 On Elimination Sampling, the final number of rows must be less than the initial number of rows"
             }
         }
     }
