@@ -46,13 +46,14 @@ export async function applySampleFilter(datasetId, improve, type, numInitialRows
     }
 }
 
-export async function showHistorial(userId, order = null, search = null) {
+export async function showHistorial(userId, order = null, search = null, datasetName = null) {
     try {
         let url = "http://localhost:8080/file/historial/userId/" + userId;
 
         const params = new URLSearchParams();
         if (order) params.append('orderBy', order);
         if (search) params.append('search', search);
+        if (datasetName) params.append('datasetName', datasetName);
 
         if (Array.from(params).length > 0) url += "?" + params.toString();
 

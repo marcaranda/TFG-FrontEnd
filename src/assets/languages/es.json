@@ -34,6 +34,7 @@
     "viewHistory" : {
         "title" : "Historial",
         "name" : "Nombre",
+        "folderName" : "Nombre de las Carpetas",
         "entropy" : "Entropía",
         "rows" : "Filas",
         "columns" : "Columnas"

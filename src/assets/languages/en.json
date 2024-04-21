@@ -34,6 +34,7 @@
     "viewHistory" : {
         "title" : "History",
         "name" : "Name",
+        "folderName" : "Folder Name",
         "entropy" : "Entropy",
         "rows" : "Rows",
         "columns" : "Columns"

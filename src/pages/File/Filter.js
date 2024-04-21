@@ -46,7 +46,6 @@ function Filter({ datasetId, rowStates, setFilter, setFilteredDataset, setLoadin
             }
             
             setLoading(true);
-            console.log("Filtering...");
             console.time("Filter");
             let result = await applySampleFilter(datasetId, selectedImprove, selectedType, numInitialRows, numWantedRows, rowStates, sliderValue);
             setFilteredDataset(result);

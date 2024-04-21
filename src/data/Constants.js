@@ -44,7 +44,6 @@ async function changeLanguaje(language) {
     try {
         const response = await import(`../assets/languages/${language}.json`);
         text = response.default;
-        console.log(text);
         localStorage.setItem("text", text);
     } catch (error) {
         console.error("Error al cargar el archivo de idioma", error);

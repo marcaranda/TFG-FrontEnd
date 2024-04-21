@@ -95,10 +95,9 @@
     background-color: transparent;
     text-transform: uppercase;
     font: inherit;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: bold;
     border: none;
-    transition: all 0.5s ease;
     vertical-align: middle;
     -webkit-user-select: none; /* Safari */
     -moz-user-select: none; /* Firefox */

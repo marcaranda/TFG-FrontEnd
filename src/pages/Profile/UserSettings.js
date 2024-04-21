@@ -49,7 +49,6 @@ function UserSettings () {
 
     const handleSaveButton = () => {
         saveAttempt();
-        console.log("save");
     };
 
     const handleInputChange = (event, inputNumber) => {
