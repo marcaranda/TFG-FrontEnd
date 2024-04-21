@@ -18,14 +18,17 @@
         "title" : "Información del Usuario",
         "name" : "Nombre",
         "email" : "Email",
-        "phone" : "Teléfono"
+        "phone" : "Teléfono",
+        "errorEditUser" : "Error al editar Usuario"
     },
 
     "changePassword" : {
         "title" : "Cambio de Contraseña",
         "currentPassword" : "Contraseña Actual",
         "newPassword" : "Nueva Contraseña",
-        "confirmPassword" : "Confirmar Nueva Contraseña"
+        "confirmPassword" : "Confirmar Nueva Contraseña",
+        "errorChangePassword" : "Error al cambiar la contraseña",
+        "errorMatchPasswords" : "Las contraseñas no coinciden"
     },
 
     "viewHistory" : {

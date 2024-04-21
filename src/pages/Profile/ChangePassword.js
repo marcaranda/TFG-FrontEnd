@@ -85,8 +85,8 @@ function ChangePassword () {
                             onChange={(event) => handleInputChange(event, 3)}
                         ></input>
                     </div>
-                    {error && <p className={styles["error"]}>Error while changing password</p>}
-                    {errorPassword && <p className={styles["error"]}>Password does not match</p>}
+                    {error && <p className={styles["error"]}>{text.changePassword.errorChangePassword}</p>}
+                    {errorPassword && <p className={styles["error"]}>{text.changePassword.errorMatchPasswords}</p>}
                     <button
                         className={styles["button"]}
                         onClick={handleSaveButton}

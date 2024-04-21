@@ -18,14 +18,17 @@
         "title" : "Informació de l'Usuari",
         "name" : "Nom",
         "email" : "Email",
-        "phone" : "Telèfon"
+        "phone" : "Telèfon",
+        "errorEditUser" : "Error a l'editar l'Usuari"
     },
 
     "changePassword" : {
         "title" : "Canvi de Contrasenya",
         "currentPassword" : "Contrasenya Actual",
         "newPassword" : "Nova Contrasenya",
-        "confirmPassword" : "Confirmar Nova Contrasenya"
+        "confirmPassword" : "Confirmar Nova Contrasenya",
+        "errorChangePassword" : "Error al canviar la contrasenya",
+        "errorMatchPasswords" : "Les contrasenyes no coincideixen"
     },
 
     "viewHistory" : {

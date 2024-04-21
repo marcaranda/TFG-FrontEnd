@@ -4,7 +4,7 @@ import styles from './ViewHistory.module.css'
 import Navbar from "../../components/Navbar";
 import Profilebar from "../../components/Profilebar";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDownload, faTrash, faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
+import { faDownload, faTrash, faArrowUp, faArrowDown, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { deleteDataset, downloadDataset, showHistorial, getDataset } from "../../controllers/DatasetController";
 import { getUserId, getText } from "../../data/Constants";
 import Loader from "../../components/Loader"
@@ -16,6 +16,8 @@ function ViewHistory () {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [order, setOrder] = useState({key: null, direction: ''});
+    const [search, setSearch] = useState('');
+    const [boolSearch, setBoolSearch] = useState(false);
 
     useEffect(() => {
         async function fetchData() {
@@ -54,9 +56,24 @@ function ViewHistory () {
             direction = '-';
         }
         setOrder({ key, direction });
-        const data = await showHistorial(userId, direction + key);
+        let data;
+        if (boolSearch) data = await showHistorial(userId, direction + key, search);
+        else data = await showHistorial(userId, direction + key);
         setDatasets(data);
         setLoading(false);
+    }
+
+    const handleSearchInputChange = (event) => {
+        setSearch(event.target.value);
+        setBoolSearch(false);
+    };
+
+    async function handleSearchButton() {
+        setLoading(true);
+        const data = await showHistorial(userId, order.direction + order.key, search);
+        setDatasets(data);
+        setBoolSearch(true);
+        setLoading(false);   
     }
 
     return (
@@ -67,6 +84,19 @@ function ViewHistory () {
                 <Profilebar />
                 <div className={styles["container"]}>
                     <p className={styles["title"]}>{text.viewHistory.title}</p>
+                    <div className={styles["input-container"]}>
+                        <input
+                            className={styles["input"]}
+                            type="text"
+                            onChange={(event) => handleSearchInputChange(event, 1)}
+                        ></input>
+                        <button 
+                            className={styles["search-button"]} 
+                            onClick={handleSearchButton}
+                        >
+                            <FontAwesomeIcon icon={faSearch} size="1x" />
+                        </button>
+                    </div>  
                     <table className={styles["dataset-list"]}>
                         <thead>
                             <tr>

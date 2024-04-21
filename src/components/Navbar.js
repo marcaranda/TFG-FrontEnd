@@ -20,6 +20,7 @@ function Navbar() {
 
     function handleLanguageButton(language){
         setLanguage(language.value);
+        //window.location.reload();
     }
 
 

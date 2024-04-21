@@ -76,9 +76,9 @@ function UserSettings () {
             <div className={styles["page"]}>
                 <Profilebar />
                 <div className={styles["container"]}>
-                    <p className={styles["title"]}>{text.UserSettings.title}</p>
+                    <p className={styles["title"]}>{text.userSettings.title}</p>
                     <div className={styles["container-title-input"]}>
-                        <p className={styles["input-title"]}>{text.UserSettings.name}</p>
+                        <p className={styles["input-title"]}>{text.userSettings.name}</p>
                         <input
                             className={styles["input"]}
                             value={name}
@@ -86,7 +86,7 @@ function UserSettings () {
                         ></input>
                     </div>
                     <div className={styles["container-title-input"]}>
-                        <p className={styles["input-title"]}>{text.UserSettings.email}</p>
+                        <p className={styles["input-title"]}>{text.userSettings.email}</p>
                         <input
                             className={styles["input"]}
                             value={email}
@@ -94,14 +94,14 @@ function UserSettings () {
                         ></input>
                     </div>
                     <div className={styles["container-title-input"]}>
-                    <p className={styles["input-title"]}>{text.UserSettings.phone}</p>
+                    <p className={styles["input-title"]}>{text.userSettings.phone}</p>
                         <input
                             className={styles["input"]}
                             value={phone}
                             onChange={(event) => handleInputChange(event, 3)}
                         ></input>
                     </div>
-                    {error && <p className={styles["error"]}>Error while editin User</p>}
+                    {error && <p className={styles["error"]}>{text.userSettings.errorEditUser}</p>}
                     <button
                         className={styles["button"]}
                         onClick={handleSaveButton}
