@@ -1,11 +1,11 @@
 import axios from "axios"
 import {getToken} from "../data/Constants"
 
-export async function fileReader(file, userId) {
+export async function fileReader(file, userId, rowsDenied) {
     try {
         const formData = new FormData();
         formData.append('file', file);
-        let result = await axios.post("http://localhost:8080/file/userId/" + userId, formData, {
+        let result = await axios.post("http://localhost:8080/file/userId/" + userId + "/rows/" + rowsDenied, formData, {
             headers: {
                 Authorization: "Bearer " + getToken(),
                 'Content-Type': 'multipart/form-data'

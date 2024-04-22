@@ -33,13 +33,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     position: relative;
 }
 
-.input-container {
+.inside-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
 }
 
@@ -53,7 +53,6 @@
     width: 300px;
     height: 30px;
     outline: none;
-    margin-bottom: 25px;
 }
 
 .title-container {
@@ -77,6 +76,13 @@
     font-size: 2rem;
 }
 
+.text {
+    color: #fff;
+    font: inherit;
+    font-size: 1.1rem;
+    margin-top: 0%;
+}
+
 .button {
     display: flex;
     background-color: #239ccccb;
@@ -89,7 +95,21 @@
     padding: 0.45rem 1rem;
     transition: all 0.5s ease;
     margin-top: 0%;
-    margin-left: 10px;
+}
+
+.button-inside {
+    display: flex;
+    background-color: #239ccccb;
+    color: #fff;
+    text-transform: uppercase;
+    font: inherit;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+    padding: 0.45rem 1rem;
+    transition: all 0.5s ease;
+    margin-top: 30px;
+    margin-bottom: 40px;
 }
 
 .button:hover {

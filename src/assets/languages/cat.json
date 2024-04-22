@@ -3,6 +3,8 @@
         "title" : "Pàgina Principal",
         "fileBottonTitle" : "Carrega de Fitxers",
         "fileBotton" : "PUJAR FITXER",
+        "fileTextOne" : "Abans de pujar el fitxer, escriviu el nombre de files que no s'han d'usar",
+        "fileTextTwo" : "per al càlcul de l'Entropia d'Eigen. Escriu-los entre ','",
         "historyBottonTitle" : "Veure el teu Historial",
         "historyBotton" : "VEURE HISTORIAL"
     },

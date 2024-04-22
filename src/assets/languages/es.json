@@ -3,6 +3,8 @@
         "title" : "Pagina Principal",
         "fileBottonTitle" : "Subida de Archivos",
         "fileBotton" : "SUBIR ARCHIVO",
+        "fileTextOne" : "Antes de subir el archivo, escriba el numero de filas que no deben usarse",
+        "fileTextTwo" : " para el cálculo de la Entropía de Eigen. Escribelos entre ','",
         "historyBottonTitle" : "Ver tu Historial",
         "historyBotton" : "VER HISTORIAL"
     },

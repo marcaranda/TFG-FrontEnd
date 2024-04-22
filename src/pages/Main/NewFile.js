@@ -15,7 +15,7 @@ function NewFile () {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [uploading, setUploading] = useState(false);
-    const [rowsDenied, setRowsDenied] = useState(1);
+    const [rowsDenied, setRowsDenied] = useState("1");
 
     const handleUploadingChange = (event) => {
         setUploading(event);
@@ -32,7 +32,7 @@ function NewFile () {
     async function handleFileChange (event) {
         setLoading(true);
         const file = event.target.files[0];
-        const result = await fileReader(file, userId);
+        const result = await fileReader(file, userId, rowsDenied);
         setLoading(false);
         setUploading(false);
         navigate("/file", {state: { dataset: result}});
@@ -60,14 +60,16 @@ function NewFile () {
                                 <FontAwesomeIcon icon={faClose} size="1x" />
                             </button>
                         </div>
-                        <div className={styles["input-container"]}>
-                            <input
-                                className={styles["input"]}
-                                placeholder="1"
-                                type="text"
-                                onChange={(event) => handleRowsInputChange(event)}
-                            ></input>
-                        </div>
+                        <div className={styles["inside-container"]}>
+                            <p className={styles["text"]}>{text.main.fileTextOne}</p>
+                            <p className={styles["text"]}>{text.main.fileTextTwo}</p>
+                        </div>  
+                        <input
+                            className={styles["input"]}
+                            placeholder="1"
+                            type="text"
+                            onChange={(event) => handleRowsInputChange(event)}
+                        ></input>
                         <input
                             type="file"
                             ref={fileInputButton}
@@ -76,7 +78,7 @@ function NewFile () {
                             accept=".csv"
                         />
                         <button 
-                            className={styles["button"]}
+                            className={styles["button-inside"]}
                             onClick={handleButtonClick}
                         >
                             {text.main.fileBotton}

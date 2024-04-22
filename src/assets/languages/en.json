@@ -3,6 +3,8 @@
         "title" : "Main Page",
         "fileBottonTitle" : "File Upload",
         "fileBotton" : "UPLOAD FILE",
+        "fileTextOne" : "Before uploading the file, write the number of rows that should not be used",
+        "fileTextTwo" : "for the Eigen Entropy calculation. Write them between ','",
         "historyBottonTitle" : "See your History",
         "historyBotton" : "HISTORY"
     },

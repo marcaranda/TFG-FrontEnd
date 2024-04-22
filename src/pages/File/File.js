@@ -20,6 +20,7 @@ function File () {
     const location = useLocation();
     const { dataset } = location.state || {};
     const datasetData = dataset.dataset;
+    const rowsDenied = dataset.rowsDenied;
     const [columnStates, setColumnStates] = useState(() => Array(Object.keys(datasetData[1]).length).fill(true));
     const [rowStates, setRowStates] = useState(() => Array(Object.keys(datasetData).length).fill(false));
     const [filter, setFilter] = useState(false);
@@ -29,8 +30,8 @@ function File () {
     const [loading, setLoading] = useState(false);
     const text = getText();
     let datasetValues = [];
-
     let titles = [];
+
     Object.keys(datasetData[1]).forEach(key => {
         titles.push(datasetData[1][key].column)
     });
@@ -44,6 +45,17 @@ function File () {
             datasetValues.push(row);
         }
     });
+    
+    useEffect(() => {
+        setColumnStates(Array(Object.keys(datasetData[1]).length).fill(true));
+        setRowStates(Array(Object.keys(datasetData).length).fill(false));
+        let newColumnStates = {...columnStates};
+        for (let i = 0; i < rowsDenied.length; i++) {
+            newColumnStates[rowsDenied[i] - 1] = false;
+        }
+        setColumnStates(newColumnStates);
+        // eslint-disable-next-line
+    }, [dataset.dataset, dataset.rowsDenied]);
 
     useEffect(() => {
         if (!hotInstance.current) {
