@@ -49,7 +49,7 @@ function File () {
     useEffect(() => {
         setColumnStates(Array(Object.keys(datasetData[1]).length).fill(true));
         setRowStates(Array(Object.keys(datasetData).length).fill(false));
-        let newColumnStates = {...columnStates};
+        let newColumnStates = Array(Object.keys(datasetData[1]).length).fill(true)
         for (let i = 0; i < rowsDenied.length; i++) {
             newColumnStates[rowsDenied[i] - 1] = false;
         }
