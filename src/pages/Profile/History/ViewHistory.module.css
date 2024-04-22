@@ -18,10 +18,17 @@
     border-collapse: collapse;
     overflow-y: auto;
 }
+
+.title-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 50px;
+}
  
 .title {
     color: #fff;
-    margin-left: 50px;
+    margin-right: 10px;
     font: inherit;
     font-weight: bold;
     font-size: 2rem;

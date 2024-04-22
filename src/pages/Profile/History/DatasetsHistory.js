@@ -5,7 +5,7 @@ import styles from './ViewHistory.module.css'
 import Navbar from "../../../components/Navbar";
 import Profilebar from "../../../components/Profilebar";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDownload, faTrash, faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
+import { faDownload, faTrash, faArrowUp, faArrowDown, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { deleteDataset, downloadDataset, showHistorial, getDataset } from "../../../controllers/DatasetController";
 import { getUserId, getText } from "../../../data/Constants";
 import Loader from "../../../components/Loader"
@@ -73,7 +73,11 @@ function DatasetsHistory () {
             <div className={styles["page"]}>
                 <Profilebar />
                 <div className={styles["container"]}>
-                    <p className={styles["title"]}>{text.viewHistory.title}</p>
+                    <div className={styles["title-container"]}>
+                        <p className={styles["title"]}>{text.viewHistory.title}</p>
+                        <p className={styles["title"]}><FontAwesomeIcon icon={faArrowRight} size="sm" /></p>
+                        <p className={styles["title"]}>{datasetName}</p>
+                    </div>
                     <table className={styles["dataset-list"]}>
                         <thead>
                             <tr>

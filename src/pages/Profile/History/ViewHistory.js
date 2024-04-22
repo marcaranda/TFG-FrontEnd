@@ -44,6 +44,15 @@ function ViewHistory () {
         setLoading(false);   
     }
 
+    async function handleSearchEnter(event) {
+        if (event.key === 'Enter') {
+            setLoading(true);
+            const data = await showHistorial(userId, null, search);
+            setDatasetsNames(Object.keys(data));
+            setLoading(false);   
+        }  
+    }
+
     return (
         <div className={styles["body"]}>
             {loading && <Loader />}
@@ -51,12 +60,15 @@ function ViewHistory () {
             <div className={styles["page"]}>
                 <Profilebar />
                 <div className={styles["container"]}>
-                    <p className={styles["title"]}>{text.viewHistory.title}</p>
+                    <div className={styles["title-container"]}>
+                        <p className={styles["title"]}>{text.viewHistory.title}</p>
+                    </div>
                     <div className={styles["input-container"]}>
                         <input
                             className={styles["input"]}
                             type="text"
                             onChange={(event) => handleSearchInputChange(event)}
+                            onKeyDown={(event) => {handleSearchEnter(event)}}
                         ></input>
                         <button 
                             className={styles["search-button"]} 
