@@ -30,6 +30,11 @@ export function getUserId() {
     return userId;
 }
 
+if (language === null) {
+    language = "en";
+    localStorage.setItem("language", language);
+}
+
 export function setLanguage(newLanguage) {
     language = newLanguage;
     localStorage.setItem("language", language);
