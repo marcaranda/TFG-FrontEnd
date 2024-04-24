@@ -95,7 +95,7 @@
             "toConsiderText" : {
                 "one" : "1 Manual Filter without marked rows does not work",
                 "two" : "2 On Automatic Sampling:",
-                "three" : "2.1 the fewer initial rows, the more complicated it is to get de desired rows",
+                "three" : "2.1 The fewer initial rows, the more complicated it is to get de desired rows",
                 "four" : "2.2 The final number of rows must be greater than 0",
                 "five" : "2.3 On Incremental Sampling, the final number of rows must be greater than the initial number of rows",
                 "six" : "2.4 On Elimination Sampling, the final number of rows must be less than the initial number of rows"
