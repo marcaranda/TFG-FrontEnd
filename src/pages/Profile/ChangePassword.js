@@ -59,38 +59,39 @@ function ChangePassword () {
             <div className={styles["page"]}>
                 <Profilebar />
                 <div className={styles["container"]}>
-                    <p className={styles["title"]}>{text.changePassword.title}</p>
+                    <p className={styles["title"]} text-section="changePassword.title">{text.changePassword.title}</p>
                     <div className={styles["container-title-input"]}>
-                        <p className={styles["input-title"]}>{text.changePassword.currentPassword}</p>
+                        <p className={styles["input-title"]} text-section="changePassword.currentPassword">{text.changePassword.currentPassword}</p>
                         <input
                             className={styles["input"]}
-                            placeholder="Current Password"
+                            placeholder={text.changePassword.currentPassword}
                             onChange={(event) => handleInputChange(event, 1)}
                         ></input>
                     </div>
                     <div className={styles["container-title-input"]}>
-                        <p className={styles["input-title"]}>{text.changePassword.newPassword}</p>
+                        <p className={styles["input-title"]} text-section="changePassword.newPassword">{text.changePassword.newPassword}</p>
                         <input
                             className={styles["input"]}
-                            placeholder="New Password"
+                            placeholder={text.changePassword.newPassword}
                             onChange={(event) => handleInputChange(event, 2)}
                         ></input>
                     </div>
                     <div className={styles["container-title-input"]}>
-                        <p className={styles["input-title"]}>{text.changePassword.confirmPassword}</p>
+                        <p className={styles["input-title"]} text-section="changePassword.confirmPassword">{text.changePassword.confirmPassword}</p>
                         <input
                             className={styles["input"]}
-                            placeholder="Retype New Password"
+                            placeholder={text.changePassword.confirmPassword}
                             onChange={(event) => handleInputChange(event, 3)}
                         ></input>
                     </div>
-                    {error && <p className={styles["error"]}>{text.changePassword.errorChangePassword}</p>}
-                    {errorPassword && <p className={styles["error"]}>{text.changePassword.errorMatchPasswords}</p>}
+                    {error && <p className={styles["error"]} text-section="changePassword.errorChangePassword">{text.changePassword.errorChangePassword}</p>}
+                    {errorPassword && <p className={styles["error"]} text-section="changePassword.errorMatchPasswords">{text.changePassword.errorMatchPasswords}</p>}
                     <button
                         className={styles["button"]}
                         onClick={handleSaveButton}
+                        text-section="changePassword.save"
                     >
-                        Save
+                        {text.changePassword.save}
                     </button>
                 </div>
           </div>

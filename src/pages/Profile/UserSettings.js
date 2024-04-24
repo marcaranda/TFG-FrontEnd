@@ -75,9 +75,9 @@ function UserSettings () {
             <div className={styles["page"]}>
                 <Profilebar />
                 <div className={styles["container"]}>
-                    <p className={styles["title"]}>{text.userSettings.title}</p>
+                    <p className={styles["title"]} text-section="userSettings.title">{text.userSettings.title}</p>
                     <div className={styles["container-title-input"]}>
-                        <p className={styles["input-title"]}>{text.userSettings.name}</p>
+                        <p className={styles["input-title"]} text-section="userSettings.name">{text.userSettings.name}</p>
                         <input
                             className={styles["input"]}
                             value={name}
@@ -85,7 +85,7 @@ function UserSettings () {
                         ></input>
                     </div>
                     <div className={styles["container-title-input"]}>
-                        <p className={styles["input-title"]}>{text.userSettings.email}</p>
+                        <p className={styles["input-title"]} text-section="userSettings.email">{text.userSettings.email}</p>
                         <input
                             className={styles["input"]}
                             value={email}
@@ -93,19 +93,20 @@ function UserSettings () {
                         ></input>
                     </div>
                     <div className={styles["container-title-input"]}>
-                    <p className={styles["input-title"]}>{text.userSettings.phone}</p>
+                    <p className={styles["input-title"]} text-section="userSettings.phone">{text.userSettings.phone}</p>
                         <input
                             className={styles["input"]}
                             value={phone}
                             onChange={(event) => handleInputChange(event, 3)}
                         ></input>
                     </div>
-                    {error && <p className={styles["error"]}>{text.userSettings.errorEditUser}</p>}
+                    {error && <p className={styles["error"]} text-section="userSettings.errorEditUser">{text.userSettings.errorEditUser}</p>}
                     <button
                         className={styles["button"]}
                         onClick={handleSaveButton}
+                        text-section="userSettings.save"
                     >
-                        Save
+                        {text.userSettings.save}
                     </button>
                 </div>
           </div>

@@ -191,19 +191,20 @@ function File () {
             </div>
             <div className={styles["entropys-container"]}>
                 <div className={styles["left-container"]}>
-                    <p className={styles["entropy-title"]}>{text.file.entropyBar.eigenEntropy}</p>
+                    <p className={styles["entropy-title"]} text-section="file.entropyBar.eigenEntropy">{text.file.entropyBar.eigenEntropy}</p>
                     <p className={styles["entropy"]}>{parseFloat(dataset.eigenEntropy.toFixed(3))}</p>
                 </div>
                 {filter && (
                     <>
                         <div className={styles["center-container"]}>
-                            <p className={styles["entropy-title"]}>{text.file.entropyBar.filteredEigenEntropy}</p>
+                            <p className={styles["entropy-title"]} text-section="file.entropyBar.filteredEigenEntropy">{text.file.entropyBar.filteredEigenEntropy}</p>
                             <p className={styles["entropy"]}>{parseFloat(filteredDataset.eigenEntropy.toFixed(3))}</p>
                         </div>
                         <div className={styles["right-container"]}>
                             <button 
                             className={styles["filter-button"]}
                             onClick={handleOpenFilterFileButton}
+                            text-section="file.entropyBar.openFilterFile"
                         >
                             {text.file.entropyBar.openFilterFile}
                         </button>

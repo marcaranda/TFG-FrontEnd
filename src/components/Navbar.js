@@ -9,6 +9,7 @@ import DropDown from "./DropDown";
 
 function Navbar() {
     const navigate = useNavigate();
+    const textsToChange = document.querySelectorAll("[text-section]");
 
     function handleProfileButton(){
         navigate("/user-settings/user-profile");
@@ -18,10 +19,28 @@ function Navbar() {
         navigate("/main");
     }
 
-    function handleLanguageButton(language){
+    const handleLanguageButton = async (language) => {
         setLanguage(language.value);
-        //window.location.reload();
-    }
+
+        const response = await import(`../assets/languages/${language.value}.json`);
+        const text = response.default;
+
+        for (const textToChange of textsToChange) {
+            const textKey = textToChange.getAttribute("text-section");
+            
+            let value = text;
+            const keys = textKey.split(".");
+            for (const key of keys) {
+                if (value[key] === undefined) {
+                    value = null;
+                    break;
+                }
+                value = value[key];
+            }
+
+            textToChange.textContent = value;
+        }
+    };
 
 
     return(

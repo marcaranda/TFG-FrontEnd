@@ -41,10 +41,11 @@ function NewFile () {
     return (
         <div className={styles["body"]}>
             {loading && <Loader />}
-            <p className={styles["title"]}>{text.main.fileBottonTitle}</p>
+            <p className={styles["title"]} text-section="main.fileBottonTitle">{text.main.fileBottonTitle}</p>
             <button 
                 className={styles["button"]}
                 onClick={() => handleUploadingChange(true)}
+                text-section="main.fileBotton"
             >
                 {text.main.fileBotton}
             </button>
@@ -52,7 +53,7 @@ function NewFile () {
                 <div className={styles["uploading"]}>
                     <div className={styles["container"]}>
                         <div className={styles["title-container"]}>
-                            <p className={styles["title"]}>{text.main.fileBottonTitle}</p>
+                            <p className={styles["title"]} text-section="main.fileBottonTitle">{text.main.fileBottonTitle}</p>
                             <button 
                                 className={styles["close-button"]}
                                 onClick={() => handleUploadingChange(false)}
@@ -61,8 +62,8 @@ function NewFile () {
                             </button>
                         </div>
                         <div className={styles["inside-container"]}>
-                            <p className={styles["text"]}>{text.main.fileTextOne}</p>
-                            <p className={styles["text"]}>{text.main.fileTextTwo}</p>
+                            <p className={styles["text"]} text-section="main.fileTextOne">{text.main.fileTextOne}</p>
+                            <p className={styles["text"]} text-section="main.fileTextTwo">{text.main.fileTextTwo}</p>
                         </div>  
                         <input
                             className={styles["input"]}
@@ -80,6 +81,7 @@ function NewFile () {
                         <button 
                             className={styles["button-inside"]}
                             onClick={handleButtonClick}
+                             text-section="main.fileBotton"
                         >
                             {text.main.fileBotton}
                         </button>

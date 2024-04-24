@@ -65,7 +65,7 @@ function Filter({ datasetId, rowStates, setFilter, setFilteredDataset, setLoadin
 
     return(
         <div className={styles['filter-container']}>
-            <p className={styles["text"]}>{text.file.filter.toImprove}</p>
+            <p className={styles["text"]} text-section="file.filter.toImprove">{text.file.filter.toImprove}</p>
             <div className={styles["row-container"]}>
             <input
                 type="radio"
@@ -76,7 +76,7 @@ function Filter({ datasetId, rowStates, setFilter, setFilteredDataset, setLoadin
                 onChange={handleImproveButton}
                 className={styles["radio-input"]}
             />
-            <label htmlFor="Homogeneity" className={styles["radio-button"]}>
+            <label htmlFor="Homogeneity" className={styles["radio-button"]} text-section="file.filter.homogeneity">
                 {text.file.filter.homogeneity}
             </label>
             </div>
@@ -90,12 +90,12 @@ function Filter({ datasetId, rowStates, setFilter, setFilteredDataset, setLoadin
                 onChange={handleImproveButton}
                 className={styles["radio-input"]}
             />
-            <label htmlFor="Heterogeneity" className={styles["radio-button"]}>
+            <label htmlFor="Heterogeneity" className={styles["radio-button"]} text-section="file.filter.heterogeneity">
                 {text.file.filter.heterogeneity}
             </label>
             </div>
             <div className={styles["space"]}></div>
-            <p className={styles["text"]}>{text.file.filter.filterType}</p>
+            <p className={styles["text"]} text-section="file.filter.filterType">{text.file.filter.filterType}</p>
             <div className={styles["row-container"]}>
             <input
                 type="radio"
@@ -106,7 +106,7 @@ function Filter({ datasetId, rowStates, setFilter, setFilteredDataset, setLoadin
                 onChange={handleTypeButton}
                 className={styles["radio-input"]}
             />
-            <label htmlFor="Incremental Sampling" className={styles["radio-button"]}>
+            <label htmlFor="Incremental Sampling" className={styles["radio-button"]} text-section="file.filter.incrementalSampling">
                 {text.file.filter.incrementalSampling}
             </label>
             </div>
@@ -120,14 +120,14 @@ function Filter({ datasetId, rowStates, setFilter, setFilteredDataset, setLoadin
                 onChange={handleTypeButton}
                 className={styles["radio-input"]}
             />
-            <label htmlFor="Elimination Sampling" className={styles["radio-button"]}>
+            <label htmlFor="Elimination Sampling" className={styles["radio-button"]} text-section="file.filter.eliminationSampling">
                 {text.file.filter.eliminationSampling}
             </label>
             </div>
             {selectedType === "Incremental Sampling" && (
                 <>
                     <div className={styles["space"]}></div>
-                    <p className={styles["text"]}>{text.file.filter.initialRowsNumber}</p>
+                    <p className={styles["text"]} text-section="file.filter.initialRowsNumber">{text.file.filter.initialRowsNumber}</p>
                     <input
                         className={styles["input"]}
                         type="number"
@@ -135,7 +135,7 @@ function Filter({ datasetId, rowStates, setFilter, setFilteredDataset, setLoadin
                         onChange={(event) => handleInputInitialRowsChange(event)}
                     ></input>
                     <div className={styles["space"]}></div>
-                    <p className={styles["text"]}>{text.file.filter.eigenEntropyChangeRate}</p>
+                    <p className={styles["text"]} text-section="file.filter.eigenEntropyChangeRate">{text.file.filter.eigenEntropyChangeRate}</p>
                     <div className={styles["slider"]}>
                         <input
                             className={styles["number-input"]}
@@ -151,19 +151,20 @@ function Filter({ datasetId, rowStates, setFilter, setFilteredDataset, setLoadin
                 </>
             )}
             <div className={styles["space"]}></div>
-            <p className={styles["text"]}>{text.file.filter.finalRowsNumber}</p>
+            <p className={styles["text"]} text-section="file.filter.finalRowsNumber">{text.file.filter.finalRowsNumber}</p>
             <input
                 className={styles["input"]}
                 type="number"
                 placeholder="1"
                 onChange={(event) => handleInputWantedRowsChange(event)}
             ></input>
-            {error && <p className={styles["error"]}>{text.file.filter.errorNumberRows}</p>}
+            {error && <p className={styles["error"]} text-section="file.filter.errorNumberRows">{text.file.filter.errorNumberRows}</p>}
             <div className={styles["space"]}></div>
             <div className={styles["row-container"]}>
                 <button 
                     className={styles["button"]}
                     onClick={handleFilterButton}
+                    text-section="file.filter.apply"
                 >
                     {text.file.filter.apply}
                 </button>

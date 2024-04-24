@@ -18,7 +18,7 @@ function Info({ onClose }) {
         <div className={styles["body"]}>
             <div className={styles["container"]}>
                 <div className={styles["title-container"]}>
-                    <p className={styles["title"]}>{text.file.info.title}</p>
+                    <p className={styles["title"]} text-section="file.info.title">{text.file.info.title}</p>
                     <button 
                         className={styles["close-button"]}
                         onClick={onClose}
@@ -30,46 +30,49 @@ function Info({ onClose }) {
                     <button 
                         className={openedPage[0] ? styles["page-button-selected"] : styles["page-button"]}
                         onClick={() => handlePageChange(0)}
+                        text-section="file.info.manualFilter"
                     >
                         {text.file.info.manualFilter}
                     </button>
                     <button 
                         className={openedPage[1] ? styles["page-button-selected"] : styles["page-button"]}
                         onClick={() => handlePageChange(1)}
+                        text-section="file.info.automaticFilter"
                     >
                         {text.file.info.automaticFilter}
                     </button>
                     <button 
                         className={openedPage[2] ? styles["page-button-selected"] : styles["page-button"]}
                         onClick={() => handlePageChange(2)}
+                        text-section="file.info.toConsider"
                     >
                         {text.file.info.toConsider}
                     </button>
                 </div>
                 <div className={styles["content-container"]}>
                     {openedPage[0] && <div className={styles["text-container"]}>
-                        <p className={styles["text"]}>{text.file.info.manualFilter}</p>
-                        <p className={styles["text-1"]}>{text.file.info.manualFilterText.one}</p>
-                        <p className={styles["text-1"]}>{text.file.info.manualFilterText.two}</p>
-                        <p className={styles["text-1"]}>{text.file.info.manualFilterText.three}</p>
+                        <p className={styles["text"]} text-section="file.info.manualFilter">{text.file.info.manualFilter}</p>
+                        <p className={styles["text-1"]} text-section="file.info.manualFilter.one">{text.file.info.manualFilterText.one}</p>
+                        <p className={styles["text-1"]} text-section="file.info.manualFilter.two">{text.file.info.manualFilterText.two}</p>
+                        <p className={styles["text-1"]} text-section="file.info.manualFilter.three">{text.file.info.manualFilterText.three}</p>
                         </div>
                     }
                     {openedPage[1] && <div className={styles["text-container"]}>
-                        <p className={styles["text"]}>{text.file.info.automaticFilter}</p>
-                        <p className={styles["text-1"]}>{text.file.info.automaticFilterText.one}</p>
-                        <p className={styles["text-1"]}>{text.file.info.automaticFilterText.two}</p>
-                        <p className={styles["text-1"]}>{text.file.info.automaticFilterText.three}</p>
-                        <p className={styles["text-1"]}>{text.file.info.automaticFilterText.four}</p>
+                        <p className={styles["text"]} text-section="file.info.automaticFilter">{text.file.info.automaticFilter}</p>
+                        <p className={styles["text-1"]} text-section="file.info.automaticFilter.one">{text.file.info.automaticFilterText.one}</p>
+                        <p className={styles["text-1"]} text-section="file.info.automaticFilter.two">{text.file.info.automaticFilterText.two}</p>
+                        <p className={styles["text-1"]} text-section="file.info.automaticFilter.three">{text.file.info.automaticFilterText.three}</p>
+                        <p className={styles["text-1"]} text-section="file.info.automaticFilter.four">{text.file.info.automaticFilterText.four}</p>
                         </div>
                     }
                     {openedPage[2] && <div className={styles["text-container"]}>
-                        <p className={styles["text"]}>{text.file.info.toConsider}</p>
-                        <p className={styles["text-1"]}>{text.file.info.toConsiderText.one}</p>
-                        <p className={styles["text-1"]}>{text.file.info.toConsiderText.two}</p>
-                        <p className={styles["text-1"]}>{text.file.info.toConsiderText.three}</p>
-                        <p className={styles["text-1"]}>{text.file.info.toConsiderText.four}</p>
-                        <p className={styles["text-1"]}>{text.file.info.toConsiderText.five}</p>
-                        <p className={styles["text-1"]}>{text.file.info.toConsiderText.six}</p>
+                        <p className={styles["text"]} text-section="file.info.toConsiderText">{text.file.info.toConsider}</p>
+                        <p className={styles["text-1"]} text-section="file.info.toConsiderText.one">{text.file.info.toConsiderText.one}</p>
+                        <p className={styles["text-1"]} text-section="file.info.toConsiderText.two">{text.file.info.toConsiderText.two}</p>
+                        <p className={styles["text-1"]} text-section="file.info.toConsiderText.three">{text.file.info.toConsiderText.three}</p>
+                        <p className={styles["text-1"]} text-section="file.info.toConsiderText.four">{text.file.info.toConsiderText.four}</p>
+                        <p className={styles["text-1"]} text-section="file.info.toConsiderText.five">{text.file.info.toConsiderText.five}</p>
+                        <p className={styles["text-1"]} text-section="file.info.toConsiderText.six">{text.file.info.toConsiderText.six}</p>
                         </div>
                     }
                 </div>

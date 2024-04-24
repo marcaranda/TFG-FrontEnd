@@ -21,7 +21,8 @@
         "name" : "Nom",
         "email" : "Email",
         "phone" : "Telèfon",
-        "errorEditUser" : "Error a l'editar l'Usuari"
+        "errorEditUser" : "Error a l'editar l'Usuari",
+        "save" : "GUARDAR"
     },
 
     "changePassword" : {
@@ -30,7 +31,8 @@
         "newPassword" : "Nova Contrasenya",
         "confirmPassword" : "Confirmar Nova Contrasenya",
         "errorChangePassword" : "Error al canviar la contrasenya",
-        "errorMatchPasswords" : "Les contrasenyes no coincideixen"
+        "errorMatchPasswords" : "Les contrasenyes no coincideixen",
+        "save" : "GUARDAR"
     },
 
     "viewHistory" : {
@@ -66,7 +68,7 @@
             "incrementalSampling" : "Sampleig Incremental",
             "eliminationSampling" : "Sampleig d'Eliminación",
             "initialRowsNumber" : "Número de Files Inicials",
-            "eigenEntropyChangeRate" : "Ràtio de Canvio de la Entropía de Eigen",
+            "eigenEntropyChangeRate" : "Ràtio de Canvi de la Entropía de Eigen",
             "finalRowsNumber" : "Número de Files Finals",
             "apply" : "APLICAR",
             "errorNumberRows" : "Número de Files Incorrecte"

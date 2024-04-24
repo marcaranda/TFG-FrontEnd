@@ -21,7 +21,8 @@
         "name" : "Name",
         "email" : "Email",
         "phone" : "Phone",
-        "errorEditUser" : "Error while editing User"
+        "errorEditUser" : "Error while editing User",
+        "save" : "SAVE"
     },
 
     "changePassword" : {
@@ -30,7 +31,8 @@
         "newPassword" : "New Password",
         "confirmPassword" : "Confirm New Password",
         "errorChangePassword" : "Error while changing password",
-        "errorMatchPasswords" : "Passwords don't match"
+        "errorMatchPasswords" : "Passwords don't match",
+        "save" : "SAVE"
     },
 
     "viewHistory" : {

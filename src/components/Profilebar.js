@@ -29,24 +29,28 @@ function Profilebar() {
             <button
                 className={styles["button"]}
                 onClick={handleSettingsButton}
+                text-section="profileBar.userSettings"
             >
                 {text.profileBar.userSettings}
             </button>
             <button
                 className={styles["button"]}
                 onClick={handlePasswordButton}
+                text-section="profileBar.changePassword"
             >
                 {text.profileBar.changePassword}
             </button>
             <button
                 className={styles["button"]}
                 onClick={handleHistorialButton}
+                text-section="profileBar.viewHistory"
             >
                 {text.profileBar.viewHistory}
             </button>
             <button
                 className={styles["logout-button"]}
                 onClick={handleBackButton}
+                text-section="profileBar.logout"
             >
                 {text.profileBar.logout}
             </button>

@@ -61,7 +61,7 @@ function ViewHistory () {
                 <Profilebar />
                 <div className={styles["container"]}>
                     <div className={styles["title-container"]}>
-                        <p className={styles["title"]}>{text.viewHistory.title}</p>
+                        <p className={styles["title"]} text-section="viewHistory.title">{text.viewHistory.title}</p>
                     </div>
                     <div className={styles["input-container"]}>
                         <input
@@ -81,7 +81,7 @@ function ViewHistory () {
                         <thead>
                             <tr>
                                 <th className={styles["th"]}>
-                                    <h1 className={styles["header-button"]}>{text.viewHistory.folderName}</h1>
+                                    <h1 className={styles["header-button"]} text-section="viewHistory.folderName">{text.viewHistory.folderName}</h1>
                                 </th>
                             </tr>
                         </thead>

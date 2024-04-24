@@ -13,7 +13,7 @@ function Main () {
             <Navbar />
             <div className={styles["page"]}>
                 <div className={styles["half-body"]}>
-                    <h1 className={styles["page-title"]}>{text.main.title}</h1>
+                    <h1 className={styles["page-title"]} text-section="main.title">{text.main.title}</h1>
                     <NewFile />
                     <ViewHistorial />
                 </div>

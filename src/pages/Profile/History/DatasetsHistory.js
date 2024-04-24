@@ -74,7 +74,7 @@ function DatasetsHistory () {
                 <Profilebar />
                 <div className={styles["container"]}>
                     <div className={styles["title-container"]}>
-                        <p className={styles["title"]}>{text.viewHistory.title}</p>
+                        <p className={styles["title"]} text-section="viewHistory.title">{text.viewHistory.title}</p>
                         <p className={styles["title"]}><FontAwesomeIcon icon={faArrowRight} size="sm" /></p>
                         <p className={styles["title"]}>{datasetName}</p>
                     </div>
@@ -85,6 +85,7 @@ function DatasetsHistory () {
                                     <button 
                                         className={styles["header-button"]}
                                         onClick={() => handleOrderButton("name")}
+                                        text-section="viewHistory.name"
                                     >
                                         {text.viewHistory.name} {order.key === "name" && (order.direction === '' ? 
                                             <FontAwesomeIcon icon={faArrowUp} size="1x" /> :
@@ -95,6 +96,7 @@ function DatasetsHistory () {
                                     <button 
                                         className={styles["header-button"]}
                                         onClick={() => handleOrderButton("entropy")}
+                                        text-section="viewHistory.entropy"
                                     >
                                         {text.viewHistory.entropy} {order.key === "entropy" && (order.direction === '' ? 
                                             <FontAwesomeIcon icon={faArrowUp} size="1x" /> :
@@ -105,6 +107,7 @@ function DatasetsHistory () {
                                     <button 
                                         className={styles["header-button"]}
                                         onClick={() => handleOrderButton("row")}
+                                        text-section="viewHistory.rows"
                                     >
                                         {text.viewHistory.rows} {order.key === "row" && (order.direction === '' ? 
                                             <FontAwesomeIcon icon={faArrowUp} size="1x" /> :
@@ -115,6 +118,7 @@ function DatasetsHistory () {
                                     <button 
                                         className={styles["header-button"]}
                                         onClick={() => handleOrderButton("column")}
+                                        text-section="viewHistory.columns"
                                     >
                                         {text.viewHistory.columns} {order.key === "column" && (order.direction === '' ? 
                                             <FontAwesomeIcon icon={faArrowUp} size="1x" /> :

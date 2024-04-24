@@ -13,10 +13,11 @@ function ViewHistorial () {
 
     return (
         <div className={styles["body"]}>
-            <p className={styles["title"]}>{text.main.historyBottonTitle}</p>
+            <p className={styles["title"]} text-section="main.historyBottonTitle">{text.main.historyBottonTitle}</p>
             <button 
                 className={styles["button"]}
                 onClick={handleButtonClick}
+                text-section="main.historyBotton"
             >
                 {text.main.historyBotton}
             </button>

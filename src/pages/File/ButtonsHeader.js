@@ -74,12 +74,14 @@ function ButtonsHeader({ datasetId, datasetName, datasetVersion, titles, columnS
                     <button 
                         className={styles["left-button"]}
                         onClick={handleShowFilterButton}
+                        text-section={showFilterHeader ? "file.buttonsBar.hideSampling" : "file.buttonsBar.sampling"}
                     >
                         {showFilterHeader ? text.file.buttonsBar.hideSampling : text.file.buttonsBar.sampling}
                     </button>
                     <button 
                         className={styles["left-button"]}
                         onClick={handleHistorialButton}
+                        text-section="file.buttonsBar.viewHistory"
                     >
                         {text.file.buttonsBar.viewHistory}
                     </button>
@@ -88,18 +90,21 @@ function ButtonsHeader({ datasetId, datasetName, datasetVersion, titles, columnS
                     <button 
                         className={styles["filter-button"]}
                         onClick={handleFilterButton}
+                        text-section="file.buttonsBar.applyFilter"
                     >
                         {text.file.buttonsBar.applyFilter}
                     </button>
                     <button 
                         className={styles["states-button"]}
                         onClick={handleChangeColumnStatesButton}
+                        text-section="file.buttonsBar.changeColumnsStates"
                     >
                         {text.file.buttonsBar.changeColumnsStates}
                     </button>
                     <button 
                         className={styles["states-button"]}
                         onClick={handleChangeRowStatesButton}
+                        text-section="file.buttonsBar.changeRowStates"
                     >
                         {text.file.buttonsBar.changeRowStates}
                     </button>
