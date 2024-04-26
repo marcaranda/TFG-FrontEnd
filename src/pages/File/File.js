@@ -3,8 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import styles from './File.module.css'
 import Navbar from "../../components/Navbar";
-import Handsontable from "handsontable";
-import 'handsontable/dist/handsontable.full.css';
+
+import { AgGridReact } from 'ag-grid-react';
+import 'ag-grid-community/styles/ag-grid.css'; // Importa los estilos base
+import 'ag-grid-community/styles/ag-theme-alpine.css'; // Tema alpino
+
 import ButtonsHeader from "./ButtonsHeader";
 import Info from "./Info";
 import Filter from "./Filter";
@@ -15,8 +18,6 @@ import { getText } from "../../data/Constants";
 
 function File () {
     const navigate = useNavigate();
-    const container = useRef(null);
-    const hotInstance = useRef(null);
     const location = useLocation();
     const { dataset } = location.state || {};
     const datasetData = dataset.dataset;
@@ -29,24 +30,40 @@ function File () {
     const [showFilter, setShowFilter] = useState(false);
     const [loading, setLoading] = useState(false);
     const text = getText();
+
+    const [rowData, setRowData] = useState([]);
+    const [columnDefs, setColumnDefs] = useState([]);
+    const gridRef = useRef(null);
+
     let datasetValues = [];
     let titles = [];
-
-    Object.keys(datasetData[1]).forEach(key => {
-        titles.push(datasetData[1][key].column)
-    });
-
-    Object.keys(datasetData).forEach(key => {
-        if (typeof datasetData[key] === 'object' && datasetData[key] !== null) {
-            let row = [];
-            Object.keys(datasetData[key]).forEach(subKey => {
-                row.push(datasetData[key][subKey].value);
-            });
-            datasetValues.push(row);
-        }
-    });
     
     useEffect(() => {
+        const datasetTitles = [{
+            headerName: "CLEAR", 
+            field: "rowNum",
+            width: 80,
+            pinned: 'left',
+            valueGetter: "node.rowIndex + 1"
+        }]
+        Object.keys(datasetData[1]).forEach(key => {
+            titles.push(datasetData[1][key].column)
+            datasetTitles.push({ headerName: datasetData[1][key].column, field: key, sortable: false });
+        });
+
+        Object.keys(datasetData).forEach(key => {
+            if (typeof datasetData[key] === 'object' && datasetData[key] !== null) {
+                let row = {};
+                Object.keys(datasetData[key]).forEach(subKey => {
+                    row[subKey] = datasetData[key][subKey].value;
+                });
+                datasetValues.push(row);
+            }
+        });
+
+        setRowData(datasetValues);
+        setColumnDefs(datasetTitles);
+
         setColumnStates(Array(Object.keys(datasetData[1]).length).fill(true));
         setRowStates(Array(Object.keys(datasetData).length).fill(false));
         let newColumnStates = Array(Object.keys(datasetData[1]).length).fill(true)
@@ -56,84 +73,6 @@ function File () {
         setColumnStates(newColumnStates);
         // eslint-disable-next-line
     }, [dataset.dataset, dataset.rowsDenied]);
-
-    useEffect(() => {
-        if (!hotInstance.current) {
-            // Inicializar Handsontable al montar el componente
-            hotInstance.current = new Handsontable(container.current, {
-                data: datasetValues,
-                colHeaders: function(col) {
-                    const headerValue = titles[col];
-                    const buttonStyle = columnStates[col] ? '' : 'background-color: #e6adad;';
-                    return `<button style="${buttonStyle}">${headerValue}</button>`;
-                },
-                columnHeaderHeight: 30,
-                rowHeaders: function(row) {
-                    const headerValue = row + 1;
-                    const buttonStyle = rowStates[row] ? 'background-color: #a1d690;' : '';
-                    return `<button style="${buttonStyle}">${headerValue}</button>`;
-                },
-                rowHeaderWidth: 75,
-                afterOnCellMouseDown: function(event, coords) {
-                    if (coords.row === -1 && coords.col === -1) {
-                        setColumnStates(Array(Object.keys(datasetData[1]).length).fill(true));
-                        setRowStates(Array(Object.keys(datasetData).length).fill(false));
-                    } else if (coords.row === -1) {
-                        let newColumnStates = {...columnStates};
-                        newColumnStates[coords.col] = !newColumnStates[coords.col];
-                        setColumnStates(newColumnStates);
-                    } else if (coords.col === -1) {
-                        let newRowStates = {...rowStates};
-                        newRowStates[coords.row] = !newRowStates[coords.row];
-                        setRowStates(newRowStates);
-                    }
-
-                    hotInstance.current.render();
-                },
-                cells: function(row, col, prop) {
-                    const cellProperties = {};
-                    if (!columnStates[col]) {
-                        cellProperties.renderer = function(instance, td, row, col, prop, value, cellProperties) {
-                            Handsontable.renderers.TextRenderer.apply(this, arguments);
-                            td.style.backgroundColor = '#e6adad';
-                        };
-                    } else if (rowStates[row]) {
-                        cellProperties.renderer = function(instance, td, row, col, prop, value, cellProperties) {
-                            Handsontable.renderers.TextRenderer.apply(this, arguments);
-                            td.style.backgroundColor = '#a1d690';
-                        };
-                    } else {
-                        cellProperties.renderer = function(instance, td, row, col, prop, value, cellProperties) {
-                            Handsontable.renderers.TextRenderer.apply(this, arguments);
-                            td.style.backgroundColor = '';
-                        };
-                    }
-                    return cellProperties;
-                },
-                afterRender: function(isForced) {
-                    // Selecciona el TH de la esquina si aún no tiene el botón
-                    var cornerHeader = document.querySelector('.ht_clone_top_left_corner .htCore > thead > tr > th');
-                    if (cornerHeader && !cornerHeader.querySelector('.corner-header-button')) {
-                      cornerHeader.innerHTML = '';
-                      var button = document.createElement('button');
-                      button.textContent = 'CLEAR';
-                      cornerHeader.appendChild(button);
-                    }
-                  },
-                licenseKey: 'non-commercial-and-evaluation',
-                type: 'numeric'
-                // Otras opciones de configuración...
-            });
-        }
-
-        // Función de limpieza al desmontar el componente
-        return () => {
-            if (hotInstance.current) {
-                hotInstance.current.destroy();
-                hotInstance.current = null;
-            }
-        };
-    }, );
 
     function handleOpenFilterFileButton() {
         setFilter(false);
@@ -146,6 +85,48 @@ function File () {
 
     function handleInfoClose() {
         setInfo(false);
+    }
+
+    const rowStyle = { background: 'white' };
+    const cellStyle = { background: 'white' };
+
+    const getRowStyle = params => {
+        if (rowStates[params.node.rowIndex]) {
+            return { backgroundColor: '#a1d690' }; // Verde cuando activado
+        }
+        return null;
+    };
+
+    const getCellStyle = params => {
+        console.log(params);
+        if (!columnStates[params.column.colId]) {
+            return { backgroundColor: '#e6adad' }; // Rojo cuando desactivado
+        }
+        else if (rowStates[params.node.rowIndex]) {
+            return { backgroundColor: '#a1d690' }; // Verde cuando activado
+        }
+        return null;
+    };
+
+    const onRowClicked = params => {
+        if (params.column.colId === "rowNum") {
+            // Clic en un rowHeader
+            const newRowStates = {...rowStates};
+            newRowStates[params.node.rowIndex] = !newRowStates[params.node.rowIndex];
+            setRowStates(newRowStates);
+        }
+    };
+
+    const onHeaderClicked = params => {
+        if (params.column.colId === "rowNum") {
+            setColumnStates(Array(Object.keys(datasetData[1]).length).fill(true));
+            setRowStates(Array(Object.keys(datasetData).length).fill(false));
+        }
+        else {
+            const newColumnStates = {...columnStates};
+            newColumnStates[params.column.colId - 1] = !newColumnStates[params.column.colId - 1];
+            setColumnStates(newColumnStates);
+        }
     }
 
     return (
@@ -187,7 +168,17 @@ function File () {
                    setFilteredDataset={setFilteredDataset}
                    setLoading={setLoading}
                 />}
-                <div ref={container} className={styles["file-container"]}></div>
+                <div className="ag-theme-alpine" style={{ height: 639, width: '100%' }}>
+                    <AgGridReact
+                        ref={gridRef}
+                        rowData={rowData}
+                        columnDefs={columnDefs}
+                        cellStyle={cellStyle}
+                        getCellStyle={getCellStyle}
+                        onCellClicked={onRowClicked}
+                        onColumnHeaderClicked={onHeaderClicked}
+                    />
+                </div>
             </div>
             <div className={styles["entropys-container"]}>
                 <div className={styles["left-container"]}>
