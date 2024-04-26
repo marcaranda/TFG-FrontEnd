@@ -1,9 +1,11 @@
 import axios from "axios"
-import { setToken, getToken } from "../data/Constants"
+import { setToken, getToken, getURL } from "../data/Constants"
+
+const url = getURL();
 
 export async function login(email, password) {
     try {
-        let result = await axios.post("http://localhost:8080/user/login", {
+        let result = await axios.post(url + "/user/login", {
             email : email,
             password : password,
         });
@@ -18,7 +20,7 @@ export async function login(email, password) {
 
 export async function register(name, email, password, phone) {
     try {
-        await axios.post("http://localhost:8080/user/register", {
+        await axios.post(url + "/user/register", {
             name : name,
             email : email,
             password : password,
@@ -36,7 +38,7 @@ export async function register(name, email, password, phone) {
 
 export async function getUser(userId) {
     try {
-        let result = await axios.get("http://localhost:8080/user/userId/" + userId, {
+        let result = await axios.get(url + "/user/userId/" + userId, {
             headers: {
                 Authorization: "Bearer " + getToken(),
               },
@@ -49,7 +51,7 @@ export async function getUser(userId) {
 
 export async function editUser(user){
     try {
-        await axios.put("http://localhost:8080/user",user,{
+        await axios.put(url + "/user",user,{
             headers: {
                 Authorization: "Bearer " + getToken(),
             },
@@ -63,7 +65,7 @@ export async function editUser(user){
 
 export async function editPassword(userId, currentPassword, newPassword) {
     try {
-        await axios.put("http://localhost:8080/user/userId/" + userId + "/changePassword", {
+        await axios.put(url + "/user/userId/" + userId + "/changePassword", {
             currentPassword: currentPassword,
             newPassword: newPassword,
             headers: {
@@ -79,7 +81,7 @@ export async function editPassword(userId, currentPassword, newPassword) {
 
 export async function deleteUser(userId) {
     try {
-        await axios.delete("http://localhost:8080/user/userId/" + userId, {
+        await axios.delete(url + "/user/userId/" + userId, {
             headers: {
                 Authorization: "Bearer " + getToken,
             },

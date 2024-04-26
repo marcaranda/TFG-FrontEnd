@@ -4,6 +4,7 @@ let token = localStorage.getItem("token");
 let userId = localStorage.getItem("userId");
 let language = localStorage.getItem("language");
 let text = localStorage.getItem("text");
+const url = "http://localhost:8080";
 
 export function setToken(newToken) {
     token = newToken;
@@ -57,4 +58,8 @@ async function changeLanguaje(language) {
 
 export function getText() {
     return text;
+}
+
+export function getURL() {
+    return url;
 }
