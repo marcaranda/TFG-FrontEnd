@@ -11,10 +11,9 @@ export async function login(email, password) {
         });
 
         setToken(result.data);
-        return true;
+        return { success: true };
     } catch (error) {
-        console.error(error);
-        return false;
+        return { success: false };
     }
 }
 
@@ -27,12 +26,10 @@ export async function register(name, email, password, phone) {
             phone : phone,
         });
 
-        let bool = await login(email, password);
-        if (bool) return true;
-        else return false;
+        return { success: true };
     } catch (error) {
         console.error(error);
-        return false;
+        return { success: false, message: error.response.data.message };
     }
 }
 
@@ -43,9 +40,10 @@ export async function getUser(userId) {
                 Authorization: "Bearer " + getToken(),
               },
         });
-        return result.data;
+        return { success: true, result: result.data };
     } catch (error) {
         console.error(error);
+        return { success: false, message: error.response.data.message };
     }
 }
 
@@ -56,10 +54,10 @@ export async function editUser(user){
                 Authorization: "Bearer " + getToken(),
             },
         });
-        return true;
+        return { success: true };
     } catch (error) {
         console.error(error);
-        return false;
+        return { success: false, message: error.response.data.message };
     }
 }
 
@@ -72,10 +70,10 @@ export async function editPassword(userId, currentPassword, newPassword) {
                 Authorization: "Bearer " + getToken,
             },
         });
-        return true;
+        return { success: true };
     } catch (error) {
         console.error(error);
-        return false;
+        return { success: false, message: error.response.data.message };
     }
 }
 

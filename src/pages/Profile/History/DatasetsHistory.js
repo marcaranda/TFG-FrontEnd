@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Toaster, toast } from 'sonner'
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import styles from './ViewHistory.module.css'
@@ -30,14 +31,22 @@ function DatasetsHistory () {
 
     async function handleDownloadButton(dataset) {
         setLoading(true);
-        await downloadDataset(dataset.datasetId, dataset.datasetName, dataset.version);
+        const result = await downloadDataset(dataset.datasetId, dataset.datasetName, dataset.version);
+        if (!result.success) {
+            toast.error(result.message);
+        
+        }
         setLoading(false);
     }
 
     async function handleDeleteButton(dataset) {
         setLoading(true);
-        await deleteDataset(dataset.datasetId);
-        setDatasets(datasets.filter(d => d.datasetId !== dataset.datasetId));
+        const result = await deleteDataset(dataset.datasetId);
+        if (result.success) {
+            setDatasets(datasets.filter(d => d.datasetId !== dataset.datasetId));
+        } else {
+            toast.error(result.message);
+        }
         setLoading(false);
     }
 
@@ -49,9 +58,14 @@ function DatasetsHistory () {
 
     async function handleDatasetButton(dataset) {
         setLoading(true);
-        let result = await getDataset(dataset.datasetId);
-        setLoading(false);
-        navigate("/file", {state: { dataset: result}});
+        const result = await getDataset(dataset.datasetId);
+        if (result.success) {
+            setLoading(false);
+            navigate("/file", {state: { dataset: result.result}});
+        } else {
+            setLoading(false);
+            toast.error(result.message);
+        }
     }
 
     async function handleOrderButton(key) {
@@ -61,13 +75,19 @@ function DatasetsHistory () {
             direction = '-';
         }
         setOrder({ key, direction });
-        const data = await showHistorial(userId, direction + key, null, datasetName);
-        setDatasets(data[datasetName]);
+        const result = await showHistorial(userId, direction + key, null, datasetName);
+        if (result.success) {
+            let data = result.result;
+            setDatasets(data[datasetName]);
+        } else {
+            toast.error(result.message);
+        }
         setLoading(false);
     }
 
     return (
         <div className={styles["body"]}>
+            <Toaster position="top-center" />
             {loading && <Loader />}
             <Navbar />
             <div className={styles["page"]}>

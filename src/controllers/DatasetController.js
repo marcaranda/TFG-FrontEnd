@@ -13,9 +13,10 @@ export async function fileReader(file, userId, rowsDenied) {
                 'Content-Type': 'multipart/form-data'
             },
         });
-        return result.data;
+        return { success: true, result: result.data };
     } catch (error) {
         console.error(error);
+        return { success: false, message: error.response.data.message };
     }
 }
 
@@ -28,9 +29,10 @@ export async function applyFilter(datasetId, titlesFilter, rowStates) {
                 Authorization: "Bearer " + getToken(),
             },
         });
-        return result.data;
+        return { success: true, result: result.data };
     } catch (error) {
         console.error(error);
+        return { success: false, message: error.response.data.message };
     }
 }
 
@@ -42,9 +44,10 @@ export async function applySampleFilter(datasetId, improve, type, numInitialRows
                 Authorization: "Bearer " + getToken(),
             },
         });
-        return result.data;
+        return { success: true, result: result.data };
     } catch (error) {
         console.error(error);
+        return { success: false, message: error.response.data.message };
     }
 }
 
@@ -64,9 +67,10 @@ export async function showHistorial(userId, order = null, search = null, dataset
                 Authorization: "Bearer " + getToken(),
             },
         });
-        return result.data;
+        return { success: true, result: result.data };
     } catch (error) {
         console.error(error);
+        return { success: false, message: error.response.data.message };
     }
 }
 
@@ -77,9 +81,10 @@ export async function getDataset(datasetId) {
                 Authorization: "Bearer " + getToken(),
             },
         });
-        return result.data;
+        return { success: true, result: result.data };
     } catch (error) {
         console.error(error);
+        return { success: false, message: error.response.data.message };
     }
 }
 
@@ -109,8 +114,10 @@ export async function downloadDataset(datasetId, datasetName, version) {
         link.click();
 
         link.parentNode.removeChild(link);
+        return { success: true };
     } catch (error) {
         console.error(error);
+        return { success: false, message: error.response.data.message };
     }
 }
 
@@ -121,7 +128,9 @@ export async function deleteDataset(datasetId) {
                 Authorization: "Bearer " + getToken(),
             },
         });
+        return { success: true };
     } catch (error) {
         console.error(error);
+        return { success: false, message: error.response.data.message };
     }
 }

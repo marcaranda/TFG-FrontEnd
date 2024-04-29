@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Toaster, toast } from 'sonner'
 import { useNavigate } from "react-router-dom";
 import styles from "./Initial.module.css";
 import { setLanguage } from "../../data/Constants";
@@ -7,8 +8,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 function Initial() {
-    const [errorLogIn, setErrorLogIn] = useState(false);
-    const [errorRegister, setErrorRegister] = useState(false);
     const [nameRegister, setNameRegister] = useState("");
     const [emailRegister, setEmailRegister] = useState("");
     const [passwordRegister, setPasswordRegister] = useState("");
@@ -28,28 +27,30 @@ function Initial() {
 
     async function handleRegisterButton(event) {
         event.preventDefault();
-        let bool = await register(nameRegister, emailRegister, passwordRegister, phoneRegister);
-        if (!bool) {
-            setErrorRegister(true);
-          setTimeout(() => {
-            setErrorRegister(false);
-          }, 3000);
+        const result = await register(nameRegister, emailRegister, passwordRegister, phoneRegister);
+        if (result.success) {
+            // Registro exitoso, proceder al login
+            const loginResult = await login(emailRegister, passwordRegister);
+            if (loginResult.success) {
+                navigate("/main");
+            } else {
+                // Error en el login después del registro exitoso
+                toast.error("Error en el inicio de sesión después del registro.");
+            }
         } else {
-          navigate("/main");
+            // Error en el registro
+            toast.error(result.message);
         }
     }
 
     async function handleLoginButton(event) {
         event.preventDefault();
-        let bool = await login(emailLogIn, passwordLogIn);
-        if(!bool){
-            setErrorLogIn(true);
-            setTimeout(()=>{
-                setErrorLogIn(false);
-            }, 3000);
-        }
-        else{
+        const loginResult = await login(emailLogIn, passwordLogIn);
+        if(loginResult.success){
             navigate("/main");
+        }
+        else {
+            toast.error("Error en el inicio de sesión.");
         }
     }
 
@@ -105,6 +106,7 @@ function Initial() {
 
     return (
         <div className={styles["body"]}>
+            <Toaster position="top-center" />
             <div className={`${styles.container} ${isActive ? styles.active : ''}`}>
                 <div className={styles['form-container']}>
                     <div className={styles["sign-up"]}>
@@ -143,7 +145,6 @@ function Initial() {
                                 type="text"
                                 onChange={(event) => handleRegisterInputChange(event, 4)}
                             ></input>
-                            {errorRegister && <p className={styles["error"]}>Error while registering</p>}
                             <button
                                 className={styles["button"]}
                                 onClick={handleRegisterButton}
@@ -178,7 +179,6 @@ function Initial() {
                                     {visibleLogIn ? <FontAwesomeIcon icon={faEyeSlash} size="1x" /> : <FontAwesomeIcon icon={faEye} size="1x" />}
                                 </span>
                             </div>
-                            {errorLogIn && <p className={styles["error"]}>Incorrect Email or Password</p>}
                             <button
                                 className={styles["button"]}
                                 onClick={handleLoginButton}
