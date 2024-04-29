@@ -4,8 +4,8 @@ let token = localStorage.getItem("token");
 let userId = localStorage.getItem("userId");
 let language = localStorage.getItem("language");
 let text = localStorage.getItem("text");
-//const url = "http://localhost:8080";
-const url = "https://tfg-backend-production-f1e5.up.railway.app";
+const url = "http://localhost:8080";
+//const url = "https://tfg-backend-production-f1e5.up.railway.app";
 
 export function setToken(newToken) {
     token = newToken;
