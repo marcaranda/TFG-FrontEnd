@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Toaster, toast } from 'sonner'
 import { useNavigate } from "react-router-dom";
 import styles from './ButtonsHeader.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -22,9 +23,14 @@ function ButtonsHeader({ datasetId, datasetName, datasetVersion, titles, columnS
 
         setLoading(true);
         const result = await applyFilter(datasetId, filterTitles, rowStates);
-        setLoading(false);
-        setFilteredDataset(result);
-        setFilter(true);
+        if (result.success) {
+            setLoading(false);
+            setFilteredDataset(result.result);
+            setFilter(true);
+        } else {
+            setLoading(false);
+            toast.error(result.message);
+        }
     };
 
     async function handleShowFilterButton() {
@@ -34,15 +40,22 @@ function ButtonsHeader({ datasetId, datasetName, datasetVersion, titles, columnS
 
     async function handleDownloadButton() {
         setLoading(true);
-        await downloadDataset(datasetId, datasetName, datasetVersion);
+        const result = await downloadDataset(datasetId, datasetName, datasetVersion);
+        if (!result.success) {
+            toast.error(result.message);
+        }
         setLoading(false);
     }
 
     async function handleDeleteButton() {
         setLoading(true);
-        await deleteDataset(datasetId);
+        const result = await deleteDataset(datasetId);
+        if (result.success) {
+            navigate("/user-settings/history");
+        } else {
+            toast.error(result.message);
+        }
         setLoading(false);
-        navigate("/user-settings/history")
     }
 
     function handleHistorialButton() {
@@ -69,6 +82,7 @@ function ButtonsHeader({ datasetId, datasetName, datasetVersion, titles, columnS
 
     return(
         <div className={styles["body"]}>
+            <Toaster position="top-center" />
             <div className={styles["buttons-header-container"]}>
                 <div className={styles["left-container"]}>
                     <button 

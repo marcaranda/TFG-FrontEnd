@@ -11,10 +11,9 @@ export async function login(email, password) {
         });
 
         setToken(result.data);
-        return true;
+        return { success: true };
     } catch (error) {
-        console.error(error);
-        return false;
+        return { success: false };
     }
 }
 
@@ -27,12 +26,10 @@ export async function register(name, email, password, phone) {
             phone : phone,
         });
 
-        let bool = await login(email, password);
-        if (bool) return true;
-        else return false;
+        return { success: true };
     } catch (error) {
         console.error(error);
-        return false;
+        return { success: false, message: error.response.data.message };
     }
 }
 

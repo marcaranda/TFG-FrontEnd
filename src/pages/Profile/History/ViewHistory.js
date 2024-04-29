@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Toaster, toast } from 'sonner'
 import { useNavigate } from "react-router-dom";
 import styles from './ViewHistory.module.css'
 import Navbar from "../../../components/Navbar";
@@ -21,10 +22,16 @@ function ViewHistory () {
     useEffect(() => {
         async function fetchData() {
             setLoading(true);
-            const data = await showHistorial(userId, "name");
-            setDatasets(data);
-            setDatasetsNames(Object.keys(data));
-            setLoading(false);
+            const result = await showHistorial(userId, "name");
+            if (result.success) {
+                const data = result.result;
+                setDatasets(data);
+                setDatasetsNames(Object.keys(data));
+                setLoading(false);
+            }
+            else {
+                toast.error(result.message);
+            }
         }
         fetchData();
     }, [userId]);
@@ -55,6 +62,7 @@ function ViewHistory () {
 
     return (
         <div className={styles["body"]}>
+            <Toaster position="top-center" />
             {loading && <Loader />}
             <Navbar />
             <div className={styles["page"]}>

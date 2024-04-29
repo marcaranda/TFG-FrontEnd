@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { Toaster, toast } from 'sonner'
 import {useNavigate} from "react-router-dom";
 import styles from './NewFile.module.css'
 import { fileReader } from "../../controllers/DatasetController";
@@ -33,13 +34,20 @@ function NewFile () {
         setLoading(true);
         const file = event.target.files[0];
         const result = await fileReader(file, userId, rowsDenied);
-        setLoading(false);
-        setUploading(false);
-        navigate("/file", {state: { dataset: result}});
+        if (result.success) {
+            setLoading(false);
+            setUploading(false);
+            navigate("/file", {state: { dataset: result.result}});
+        
+        } else {
+            setLoading(false);
+            toast.error(result.message);
+        }
     };
 
     return (
         <div className={styles["body"]}>
+            <Toaster position="top-center" />
             {loading && <Loader />}
             <p className={styles["title"]} text-section="main.fileBottonTitle">{text.main.fileBottonTitle}</p>
             <button 

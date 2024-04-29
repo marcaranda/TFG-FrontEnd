@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Toaster, toast } from 'sonner'
 import styles from './Filter.module.css'
 import { applySampleFilter } from "../../controllers/DatasetController";
 import { getText } from "../../data/Constants";
@@ -10,7 +11,6 @@ function Filter({ datasetId, rowStates, setFilter, setFilteredDataset, setLoadin
     const [numInitialRows, setNumInitialRows] = useState(1);
     const [numWantedRows, setNumWantedRows] = useState(1);
     const [sliderValue, setSliderValue] = useState(50);
-    const [error, setError] = useState(false);
     
     const handleImproveButton = (event) => {
         setSelectedImprove(event.target.value);
@@ -39,32 +39,28 @@ function Filter({ datasetId, rowStates, setFilter, setFilteredDataset, setLoadin
     async function handleFilterButton() {
         if (numWantedRows !== null && numWantedRows > 0 && numInitialRows !== null && numInitialRows > 0) {
             if (selectedType === "Incremental Sampling" && numWantedRows - numInitialRows <= 0) {
-                setLoading(false);
-                setError(true);
-                setTimeout(()=>{
-                    setError(false);
-                }, 3000);
+                toast.error(text.file.filter.errorNumberRows);
                 return;
             }
             
             setLoading(true);
-            console.time("Filter");
-            let result = await applySampleFilter(datasetId, selectedImprove, selectedType, numInitialRows, numWantedRows, rowStates, sliderValue);
-            setFilteredDataset(result);
-            setFilter(true);
-            console.timeEnd("Filter");
+            const result = await applySampleFilter(datasetId, selectedImprove, selectedType, numInitialRows, numWantedRows, rowStates, sliderValue);
+            if (result.success) {
+                setFilteredDataset(result.result);
+                setFilter(true);
+            } else {
+                toast.error(result.message);
+            }
             setLoading(false);
         }
         else {
-            setError(true);
-            setTimeout(()=>{
-                setError(false);
-            }, 3000);
+            toast.error(text.file.filter.errorNumberRows);
         }
     }
 
     return(
         <div className={styles['filter-container']}>
+        <Toaster position="top-center" />
             <p className={styles["text"]} text-section="file.filter.toImprove">{text.file.filter.toImprove}</p>
             <div className={styles["row-container"]}>
             <input
@@ -158,7 +154,6 @@ function Filter({ datasetId, rowStates, setFilter, setFilteredDataset, setLoadin
                 placeholder="1"
                 onChange={(event) => handleInputWantedRowsChange(event)}
             ></input>
-            {error && <p className={styles["error"]} text-section="file.filter.errorNumberRows">{text.file.filter.errorNumberRows}</p>}
             <div className={styles["space"]}></div>
             <div className={styles["row-container"]}>
                 <button 
