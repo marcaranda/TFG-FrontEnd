@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Toaster, toast } from 'sonner'
 import styles from './UserSettings.module.css'
 import Navbar from "../../components/Navbar";
 import Profilebar from "../../components/Profilebar";
@@ -10,7 +11,6 @@ function UserSettings () {
     const navigate = useNavigate();
     const userId = getUserId();
     const text = getText();
-    const [error, setError] = useState(false);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
@@ -35,12 +35,9 @@ function UserSettings () {
             "phone": phone,
         }
 
-        let bool = await editUser(userAux);
-        if (!bool) {
-            setError(true)
-            setTimeout(() => {
-                setError(false);
-            }, 3000);
+        const result = await editUser(userAux);
+        if (!result.success) {
+            toast.error(text.userSettings.errorEditUser);
         }
         else {
             navigate("/user-settings/user-profile");
@@ -71,6 +68,7 @@ function UserSettings () {
 
     return (
         <div className={styles["body"]}>
+            <Toaster position="top-center" />
             <Navbar />
             <div className={styles["page"]}>
                 <Profilebar />
@@ -100,7 +98,6 @@ function UserSettings () {
                             onChange={(event) => handleInputChange(event, 3)}
                         ></input>
                     </div>
-                    {error && <p className={styles["error"]} text-section="userSettings.errorEditUser">{text.userSettings.errorEditUser}</p>}
                     <button
                         className={styles["button"]}
                         onClick={handleSaveButton}

@@ -40,9 +40,10 @@ export async function getUser(userId) {
                 Authorization: "Bearer " + getToken(),
               },
         });
-        return result.data;
+        return { success: true, result: result.data };
     } catch (error) {
         console.error(error);
+        return { success: false, message: error.response.data.message };
     }
 }
 
@@ -53,10 +54,10 @@ export async function editUser(user){
                 Authorization: "Bearer " + getToken(),
             },
         });
-        return true;
+        return { success: true };
     } catch (error) {
         console.error(error);
-        return false;
+        return { success: false, message: error.response.data.message };
     }
 }
 
@@ -69,10 +70,10 @@ export async function editPassword(userId, currentPassword, newPassword) {
                 Authorization: "Bearer " + getToken,
             },
         });
-        return true;
+        return { success: true };
     } catch (error) {
         console.error(error);
-        return false;
+        return { success: false, message: error.response.data.message };
     }
 }
 

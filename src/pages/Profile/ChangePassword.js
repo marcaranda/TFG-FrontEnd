@@ -1,4 +1,5 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import { Toaster, toast } from 'sonner'
 import styles from './ChangePassword.module.css'
 import Navbar from "../../components/Navbar";
 import Profilebar from "../../components/Profilebar";
@@ -6,34 +7,22 @@ import { editPassword } from "../../controllers/UserController";
 import { getText } from "../../data/Constants";
 
 function ChangePassword () {
-    const [error, setError] = useState(false);
-    const [errorPassword, setErrorPassword] = useState(false);
     const [currentPassword, setCP] = useState("");
     const [newPassword, setNP] = useState("");
     const [reNewPassword, setRNP] = useState("");
     const text = getText();
 
-    async function saveAttempt() {
+    async function handleSaveButton () {
         if (newPassword === reNewPassword) {
-            let bool = await editPassword(1, currentPassword, newPassword);
-            if (!bool) {
-                setError(true)
-                setTimeout(() => {
-                    setError(false);
-                }, 3000);
+            const result = await editPassword(1, currentPassword, newPassword);
+            if (!result.success) {
+                toast.error(result.message);
             }
         }
         else {
-            setErrorPassword(true)
-            setTimeout(() => {
-                setError(false);
-            }, 3000);
+            toast.error(text.changePassword.errorMatchPasswords);
         }
     }
-
-    const handleSaveButton = () => {
-        saveAttempt();
-    };
 
     const handleInputChange = (event, inputNumber) => {
         const inputValue = event.target.value;
@@ -55,6 +44,7 @@ function ChangePassword () {
 
     return (
         <div className={styles["body"]}>
+            <Toaster position="top-center" />
             <Navbar />
             <div className={styles["page"]}>
                 <Profilebar />
@@ -84,8 +74,6 @@ function ChangePassword () {
                             onChange={(event) => handleInputChange(event, 3)}
                         ></input>
                     </div>
-                    {error && <p className={styles["error"]} text-section="changePassword.errorChangePassword">{text.changePassword.errorChangePassword}</p>}
-                    {errorPassword && <p className={styles["error"]} text-section="changePassword.errorMatchPasswords">{text.changePassword.errorMatchPasswords}</p>}
                     <button
                         className={styles["button"]}
                         onClick={handleSaveButton}
