@@ -11,7 +11,7 @@ import Filter from "./Filter";
 import Loader from "../../components/Loader"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfo } from "@fortawesome/free-solid-svg-icons";
-import { getText } from "../../data/Constants";
+import { getText, getTop, setTop, getLeft, setLeft } from "../../data/Constants";
 
 function File () {
     const navigate = useNavigate();
@@ -126,6 +126,17 @@ function File () {
             });
         }
 
+        var pluginRow = hotInstance.current.getPlugin('AutoRowSize');
+        var pluginColumn = hotInstance.current.getPlugin('AutoColumnSize');
+        hotInstance.current.updateSettings({
+        afterScrollVertically: function() {
+            setTop(pluginRow.getFirstVisibleRow());
+        },
+        afterScrollHorizontally: function() {
+            setLeft(pluginColumn.getFirstVisibleColumn());
+        }
+        }); 
+
         // Función de limpieza al desmontar el componente
         return () => {
             if (hotInstance.current) {
@@ -135,8 +146,27 @@ function File () {
         };
     }, );
 
+    useEffect(() => {
+        if (hotInstance.current){
+          var top = getTop();
+          var left = getLeft();
+          if (top === null) {
+            top = 0;
+            setTop(0);
+          }
+          if (left === null) {
+            left = 0;
+            setLeft(0);
+          }
+          
+          hotInstance.current.scrollViewportTo(top, left);
+        }
+      }, [rowStates, columnStates]);
+
     function handleOpenFilterFileButton() {
         setFilter(false);
+        setTop(0);
+        setLeft(0);
         navigate("/file", {state: { dataset: filteredDataset}});
     }
 

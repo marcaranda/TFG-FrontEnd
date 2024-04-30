@@ -4,8 +4,10 @@ let token = localStorage.getItem("token");
 let userId = localStorage.getItem("userId");
 let language = localStorage.getItem("language");
 let text = localStorage.getItem("text");
-const url = "http://localhost:8080";
-//const url = "https://tfg-backend-production-f1e5.up.railway.app";
+let top = localStorage.getItem("top");
+let left = localStorage.getItem("left");
+//const url = "http://localhost:8080";
+const url = "https://tfg-backend-production-f1e5.up.railway.app";
 
 export function setToken(newToken) {
     token = newToken;
@@ -55,6 +57,24 @@ async function changeLanguaje(language) {
     } catch (error) {
         console.error("Error al cargar el archivo de idioma", error);
     }
+}
+
+export function setTop(newTop) {
+    top = newTop;
+    localStorage.setItem("top", newTop);
+}
+
+export function getTop() {
+    return top;
+}
+
+export function setLeft(newLeft) {
+    left = newLeft;
+    localStorage.setItem("left", newLeft);
+}
+
+export function getLeft() {
+    return left;
 }
 
 export function getText() {

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import styles from './ButtonsHeader.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { getText } from "../../data/Constants";
+import { getText, setTop, setLeft } from "../../data/Constants";
 import { applyFilter, downloadDataset, deleteDataset } from "../../controllers/DatasetController";
 
 function ButtonsHeader({ datasetId, datasetName, datasetVersion, titles, columnStates, rowStates, setColumnStates, setRowStates, setFilter, setFilteredDataset, setShowFilter, setLoading }) {
@@ -51,6 +51,8 @@ function ButtonsHeader({ datasetId, datasetName, datasetVersion, titles, columnS
         setLoading(true);
         const result = await deleteDataset(datasetId);
         if (result.success) {
+            setTop(0);
+            setLeft(0);
             navigate("/user-settings/history");
         } else {
             toast.error(result.message);
@@ -59,6 +61,8 @@ function ButtonsHeader({ datasetId, datasetName, datasetVersion, titles, columnS
     }
 
     function handleHistorialButton() {
+        setTop(0);
+        setLeft(0);
         navigate("/user-settings/history");
     }
 
