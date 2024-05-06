@@ -27,7 +27,7 @@ function UserSettings () {
         getUserFunction()
     }, [userId]);
 
-    async function saveAttempt() {
+    async function handleSaveButton() {
         const userAux = {
             ...user,
             "name": name,
@@ -43,10 +43,6 @@ function UserSettings () {
             navigate("/user-settings/user-profile");
         }
     }
-
-    const handleSaveButton = () => {
-        saveAttempt();
-    };
 
     const handleInputChange = (event, inputNumber) => {
         const inputValue = event.target.value;
