@@ -67,3 +67,7 @@
     font-weight: bold;
     cursor: pointer;
 }
+
+.image {
+    max-width: 100%;
+}

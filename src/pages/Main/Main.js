@@ -4,6 +4,7 @@ import styles from './Main.module.css'
 import NewFile from "./NewFile";
 import Navbar from "../../components/Navbar";
 import { getText } from "../../data/Constants";
+import logo from "../../assets/pictures/logoTFG.png";
 
 function Main () {
     const text = getText();
@@ -32,7 +33,7 @@ function Main () {
                     </div>
                 </div>
                 <div className={styles["half-body"]}>
-                    <h1 className={styles["page-title"]}>Image</h1>
+                    <img src={ logo } alt="Logo" className={styles["image"]}/>
                 </div>
             </div>
         </div>
