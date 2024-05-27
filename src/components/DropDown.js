@@ -10,15 +10,6 @@ function DropDown({onSelect, options, predeterminated}) {
         onSelect(option);
     };
 
-    const Option = (props) => {
-        return (
-          <components.Option {...props}>
-            <img src={props.data.icon} style={{ width: '20px', height: '20px', marginRight: '5px' }} alt="" />
-            {props.data.label}
-          </components.Option>
-        );
-      };
-
     return(
         <div className={styles['body']}>
             <Select
@@ -26,13 +17,6 @@ function DropDown({onSelect, options, predeterminated}) {
                 value={selected}
                 onChange={handeOptionChange}
                 options={options}
-                components={{ Option }}
-                getOptionLabel={(option) => (
-                    <>
-                      <img src={option.icon} style={{ width: '20px', height: '20px', marginRight: '5px' }} alt="" />
-                      {option.label}
-                    </>
-                  )}
                 styles={{
                     singleValue: (provided) => ({
                         ...provided,
@@ -44,7 +28,7 @@ function DropDown({onSelect, options, predeterminated}) {
                         backgroundColor: 'none',
                         border: 'none',
                         width: '140px',
-                        textAlign: 'left',
+                        textAlign: 'right',
                         cursor: 'pointer'
                     }),
                     option: (provided, state) => ({
