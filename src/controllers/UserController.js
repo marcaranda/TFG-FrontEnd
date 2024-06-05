@@ -5,6 +5,7 @@ const url = getURL();
 
 export async function login(email, password) {
     try {
+        console.log(url);
         let result = await axios.post(url + "/user/login", {
             email : email,
             password : password,
