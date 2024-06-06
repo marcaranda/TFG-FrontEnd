@@ -91,7 +91,6 @@ function Initial() {
 
       const handleLogInInputChange = (event, inputNumber) => {
         const inputValue = event.target.value;
-        console.log("ok");
     
         switch (inputNumber) {
           case 1:
@@ -142,7 +141,7 @@ function Initial() {
                             </div>
                             <input
                                 className={styles["input"]}
-                                placeholder="Phone Number"
+                                placeholder="Phone Number (+34xxxxxxxxx)"
                                 type="text"
                                 onChange={(event) => handleRegisterInputChange(event, 4)}
                             ></input>
