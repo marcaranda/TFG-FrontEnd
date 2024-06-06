@@ -91,6 +91,7 @@ function Initial() {
 
       const handleLogInInputChange = (event, inputNumber) => {
         const inputValue = event.target.value;
+        console.log("ok");
     
         switch (inputNumber) {
           case 1:
