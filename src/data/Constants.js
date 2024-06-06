@@ -6,6 +6,7 @@ let language = localStorage.getItem("language");
 let text = localStorage.getItem("text");
 let top = localStorage.getItem("top");
 let left = localStorage.getItem("left");
+//const url = "http://localhost:8080";
 const url = "https://eigenentropydataanalysis-949983df6ec8.herokuapp.com";
 
 export function setToken(newToken) {

@@ -4,6 +4,7 @@ import { setToken, getToken, getURL } from "../data/Constants"
 const url = getURL();
 
 export async function login(email, password) {
+    console.log(url);
     try {
         console.log(url);
         let result = await axios.post(url + "/user/login", {

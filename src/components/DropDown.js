@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Select, { components } from 'react-select';
+import Select from 'react-select';
 import styles from './DropDown.module.css';
 
 function DropDown({onSelect, options, predeterminated}) {
