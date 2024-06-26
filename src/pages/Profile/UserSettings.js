@@ -19,10 +19,10 @@ function UserSettings () {
     useEffect(() => {
         async function getUserFunction(){
             const result = await getUser(userId);
-            setUser(result);
-            setName(result?.name);
-            setEmail(result?.email);
-            setPhone(result?.phone);
+            setUser(result.result);
+            setName(result?.result.name);
+            setEmail(result?.result.email);
+            setPhone(result?.result.phone);
         }
         getUserFunction()
     }, [userId]);

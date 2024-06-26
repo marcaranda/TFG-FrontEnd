@@ -47,7 +47,7 @@ function ViewHistory () {
     async function handleSearchButton() {
         setLoading(true);
         const data = await showHistorial(userId, null, search);
-        setDatasetsNames(Object.keys(data));
+        setDatasetsNames(Object.keys(data.result));
         setLoading(false);   
     }
 
@@ -55,7 +55,7 @@ function ViewHistory () {
         if (event.key === 'Enter') {
             setLoading(true);
             const data = await showHistorial(userId, null, search);
-            setDatasetsNames(Object.keys(data));
+            setDatasetsNames(Object.keys(data.result));
             setLoading(false);   
         }  
     }
